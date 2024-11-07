@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "30s_app",
-    "slug": "30s_app",
+    "name": "App10s",
+    "slug": "app10s",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "icon": "./assets/images/onBroading.png",
+    "scheme": "app10s",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
