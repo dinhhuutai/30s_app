@@ -31,9 +31,13 @@ const Member = () => {
   
   const pathname = usePathname();
   useEffect(() => {
-    if(pathname === '/member') {
-      swipeableRefs.current[activeSwipeIndex]?.close();
-      handleSearchMember();
+    try {
+      if(pathname === '/member') {
+        swipeableRefs?.current[activeSwipeIndex]?.close();
+        handleSearchMember();
+      }
+    } catch (error) {
+      
     }
   }, [pathname]);
 
@@ -45,8 +49,8 @@ const Member = () => {
     // Lắng nghe sự kiện 'focus' khi người dùng quay lại tab hoặc màn hình
     const unsubscribe = navigation.addListener('focus', () => {
       // Cuộn về đầu trang khi màn hình trở lại focus
-      if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+      if (scrollViewRef?.current) {
+        scrollViewRef?.current?.scrollTo({ x: 0, y: 0, animated: true });
       }
     });
 
@@ -74,27 +78,31 @@ const Member = () => {
   };
 
   const handleSwipeOpen = (index, member) => {
-
-    // Nếu có item đang mở, đóng nó
-    if (activeSwipeIndex !== null && activeSwipeIndex !== index) {
-      swipeableRefs.current[activeSwipeIndex]?.close(); // Đóng item trước đó
+    try {
+      
+      // Nếu có item đang mở, đóng nó
+      if (activeSwipeIndex !== null && activeSwipeIndex !== index) {
+        swipeableRefs.current[activeSwipeIndex]?.close(); // Đóng item trước đó
+      }
+      
+      setActiveSwipeIndex(index);
+      setSelectMemberDelete(member);
+    } catch (error) {
+      
     }
-    
-    setActiveSwipeIndex(index);
-    setSelectMemberDelete(member);
   };
 
   const handleDelete = async () => {
     try {
       setIsLoading(true);
-        const res = await axiosClient(`${BASE_URL}/v1/member/delete/${selectMemberDelete._id}`,
+        const res = await axiosClient(`${BASE_URL}/v1/member/delete/${selectMemberDelete?._id}`,
           {
             method: 'post',
             data: {},
           }
         );
 
-        if (res.success) {
+        if (res?.success) {
             swipeableRefs.current[activeSwipeIndex]?.close();
             handleSearchMember();
         } else {

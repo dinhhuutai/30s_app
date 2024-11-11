@@ -42,13 +42,13 @@ export const AuthProvider = ({ children }) => {
             } else {
                 setError({
                   status: true,
-                  message: 'Tài khoản hoặc mật khẩu cũ không chính xác'
+                  message: 'Tài khoản hoặc mật khẩu không chính xác'
                 })
             }
         } catch (error) {
             setError({
               status: true,
-              message: 'Tài khoản hoặc mật khẩu cũ không chính xác'
+              message: 'Tài khoản hoặc mật khẩu không chính xác'
             })
             console.log(error);
             setIsLoading(false);

@@ -45,7 +45,7 @@ export const SmsProvider = ({ children }) => {
                 data: { listId: listCheck },
             });
 
-            if (res.success) {
+            if (res?.success) {
                 const formattedDate = moment(date).format("DD/MM/YYYY");
                 const resKQXS = await axiosClient(
                     `${BASE_URL}/v1/kqxs/findKqxsByDate`,
@@ -58,8 +58,8 @@ export const SmsProvider = ({ children }) => {
                 const mn = [];
                 const mt = [];
                 const mb = [];
-                if (resKQXS.success) {
-                    resKQXS.data.map((e) => {
+                if (resKQXS?.success) {
+                    resKQXS?.data.map((e) => {
                         if (e.domain === "mb") {
                             mb.push(e);
                         } else if (e.domain === "mt") {
@@ -90,8 +90,8 @@ export const SmsProvider = ({ children }) => {
                             );
 
                             if (
-                                resRevenue.revenue.length > 0 &&
-                                sms.statusSms === "Đã xổ"
+                                resRevenue?.revenue?.length > 0 &&
+                                sms?.statusSms === "Đã xổ"
                             ) {
                                 await axiosClient(
                                     `${BASE_URL}/v1/revenue/update/${resRevenue.revenue[0]._id}`,

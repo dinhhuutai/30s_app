@@ -20,7 +20,7 @@ export default function App() {
     return (
         <>
             <ImageBackground
-                source={require('../assets/images/onBroading.png')}
+                source={require('../assets/images/onBroading.jpg')}
                 style={{flex: 1, justifyContent: 'flex-end'}}
                 resizeMode='cover'
                 className="flex items-center px-[6px]"

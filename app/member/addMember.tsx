@@ -271,7 +271,7 @@ const AddMember = () => {
                                     }} value={phoneTmp} onChangeText={val => setPhoneTmp(val)} className='text-[16px]' selectionColor="#333" />
                 </View>
                 
-                <View className='mt-[10px] flex-row items-center border-b-[1px] border-solid border-[#d3cece]'>
+                <View className='mt-[10px] py-[18px] flex-row items-center border-b-[1px] border-solid border-[#d3cece]'>
                     <Text className='flex-1 text-[18px]'>Chạy số</Text>
                     <Switch
                         className=''

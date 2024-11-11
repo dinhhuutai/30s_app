@@ -24,56 +24,76 @@ const Sms = () => {
   const pathname = usePathname();
   
   useEffect(() => {
-    if(pathname === '/sms') {
-      setIdMember('0');
-      setDate(new Date());
+    try {
+      if(pathname === '/sms') {
+        setIdMember('0');
+        setDate(new Date());
+      }
+    } catch (error) {
+      
     }
   }, [pathname]);
   
   const onRefresh = useCallback(() => {
-    setLabel('mn');
-    setIdMember('0');
-    setDate(new Date());
-    setDeleted(false);
-    setIsDelete(false);
-    setListCheck([]);
-    handleFindSms();
+    try {
+      setLabel('mn');
+      setIdMember('0');
+      setDate(new Date());
+      setDeleted(false);
+      setIsDelete(false);
+      setListCheck([]);
+      handleFindSms();
+    } catch (error) {
+      
+    }
   }, []);
 
 
 
   useEffect(() => {
-    
-    if(pathname === '/sms') {
-      handleFindSms();
-      setListCheck([]);
-      setCheckAll(false);
+    try {
+      
+      if(pathname === '/sms') {
+        handleFindSms();
+        setListCheck([]);
+        setCheckAll(false);
+      }
+    } catch (error) {
+      
     }
   }, [date, idMember, label, deleted]);
 
   const handleCheck = (id) => {
-    let newArray = [];
+    try {
+      let newArray = [];
 
-    if(listCheck.includes(id)) {
-      newArray = listCheck.filter(item => item !== id);
+      if(listCheck?.includes(id)) {
+        newArray = listCheck?.filter(item => item !== id);
+        
+      } else {
+        newArray = [...listCheck, id]
+      }
       
-    } else {
-      newArray = [...listCheck, id]
-    }
-    
-    setListCheck(newArray)
+      setListCheck(newArray)
 
-    if(newArray.length === sms.length && sms.length !== 0) {
-      setCheckAll(true);
-    } else {
-      setCheckAll(false);
+      if(newArray?.length === sms?.length && sms?.length !== 0) {
+        setCheckAll(true);
+      } else {
+        setCheckAll(false);
+      }
+    } catch (error) {
+      
     }
   }
   
 
   
   useEffect(() => {
+    try {
       handleFindAllMembers();
+    } catch (error) {
+      
+    }
   }, [user?.info?._id]);
 
   const handleFindAllMembers = async () => {
@@ -85,12 +105,12 @@ const Sms = () => {
           });
 
 
-          if (resMembers.success) {
+          if (resMembers?.success) {
 
-              let membersTmp = resMembers?.members.map((memb) => {
+              let membersTmp = resMembers?.members?.map((memb) => {
                   return {
-                      label: memb.name,
-                      value: memb._id,
+                      label: memb?.name,
+                      value: memb?._id,
                   }
               })
               
@@ -113,10 +133,10 @@ const Sms = () => {
 
   useEffect(() => {
     // Lắng nghe sự kiện 'focus' khi người dùng quay lại tab hoặc màn hình
-    const unsubscribe = navigation.addListener('focus', () => {
+    const unsubscribe = navigation?.addListener('focus', () => {
       // Cuộn về đầu khi màn hình trở lại focus
-      if (flatListRef.current) {
-        flatListRef.current.scrollToOffset({ animated: true, offset: 0 }); // Cuộn về đầu
+      if (flatListRef?.current) {
+        flatListRef?.current?.scrollToOffset({ animated: true, offset: 0 }); // Cuộn về đầu
       }
     });
 
@@ -184,6 +204,7 @@ const Sms = () => {
               onRefresh={onRefresh}
             />
           }
+            initialNumToRender={5}
             scrollEnabled={true}
             data={sms}
             keyExtractor={(item, index) => index}

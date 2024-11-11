@@ -179,14 +179,21 @@ const Home = () => {
     // Lắng nghe sự kiện 'focus' khi người dùng quay lại tab hoặc màn hình
     const unsubscribe = navigation.addListener('focus', () => {
       // Cuộn về đầu trang khi màn hình trở lại focus
-      if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+      if (scrollViewRef?.current) {
+        scrollViewRef?.current?.scrollTo({ x: 0, y: 0, animated: true });
       }
     });
 
     // Dọn dẹp sự kiện khi component unmount
     return unsubscribe;
   }, [navigation]);
+
+  
+  const [members, setMembers] = useState([{
+      label: 'Tất cả',
+      value: '0',
+  }]);
+  const [idMember, setIdMember] = useState();
 
   return (
     <SafeAreaView className='h-full'>
@@ -220,6 +227,7 @@ const Home = () => {
               </TouchableOpacity>
             </View>
         </View>
+
 
         <ScrollView 
           ref={scrollViewRef}

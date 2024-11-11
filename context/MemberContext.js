@@ -92,12 +92,12 @@ export const MemberProvider = ({ children }) => {
                 }
             );
 
-            if (res.success) {
+            if (res?.success) {
                 setMembers(res.members);
                 setIsLoading(false);
             }
         } catch (error) {
-            console.log("error: ", res.members);
+            console.log("error: ", res?.members);
             setIsLoading(false);
         }
     };
@@ -167,7 +167,7 @@ export const MemberProvider = ({ children }) => {
                     data: formData,
                 });
 
-                if (res.success) {
+                if (res?.success) {
                     const res = await axiosClient(
                         `${BASE_URL}/v1/member/findAllMemberByIdUser/${user?.info?._id}`,
                         {
@@ -176,7 +176,7 @@ export const MemberProvider = ({ children }) => {
                         }
                     );
 
-                    if (res.success) {
+                    if (res?.success) {
                         handleSearchMember();
                         router.back();
                     }
@@ -250,14 +250,14 @@ export const MemberProvider = ({ children }) => {
             try {
                 setIsLoading(true);
                 const res = await axiosClient(
-                    `${BASE_URL}/v1/member/update/${selecterMember._id}`,
+                    `${BASE_URL}/v1/member/update/${selecterMember?._id}`,
                     {
                         method: "post",
                         data: formData,
                     }
                 );
 
-                if (res.success) {
+                if (res?.success) {
                     const res1 = await axiosClient(
                         `${BASE_URL}/v1/member/findAllMemberByIdUser/${user?.info?._id}`,
                         {
@@ -266,7 +266,7 @@ export const MemberProvider = ({ children }) => {
                         }
                     );
 
-                    if (res1.success) {
+                    if (res1?.success) {
                         handleSearchMember();
                         setModalEditSucc(true);
                     }

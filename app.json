@@ -4,22 +4,24 @@
     "slug": "app10s",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/onBroading.png",
+    "icon": "./assets/images/onBroading-icon.jpg",
     "scheme": "app10s",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/onBroading-splash.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dinhhuutai.app10s"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/onBroading-adaptive-icon.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dinhhuutai.app10s"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +33,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "110d26fc-0e29-40f8-819a-ea85c11c454a"
+      }
     }
   }
 }

@@ -35,12 +35,12 @@ const Revenue = () => {
         });
 
 
-        if (resMembers.success) {
+        if (resMembers?.success) {
 
-            let membersTmp = resMembers?.members.map((memb) => {
+            let membersTmp = resMembers?.members?.map((memb) => {
                 return {
-                    label: memb.name,
-                    value: memb._id,
+                    label: memb?.name,
+                    value: memb?._id,
                 }
             })
             
@@ -91,8 +91,8 @@ const Revenue = () => {
     // Lắng nghe sự kiện 'focus' khi người dùng quay lại tab hoặc màn hình
     const unsubscribe = navigation.addListener('focus', () => {
       // Cuộn về đầu trang khi màn hình trở lại focus
-      if (scrollViewRef.current) {
-        scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+      if (scrollViewRef?.current) {
+        scrollViewRef?.current?.scrollTo({ x: 0, y: 0, animated: true });
       }
     });
 
