@@ -4,6 +4,7 @@ function handleDeleteStringFrontRedundant(content) {
 
     const searchChars = [
         '2d',
+        'hd',
         '2đ',
         '3d',
         '3đ',
@@ -78,7 +79,7 @@ function handleDeleteStringFrontRedundant(content) {
         countDelete++;
     }
 
-    if (countDelete >= 4) {
+    if (countDelete >= 6) {
         errorSyntax = true;
         errorSyntaxDetail = {
             code: 'duaphiatruoc',

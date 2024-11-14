@@ -24,11 +24,10 @@ function handleXiu(contentTmp) {
     let index = contentTmp.indexOf('xiu');
 
     while (
-        (index !== -1 &&
-            contentTmp[index - 1] === '.' &&
-            contentTmp[index + 3] === '.' &&
-            contentTmp[index + 4] !== 'c') ||
-        (index === 0 && contentTmp[index + 3] === '.' && contentTmp[index + 4] !== 'c')
+        ((index !== -1 && contentTmp[index - 1] === '.' && contentTmp[index + 3] === '.') ||
+            (index === 0 && contentTmp[index + 3] === '.')) &&
+        contentTmp[index + 4] !== '.' &&
+        !isFinite(Number(contentTmp[index + 4]))
     ) {
         let mangSo = [];
 

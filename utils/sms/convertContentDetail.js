@@ -4,6 +4,7 @@ import findListTwoNum from './findListTwoNum';
 import findPosFirstAndTwo from './findPosFirstAndTwo';
 import handleConvertSymbol from './handleConvertSymbol';
 import handleDai from './handleDai';
+import handleDaiSpace from './handleDaiSpace';
 import handleDeleteMien from './handleDeleteMien';
 import handleDeleteStringFrontRedundant from './handleDeleteStringFrontRedundant';
 import handleListNumComboBao from './handleListNumComboBao';
@@ -66,6 +67,9 @@ function convertContentDetail(content, date) {
     contentTmp = handleConvertSymbol(contentTmp, mien, dayOfWeek);
     console.log('Làm gọn sau viết tắc: ', contentTmp);
 
+    contentTmp = handleDaiSpace(contentTmp);
+    console.log('Làm gọn sau xử lý khoảng trống giữa đài: ', contentTmp);
+
     let { data3, data4, data42 } = handleDeleteStringFrontRedundant(contentTmp);
     contentTmp = data3;
     if (!errorSyntax) {
@@ -80,8 +84,32 @@ function convertContentDetail(content, date) {
     let isKD = false;
 
     while (kt) {
-        if (contentTmp[0] === 'b' && contentTmp[1] === 'l') {
+        if (
+            contentTmp[0] === 'b' &&
+            contentTmp[1] === 'l' &&
+            (contentTmp[2] === '.' || isFinite(Number(contentTmp[2])))
+        ) {
             contentTmp = 'bi' + contentTmp.slice(2);
+        } else if (
+            contentTmp[3] === 'b' &&
+            contentTmp[4] === 'l' &&
+            (contentTmp[5] === '.' || isFinite(Number(contentTmp[5])))
+        ) {
+            contentTmp = contentTmp.slice(0, 3) + 'bi' + contentTmp.slice(5);
+        } else if (
+            contentTmp[6] === 'b' &&
+            contentTmp[7] === 'l' &&
+            (contentTmp[8] === '.' || isFinite(Number(contentTmp[8]))) &&
+            !isFinite(Number(contentTmp[4]))
+        ) {
+            contentTmp = contentTmp.slice(0, 6) + 'bi' + contentTmp.slice(8);
+        } else if (
+            contentTmp[9] === 'b' &&
+            contentTmp[10] === 'l' &&
+            (contentTmp[11] === '.' || isFinite(Number(contentTmp[11]))) &&
+            !isFinite(Number(contentTmp[7]))
+        ) {
+            contentTmp = contentTmp.slice(0, 9) + 'bi' + contentTmp.slice(11);
         }
         const { firstTwoPositions, changeDaiBacLieu, changeBaoDao } = findPosFirstAndTwo(contentTmp);
 
@@ -234,7 +262,21 @@ function convertContentDetail(content, date) {
                     kdSS === 'daxien' ||
                     kdSS === 'dxien' ||
                     kdSS === 'đat' ||
-                    kdSS === 'dax'
+                    kdSS === 'dav' ||
+                    kdSS === 'davong' ||
+                    kdSS === 'dax' ||
+                    (kdSS === 'd' &&
+                        !(
+                            cloChild[i + 1] === 'd' ||
+                            cloChild[i + 2] === 'd' ||
+                            cloChild[i + 3] === 'd' ||
+                            cloChild[i + 4] === 'd' ||
+                            cloChild[i + 5] === 'd' ||
+                            cloChild[i - Number((gtien + '').length) - Number(kdSS.length) - 2] === 'd' ||
+                            cloChild[i - Number((gtien + '').length) - Number(kdSS.length) - 3] === 'd' ||
+                            cloChild[i - Number((gtien + '').length) - Number(kdSS.length) - 4] === 'd' ||
+                            cloChild[i - Number((gtien + '').length) - Number(kdSS.length) - 5] === 'd'
+                        ))
                 ) {
                     if (dai.length >= 2) {
                         kdanhMain = 'da(xien)';
@@ -253,6 +295,8 @@ function convertContentDetail(content, date) {
                             kdSS === 'đax' ||
                             kdSS === 'daxien' ||
                             kdSS === 'dxien' ||
+                            kdSS === 'dav' ||
+                            kdSS === 'davong' ||
                             kdSS === 'dax'
                         ) {
                             errorSyntax = true;
@@ -279,6 +323,7 @@ function convertContentDetail(content, date) {
                                     kdSS === 'dth' ||
                                     kdSS === 'dthang' ||
                                     kdSS === 'đat' ||
+                                    kdSS === 'đathang' ||
                                     soDa[0].length < 2 ||
                                     soDa[1].length < 2 ||
                                     soDa[0] === soDa[1]
@@ -337,17 +382,9 @@ function convertContentDetail(content, date) {
                         }
                         // eslint-disable-next-line no-loop-func
                         mangSoDa.map((soDa) => {
-                            if (
-                                kdSS === 'dat' ||
-                                kdSS === 'dathang' ||
-                                kdSS === 'dath' ||
-                                kdSS === 'dth' ||
-                                kdSS === 'dthang' ||
-                                kdSS === 'đat' ||
-                                soDa[0].length < 2 ||
-                                soDa[1].length < 2 ||
-                                soDa[0] === soDa[1]
-                            ) {
+                            if (soDa[0].length < 2 || soDa[1].length < 2 || soDa[0] === soDa[1]) {
+                                console.log(soDa[0]);
+                                console.log(soDa[1]);
                                 errorSyntaxDetail = {
                                     code: 'da2',
                                     num: [soDa[0], soDa[1]],
@@ -862,6 +899,7 @@ function convertContentDetail(content, date) {
                             kdSS === 'siuch' ||
                             kdSS === 'siuc' ||
                             kdSS === 'sch' ||
+                            kdSS === 'xiu' ||
                             kdSS === 'schu'
                         ) {
                             kdanhMain = 'xiuchu';
@@ -917,6 +955,7 @@ function convertContentDetail(content, date) {
                             kdSS === 'xiuchudau' ||
                             kdSS === 'xiuchdau' ||
                             kdSS === 'xiucdau' ||
+                            kdSS === 'xiudau' ||
                             kdSS === 'xđau' ||
                             kdSS === 'xcđau' ||
                             kdSS === 'xiuchuđau' ||
@@ -994,6 +1033,8 @@ function convertContentDetail(content, date) {
                             kdSS === 'xiuchudui' ||
                             kdSS === 'xiuchdui' ||
                             kdSS === 'xiucdui' ||
+                            kdSS === 'xiudui' ||
+                            kdSS === 'xiuduoi' ||
                             kdSS === 'xdui' ||
                             kdSS === 'xcdui' ||
                             kdSS === 'xiuchudui' ||
@@ -1083,6 +1124,8 @@ function convertContentDetail(content, date) {
                             kdSS === 'xchd' ||
                             kdSS === 'xiucd' ||
                             kdSS === 'xiuchd' ||
+                            kdSS === 'xiud' ||
+                            kdSS === 'xiudao' ||
                             kdSS === 'đaoxc' ||
                             kdSS === 'đaox' ||
                             kdSS === 'đxchu' ||
@@ -1217,6 +1260,10 @@ function convertContentDetail(content, date) {
                             kdSS === 'xchuddau' ||
                             kdSS === 'xchddau' ||
                             kdSS === 'xiucddau' ||
+                            kdSS === 'xiuddau' ||
+                            kdSS === 'xiudaud' ||
+                            kdSS === 'xiudaodau' ||
+                            kdSS === 'xiudaudao' ||
                             kdSS === 'xiuchddau' ||
                             kdSS === 'đaoxcdau' ||
                             kdSS === 'đaoxdau' ||
@@ -1346,6 +1393,10 @@ function convertContentDetail(content, date) {
                         }
 
                         if (
+                            kdSS === 'xiudduoi' ||
+                            kdSS === 'xiuduoid' ||
+                            kdSS === 'xiudaoduoi' ||
+                            kdSS === 'xiuduoidao' ||
                             kdSS === 'daoxcduoi' ||
                             kdSS === 'daoxduoi' ||
                             kdSS === 'dxchuduoi' ||

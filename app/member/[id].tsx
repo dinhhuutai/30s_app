@@ -399,6 +399,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdathangMN(true)} className='flex-row items-center'>
                                     <RadioButton
+                                    onPress={() => setTypeTrungdathangMN(true)}
                                         status={typeTrungdathangMN ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Ky rưỡi</Text>
@@ -406,6 +407,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdathangMN(false)} className='flex-row items-center'>
                                     <RadioButton 
+                                    onPress={() => setTypeTrungdathangMN(false)}
                                         status={!typeTrungdathangMN ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Không Ky rưỡi</Text>
@@ -428,6 +430,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdaxienMN(true)} className='flex-row items-center'>
                                     <RadioButton
+                                    onPress={() => setTypeTrungdaxienMN(true)}
                                         status={typeTrungdaxienMN ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Ky rưỡi</Text>
@@ -435,6 +438,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdaxienMN(false)} className='flex-row items-center'>
                                     <RadioButton 
+                                    onPress={() => setTypeTrungdaxienMN(false)}
                                         status={!typeTrungdaxienMN ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Không Ky rưỡi</Text>
@@ -543,6 +547,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdathangMT(true)} className='flex-row items-center'>
                                     <RadioButton
+                                    onPress={() => setTypeTrungdathangMT(true)}
                                         status={typeTrungdathangMT ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Ky rưỡi</Text>
@@ -550,6 +555,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdathangMT(false)} className='flex-row items-center'>
                                     <RadioButton 
+                                    onPress={() => setTypeTrungdathangMT(false)}
                                         status={!typeTrungdathangMT ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Không Ky rưỡi</Text>
@@ -571,6 +577,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdaxienMT(true)} className='flex-row items-center'>
                                     <RadioButton
+                                    onPress={() => setTypeTrungdaxienMT(true)}
                                         status={typeTrungdaxienMT ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Ky rưỡi</Text>
@@ -578,6 +585,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdaxienMT(false)} className='flex-row items-center'>
                                     <RadioButton 
+                                    onPress={() => setTypeTrungdaxienMT(false)}
                                         status={!typeTrungdaxienMT ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Không Ky rưỡi</Text>
@@ -679,6 +687,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdathangMB(true)} className='flex-row items-center'>
                                     <RadioButton
+                                    onPress={() => setTypeTrungdathangMB(true)}
                                         status={typeTrungdathangMB ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Ky rưỡi</Text>
@@ -686,6 +695,7 @@ const DetailMember = () => {
                                 <TouchableOpacity
                                     onPress={() => setTypeTrungdathangMB(false)} className='flex-row items-center'>
                                     <RadioButton 
+                                    onPress={() => setTypeTrungdathangMB(false)}
                                         status={!typeTrungdathangMB ? 'checked' : 'unchecked'}
                                     />
                                     <Text>Không Ky rưỡi</Text>
