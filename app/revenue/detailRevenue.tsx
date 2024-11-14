@@ -66,11 +66,11 @@ const DetailRevenue = () => {
                                 ? 'thứ sáu'
                                 : 'thứ bảy'
                         } ${day}/${month}
-              2c:  ${parseFloat(selectRevenue[domain]?.diem2con.toFixed(1)).toLocaleString('en-US') || 0}
-              3,4c:  ${parseFloat(selectRevenue[domain]?.diem34con.toFixed(1)).toLocaleString('en-US') || 0}
-              Trúng:  ${parseFloat(selectRevenue[domain]?.tongtrung.toFixed(1)).toLocaleString('en-US') || 0}
+              2c:  ${parseFloat(selectRevenue[domain]?.diem2con.toFixed(1))?.toLocaleString('en-US') || 0}
+              3,4c:  ${parseFloat(selectRevenue[domain]?.diem34con.toFixed(1))?.toLocaleString('en-US') || 0}
+              Trúng:  ${parseFloat(selectRevenue[domain]?.tongtrung.toFixed(1))?.toLocaleString('en-US') || 0}
               ${selectRevenue[domain]?.revenue > 0 || !selectRevenue[domain]?.revenue ? 'Thu' : 'Bù'}:  ${
-                            parseFloat(selectRevenue[domain]?.revenue.toFixed(1)).toLocaleString('en-US') || 0
+                            parseFloat(selectRevenue[domain]?.revenue.toFixed(1))?.toLocaleString('en-US') || 0
                         }`
                       : ''
               }`;
@@ -142,33 +142,33 @@ const DetailRevenue = () => {
                   <View className='mt-[14px]'>
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Điểm 2 con:</Text>
-                        <Text className={`text-[15px] font-semibold`}>{selectRevenue?.[domain]?.diem2con ? parseFloat(selectRevenue?.[domain]?.diem2con.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold`}>{selectRevenue?.[domain]?.diem2con ? parseFloat(selectRevenue?.[domain]?.diem2con.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
   
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Điểm 3,4 con:</Text>
-                        <Text className={`text-[15px] font-semibold`}>{selectRevenue?.[domain]?.diem34con ? parseFloat(selectRevenue?.[domain]?.diem34con.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold`}>{selectRevenue?.[domain]?.diem34con ? parseFloat(selectRevenue?.[domain]?.diem34con.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                       
                       
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Tổng điểm:</Text>
-                        <Text className={`text-[15px] font-semibold`}>{(selectRevenue?.[domain]?.diem2con + selectRevenue?.[domain]?.diem34con) ? parseFloat((selectRevenue?.[domain]?.diem2con + selectRevenue?.[domain]?.diem34con).toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold`}>{(selectRevenue?.[domain]?.diem2con + selectRevenue?.[domain]?.diem34con) ? parseFloat((selectRevenue?.[domain]?.diem2con + selectRevenue?.[domain]?.diem34con).toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
   
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Tiền xác:</Text>
-                        <Text className={`text-[15px] font-semibold ${selectRevenue?.[domain]?.tongxac > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectRevenue?.[domain]?.tongxac ? parseFloat(selectRevenue?.[domain]?.tongxac.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold ${selectRevenue?.[domain]?.tongxac > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectRevenue?.[domain]?.tongxac ? parseFloat(selectRevenue?.[domain]?.tongxac.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                       
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Tiền trúng:</Text>
-                        <Text className={`text-[15px] font-semibold ${selectRevenue?.[domain]?.tongtrung > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectRevenue?.[domain]?.tongtrung ? parseFloat(selectRevenue?.[domain]?.tongtrung.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold ${selectRevenue?.[domain]?.tongtrung > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectRevenue?.[domain]?.tongtrung ? parseFloat(selectRevenue?.[domain]?.tongtrung.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                     
                     <View className='flex-row justify-between items-center mt-[10px]'>
                       <Text className='text-[18px]'>Tổng <Text className='text-[#d9534f]'>thu</Text> | <Text className='text-[#2574ab]'>trả</Text>: </Text>
-                      <Text className={`text-[18px] font-semibold ${selectRevenue?.[domain]?.revenue > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectRevenue?.[domain]?.revenue ? parseFloat(selectRevenue?.[domain]?.revenue?.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                      <Text className={`text-[18px] font-semibold ${selectRevenue?.[domain]?.revenue > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectRevenue?.[domain]?.revenue ? parseFloat(selectRevenue?.[domain]?.revenue?.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                     </View>
 
                   </View>
@@ -189,7 +189,7 @@ const DetailRevenue = () => {
                   <TouchableOpacity onPress={() => {setIdSms(sm.idSms); router.push('revenue/smsWin')}} key={index} className='flex-row gap-[2px] py-[14px] items-center justify-center border-t-[1px] border-solid border-[#e1d9d9]'>
                     <Text className='flex-1 text-[16px]'>{sm.content}</Text>
                     <View className='relative'>
-                      <Text className='w-[60px] px-[2px] text-center items-center justify-center text-[16px]'>{sm.price.toLocaleString('en-US')}</Text>
+                      <Text className='w-[60px] px-[2px] text-center items-center justify-center text-[16px]'>{sm.price?.toLocaleString('en-US')}</Text>
                       {
                         sm.quantityLike > 1 && 
                         <Text className='absolute top-0 right-0 rounded-[50px] w-[14px] h-[14px] text-center justify-center items-center bg-[#d9534f] text-[10px] text-[#fff]'>
@@ -197,7 +197,7 @@ const DetailRevenue = () => {
                         </Text>
                       }
                     </View>
-                    <Text className={`w-[80px] px-[2px] text-center items-center justify-center text-[16px] font-semibold ${sm.tientrung > 0 ? 'text-[#0053d0]' : 'text-[#d9534f]'}`}>{parseFloat(sm.tientrung?.toFixed(1)).toLocaleString('en-US')}</Text>
+                    <Text className={`w-[80px] px-[2px] text-center items-center justify-center text-[16px] font-semibold ${sm.tientrung > 0 ? 'text-[#0053d0]' : 'text-[#d9534f]'}`}>{parseFloat(sm.tientrung?.toFixed(1))?.toLocaleString('en-US')}</Text>
                   </TouchableOpacity>
                 ))
               }

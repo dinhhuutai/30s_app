@@ -232,19 +232,19 @@ const Sms = () => {
                           <View className='flex-row'>
                             <Text className='font-psemibold text-[15px] ml-[4px]'>
                               <Text className='text-[14px] text-[#000] font-pregular mr-[6px]'>2c: </Text>
-                              {item?.diem2con.toLocaleString('en-US')}
+                              {item?.diem2con?.toLocaleString('en-US')}
                             </Text>
                           </View>
                           <View className='flex-row ml-[10px]'>
                             <Text className='font-psemibold text-[15px] ml-[4px]'>
                               <Text className='text-[14px] text-[#000] font-pregular mr-[6px]'>3,4c: </Text>
-                              {item?.diem34con.toLocaleString('en-US')}
+                              {item?.diem34con?.toLocaleString('en-US')}
                             </Text>
                           </View>
                           <View className='flex-row ml-[10px]'>
                             <Text className={`font-psemibold flex ml-[4px] ${item?.tongtrung > 0 ? 'text-[#0a58e0] text-[15px]' : 'text-[15px]'}`}>
                               <Text className='text-[14px] text-[#000] font-pregular'>Trúng: </Text>
-                              {item?.tongtrung.toLocaleString('en-US')}
+                              {item?.tongtrung?.toLocaleString('en-US')}
                             </Text>
                           </View>
                         </View>

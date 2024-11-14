@@ -115,22 +115,22 @@ const SmsWin = () => {
         <View className='mt-[10px]'>
           <View className='flex-row justify-between items-center'>
             <Text className='text-[15px] text-[#000] font-pregular mr-[6px]'>Tổng đặt 2 con: </Text>
-            <Text className='text-[16px]'>{selectorSms?.diem2con.toLocaleString('en-US')}</Text>    
+            <Text className='text-[16px]'>{selectorSms?.diem2con?.toLocaleString('en-US')}</Text>    
           </View>
           
           <View className='flex-row justify-between items-center mt-[6px]'>
             <Text className='text-[15px] text-[#000] font-pregular mr-[6px]'>Tổng đặt 3,4 con: </Text>
-            <Text className='text-[16px]'>{selectorSms?.diem34con.toLocaleString('en-US')}</Text>    
+            <Text className='text-[16px]'>{selectorSms?.diem34con?.toLocaleString('en-US')}</Text>    
           </View>
           
           <View className='flex-row justify-between items-center mt-[6px]'>
             <Text className='text-[15px] text-[#000] font-pregular mr-[6px]'>Tổng đặt: </Text>
-            <Text className='text-[16px]'>{selectorSms?.tongdiem.toLocaleString('en-US')}</Text>    
+            <Text className='text-[16px]'>{selectorSms?.tongdiem?.toLocaleString('en-US')}</Text>    
           </View>
           
           <View className='flex-row justify-between items-center mt-[10px]'>
             <Text className='text-[15px] text-[#000] font-pregular mr-[6px]'>Tổng <Text className='text-[#d9534f]'>thu</Text> | <Text className='text-[#2574ab]'>trả</Text>: </Text>
-            <Text className={`text-[18px] font-psemibold ${selectorSms?.revenue > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectorSms?.revenue ? parseFloat(selectorSms?.revenue?.toFixed(1)).toLocaleString('en-US') : '0.0'}</Text>    
+            <Text className={`text-[18px] font-psemibold ${selectorSms?.revenue > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{selectorSms?.revenue ? parseFloat(selectorSms?.revenue?.toFixed(1))?.toLocaleString('en-US') : '0.0'}</Text>    
           </View>
         </View>
   
@@ -149,7 +149,7 @@ const SmsWin = () => {
                 <View key={index} className='flex-row gap-[2px] py-[14px] items-center justify-center border-t-[1px] border-solid border-[#e1d9d9]'>
                   <Text className='flex-1 text-[16px]'>{sm.content}</Text>
                   <View className='relative'>
-                        <Text className='w-[60px] px-[2px] text-center items-center justify-center text-[16px]'>{sm.price.toLocaleString('en-US')}</Text>
+                        <Text className='w-[60px] px-[2px] text-center items-center justify-center text-[16px]'>{sm.price?.toLocaleString('en-US')}</Text>
                         {
                           sm.quantityLike > 1 && 
                           <Text className='absolute top-0 right-0 rounded-[50px] w-[14px] h-[14px] text-center justify-center items-center bg-[#d9534f] text-[10px] text-[#fff]'>
@@ -157,7 +157,7 @@ const SmsWin = () => {
                           </Text>
                         }
                       </View>
-                  <Text className={`w-[80px] px-[2px] text-center items-center justify-center text-[16px] font-semibold ${sm.tientrung > 0 ? 'text-[#0053d0]' : 'text-[#d9534f]'}`}>{parseFloat(sm.tientrung?.toFixed(1)).toLocaleString('en-US')}</Text>
+                  <Text className={`w-[80px] px-[2px] text-center items-center justify-center text-[16px] font-semibold ${sm.tientrung > 0 ? 'text-[#0053d0]' : 'text-[#d9534f]'}`}>{parseFloat(sm.tientrung?.toFixed(1))?.toLocaleString('en-US')}</Text>
                 </View>
               ))
             }

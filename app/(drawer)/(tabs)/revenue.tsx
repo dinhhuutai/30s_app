@@ -158,22 +158,22 @@ const Revenue = () => {
           <View className='mt-[16px]'>
             <View className='flex-row justify-between items-center'>
               <Text className='text-[16px]'>Tổng M.Nam:</Text>
-              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongMN > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongMN ? parseFloat(revenues[revenues.length - 1]?.tongMN.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongMN > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongMN ? parseFloat(revenues[revenues.length - 1]?.tongMN.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
             </View>
             
             <View className='flex-row justify-between items-center mt-[10px]'>
               <Text className='text-[16px]'>Tổng M.Trung:</Text>
-              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongMT > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongMT ? parseFloat(revenues[revenues.length - 1]?.tongMT.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongMT > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongMT ? parseFloat(revenues[revenues.length - 1]?.tongMT.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
             </View>
             
             <View className='flex-row justify-between items-center mt-[10px]'>
               <Text className='text-[16px]'>Tổng M.Bắc:</Text>
-              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongMB > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongMB ? parseFloat(revenues[revenues.length - 1]?.tongMB.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongMB > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongMB ? parseFloat(revenues[revenues.length - 1]?.tongMB.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
             </View>
             
             <View className='flex-row justify-between items-center mt-[10px]'>
               <Text className='text-[16px]'>Tổng:</Text>
-              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongAll > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongAll ? parseFloat(revenues[revenues.length - 1]?.tongAll.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+              <Text className={`text-[18px] font-semibold ${revenues[revenues.length - 1]?.tongAll > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{revenues[revenues.length - 1]?.tongAll ? parseFloat(revenues[revenues.length - 1]?.tongAll.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
             </View>
           </View>
 
@@ -218,35 +218,35 @@ const Revenue = () => {
                     ); router.push('/revenue/detailRevenue')}}>
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Điểm 2 con:</Text>
-                        <Text className={`text-[15px] font-semibold`}>{ren?.[domain]?.diem2con ? parseFloat(ren?.[domain]?.diem2con.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold`}>{ren?.[domain]?.diem2con ? parseFloat(ren?.[domain]?.diem2con.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
   
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Điểm 3,4 con:</Text>
-                        <Text className={`text-[15px] font-semibold`}>{ren?.[domain]?.diem34con ? parseFloat(ren?.[domain]?.diem34con.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold`}>{ren?.[domain]?.diem34con ? parseFloat(ren?.[domain]?.diem34con.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                       
   
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Tiền xác:</Text>
-                        <Text className={`text-[15px] font-semibold ${ren?.[domain]?.tongxac > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.[domain]?.tongxac ? parseFloat(ren?.[domain]?.tongxac.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold ${ren?.[domain]?.tongxac > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.[domain]?.tongxac ? parseFloat(ren?.[domain]?.tongxac.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                       
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>Tiền trúng:</Text>
-                        <Text className={`text-[15px] font-semibold ${ren?.[domain]?.tongtrung > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.[domain]?.tongtrung ? parseFloat(ren?.[domain]?.tongtrung.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold ${ren?.[domain]?.tongtrung > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.[domain]?.tongtrung ? parseFloat(ren?.[domain]?.tongtrung.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                       
                       <View className='flex-row justify-between items-center mt-[10px]'>
                         <Text className='text-[15px]'>{`Tổng ${domain === 'mn' ? 'MN' : domain === 'mt' ? 'MT' : 'MB'}:`}</Text>
-                        <Text className={`text-[15px] font-semibold ${ren?.[domain]?.revenue > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.[domain]?.revenue ? parseFloat(ren?.[domain]?.revenue.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                        <Text className={`text-[15px] font-semibold ${ren?.[domain]?.revenue > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.[domain]?.revenue ? parseFloat(ren?.[domain]?.revenue.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                       </View>
                     </TouchableOpacity>
                     
                     
                     <View className='flex-row justify-between items-center mt-[10px]'>
                       <Text className='text-[18px]'>Tổng <Text className='text-[#d9534f]'>thu</Text> | <Text className='text-[#2574ab]'>trả</Text>: </Text>
-                      <Text className={`text-[18px] font-semibold ${ren?.idMember?.total > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.idMember?.total ? parseFloat(ren?.idMember?.total?.toFixed(1)).toLocaleString('en-US') : 0}</Text>
+                      <Text className={`text-[18px] font-semibold ${ren?.idMember?.total > 0 ? 'text-[#d9534f]' : 'text-[#2574ab]'}`}>{ren?.idMember?.total ? parseFloat(ren?.idMember?.total?.toFixed(1))?.toLocaleString('en-US') : 0}</Text>
                     </View>
 
                   </View>
