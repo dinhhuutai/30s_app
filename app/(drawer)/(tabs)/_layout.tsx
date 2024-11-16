@@ -12,11 +12,11 @@ import { RevenueContext } from '@/context/RevenueContext';
 
 const TabIcon = ({ icon, color, name, focused }) => {
     return (
-        <View className='items-center justify-center'>
+        <View className='items-center mt-[8px]'>
             {
                 icon
             }
-            <Text className={`${focused ? 'font-psemibold text-[#fff]' : 'font-pregular text-[#ece1e1]'} text-[12px]`}>
+            <Text style={{flexDirection: 'row', width: '100%'}} className={`${focused ? 'font-psemibold text-[#fff]' : 'font-pregular text-[#ece1e1]'} text-[12px]`}>
                 {name}
             </Text>
         </View>

@@ -12,6 +12,7 @@ import KQXSMT from '@/components/KQXSMT';
 import KQXSMB from '@/components/KQXSMB';
 import { Colors } from '@/constants/Colors';
 import { useNavigation } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -197,6 +198,7 @@ const Home = () => {
 
   return (
     <SafeAreaView className='h-full'>
+      <StatusBar style='light' />
     {
         isLoading &&
         <View style={{

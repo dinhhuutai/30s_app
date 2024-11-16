@@ -134,7 +134,7 @@ const DetailRevenue = () => {
                   </View>
                   
                   <View className='items-center mt-[10px]'>
-                    <View className='border-[1px] items-center justify-center w-[210px] h-[130px] border-solid border-[#c7c3c3] rounded-[4px] py-[6px] px-[10px]'>
+                    <View className='border-[1px] items-center justify-center w-[210px] h-[160px] border-solid border-[#c7c3c3] rounded-[4px] py-[6px] px-[10px]'>
                       <ScrollView className='' scrollEnabled={true}><Text>{contentCopy}</Text></ScrollView>
                     </View>
                   </View>

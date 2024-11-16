@@ -9,6 +9,7 @@ import { DrawerContentScrollView, DrawerItem, DrawerToggleButton } from '@react-
 import { Redirect, router, usePathname } from 'expo-router';
 import { AuthContext } from '@/context/AuthContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { DrawerActions } from '@react-navigation/native';
 
 const CustomDrawerContent = (props) => {
     const { handleLogout, user } = useContext(AuthContext);
@@ -30,8 +31,13 @@ const CustomDrawerContent = (props) => {
           <View style={{backgroundColor: Colors.primary, paddingBottom: 6, paddingTop: '16%'}}>
               <View style={{flexDirection: 'row', paddingHorizontal: 20, justifyContent: 'space-between', alignItems: 'center'}}>
                   <Text className='font-psemibold' style={{fontSize: 20, marginLeft: 10, color: Colors.white}}>10s</Text>
-                  <TouchableOpacity>
-                      <DrawerToggleButton tintColor={Colors.white} />
+                  <TouchableOpacity onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}>
+                      
+                    <Feather
+                      name="menu"
+                      size={24}
+                      color="#fff"
+                    />
                   </TouchableOpacity>
               </View>
           </View>
@@ -47,8 +53,8 @@ const CustomDrawerContent = (props) => {
             labelStyle={[
               { color: pathname == "/home" ? "#fff" : "#000" },
             ]}
-             className='font-pmedium'
-            style={{ backgroundColor: pathname == "/home" ? Colors.primary : "#fff" }}
+             className='font-pmedium]'
+            style={{ backgroundColor: pathname == "/home" ? Colors.primary : "#fff", marginTop: 10 }}
             onPress={() => {
               router.push("/(drawer)/(tabs)/home");
             }}
@@ -66,7 +72,7 @@ const CustomDrawerContent = (props) => {
               { color: pathname == "/user" ? "#fff" : "#000" },
             ]}
              className='font-pmedium'
-            style={{ backgroundColor: pathname == "/user" ? Colors.primary : "#fff" }}
+            style={{ backgroundColor: pathname == "/user" ? Colors.primary : "#fff", marginTop: 10 }}
             onPress={() => {
               router.push("/user");
             }}
@@ -85,17 +91,17 @@ const CustomDrawerContent = (props) => {
               { color: pathname == "/setting" ? "#fff" : "#000" },
             ]}
              className='font-pmedium'
-            style={{ backgroundColor: pathname == "/setting" ? Colors.primary : "#fff" }}
+            style={{ backgroundColor: pathname == "/setting" ? Colors.primary : "#fff", marginTop: 10 }}
             onPress={() => {
               router.push("/setting");
             }}
           />
-          <TouchableOpacity onPress={() => handleLogout()} style={{flexDirection: 'row', marginTop: '7%', paddingHorizontal: '7.3%'}}>
+          <TouchableOpacity onPress={() => handleLogout()} style={{flexDirection: 'row', paddingHorizontal: '6%', marginTop: 20}}>
               <AntDesign
                 name="logout"
                 size={20}
               />
-              <Text className='font-pmedium' style={{marginLeft: '14%'}}>Đăng xuất</Text>
+              <Text className='font-pmedium' style={{marginLeft: '6%'}}>Đăng xuất</Text>
           </TouchableOpacity>
         </ScrollView>
         <View style={{marginBottom: 24}} className='px-[16px] flex-row flex-wrap items-center justify-between'>

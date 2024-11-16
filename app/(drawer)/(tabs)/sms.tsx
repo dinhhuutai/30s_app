@@ -10,10 +10,14 @@ import { AuthContext } from '@/context/AuthContext';
 import { router, useNavigation, usePathname } from 'expo-router';
 import { SmsContext } from '@/context/SmsContext';
 import Feather from '@expo/vector-icons/Feather';
+import DraggableChatButton from '@/components/DraggableChatButton';
+import ModalDistribute from '@/components/ModalDistribute';
 
 const Sms = () => {
   const { handleFindSms, sms, setSms, label, setLabel, idMember, setIdMember, deleted, setDeleted, isSelected, setIsSelected, isDelete, setIsDelete, date, setDate, isLoading, setIsLoading, listCheck, setListCheck, setCheckAll, checkAll } = useContext(SmsContext);
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const [modalDistribute, setModalDistribute] = useState(false);
 
   const { user } = useContext(AuthContext);
   const [members, setMembers] = useState([{
@@ -257,6 +261,13 @@ const Sms = () => {
               </View>
           }
         />
+
+        <DraggableChatButton setModalDistribute={setModalDistribute} />
+
+        {
+          modalDistribute &&
+          <ModalDistribute modalDistribute={modalDistribute} setModalDistribute={setModalDistribute} />
+        }
 
     </SafeAreaView>
   )

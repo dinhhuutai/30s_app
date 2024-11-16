@@ -139,7 +139,7 @@ const User = () => {
         
                 <View className='mt-[10px] border-b-[1px] border-solid border-[#d3cece]'>
                     <Text>Tài khoản</Text>
-                    <TextInput editable={false} value={username} onChangeText={val => setUsername(val)} className='text-[16px]' selectionColor="#333" />
+                    <TextInput editable={false} value={username} onChangeText={val => setUsername(val)} className='text-[16px] text-[#a99c9c]' selectionColor="#333" />
                 </View>
 
                 <View className='mt-[10px] border-b-[1px] border-solid border-[#d3cece]'>

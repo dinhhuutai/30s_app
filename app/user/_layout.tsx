@@ -21,7 +21,7 @@ const UserLayout = () => {
                         fontSize: 20,
                     },
                     headerLeft: () => (
-                      <TouchableOpacity className='' onPress={() => router.back()}>
+                      <TouchableOpacity style={{zIndex: 9999}} onPress={() => {console.log(123); router.back()}}>
                         <Feather name="arrow-left" size={24} color='#fff' />
                       </TouchableOpacity>
                     ),
