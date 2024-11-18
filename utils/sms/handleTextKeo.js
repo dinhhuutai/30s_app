@@ -145,7 +145,9 @@ function handleTextKeo(content) {
         index !== -1 &&
         (contentTmp[index + 1] === '.' ||
             (isFinite(Number(contentTmp[index + 1])) && contentTmp[index - 1] === '.') ||
-            isFinite(Number(contentTmp[index - 1])))
+            isFinite(Number(contentTmp[index - 1]))) &&
+            (isFinite(Number(contentTmp[index + 2]))) &&
+            (isFinite(Number(contentTmp[index - 2])))
     ) {
         while (
             index !== -1 &&

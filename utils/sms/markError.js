@@ -21,14 +21,20 @@ let listDaiError = [
     'dongnai',
     'dnai',
     'cantho',
+    'canth',
     'ctho',
+    'cth',
     'soctrang',
     'strang',
+    'stran',
+    'soctran',
     'tayninh',
     'tninh',
     'angiang',
     'ang',
     'agiang',
+    'angian',
+    'agian',
     'binhthuan',
     'bthuan',
     'bth',
@@ -36,26 +42,39 @@ let listDaiError = [
     'bduong',
     'vinhlong',
     'vlong',
+    'vlon',
+    'vihlon',
+    'vihlong',
+    'vinhlon',
     'travinh',
     'trvinh',
     'tvinh',
     'longan',
     'lan',
+    'lonan',
+    'longa',
     'binhphuoc',
     'bphuoc',
     'haugiang',
     'hgiang',
+    'haugian',
+    'hgian',
     'tiengiang',
     'tgiang',
+    'tiengian',
+    'tgian',
     'tgi',
     'kiengiang',
     'kgiang',
+    'kiengian',
+    'kgian',
     'kgi',
     'dalat',
     'dlat',
     'phuyen',
     'pyen',
     'hue',
+    'tth',
     'daklak',
     'dlak',
     'dlac',
@@ -66,8 +85,11 @@ let listDaiError = [
     'qnam',
     'danang',
     'dnang',
+    'danan',
+    'dnan',
     'khanhhoa',
     'khoa',
+    'khhoa',
     'quangbinh',
     'qbinh',
     'binhdinh',
@@ -79,11 +101,15 @@ let listDaiError = [
     'ninhthuan',
     'nthuan',
     'quangngai',
+    'quanngai',
     'qngai',
     'dacnong',
     'dnong',
     'dno',
     'daknong',
+    'dacnon',
+    'dnon',
+    'daknon',
     'kontum',
     'ktum',
     'kontom',
@@ -281,15 +307,27 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'bi';
                     } else if (daiTmp.toLowerCase() === 'dongnai' || daiTmp.toLowerCase() === 'dnai') {
                         daiTmp = 'dn';
-                    } else if (daiTmp.toLowerCase() === 'cantho' || daiTmp.toLowerCase() === 'ctho') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'cantho' ||
+                        daiTmp.toLowerCase() === 'ctho' ||
+                        daiTmp.toLowerCase() === 'cth' ||
+                        daiTmp.toLowerCase() === 'canth'
+                    ) {
                         daiTmp = 'ct';
-                    } else if (daiTmp.toLowerCase() === 'soctrang' || daiTmp.toLowerCase() === 'strang') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'soctrang' ||
+                        daiTmp.toLowerCase() === 'strang' ||
+                        daiTmp.toLowerCase() === 'stran' ||
+                        daiTmp.toLowerCase() === 'soctran'
+                    ) {
                         daiTmp = 'st';
                     } else if (daiTmp.toLowerCase() === 'tayninh' || daiTmp.toLowerCase() === 'tninh') {
                         daiTmp = 'tn';
                     } else if (
                         daiTmp.toLowerCase() === 'angiang' ||
                         daiTmp.toLowerCase() === 'agiang' ||
+                        daiTmp.toLowerCase() === 'angian' ||
+                        daiTmp.toLowerCase() === 'agian' ||
                         daiTmp.toLowerCase() === 'ang'
                     ) {
                         daiTmp = 'ag';
@@ -301,7 +339,14 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'bt';
                     } else if (daiTmp.toLowerCase() === 'binhduong' || daiTmp.toLowerCase() === 'bduong') {
                         daiTmp = 'bu';
-                    } else if (daiTmp.toLowerCase() === 'vinhlong' || daiTmp.toLowerCase() === 'vlong') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'vinhlong' ||
+                        daiTmp.toLowerCase() === 'vlong' ||
+                        daiTmp.toLowerCase() === 'vlon' ||
+                        daiTmp.toLowerCase() === 'vihlon' ||
+                        daiTmp.toLowerCase() === 'vihlong' ||
+                        daiTmp.toLowerCase() === 'vinhlon'
+                    ) {
                         daiTmp = 'vl';
                     } else if (
                         daiTmp.toLowerCase() === 'travinh' ||
@@ -309,21 +354,35 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp.toLowerCase() === 'trvinh'
                     ) {
                         daiTmp = 'tv';
-                    } else if (daiTmp.toLowerCase() === 'longan' || daiTmp.toLowerCase() === 'lan') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'longan' ||
+                        daiTmp.toLowerCase() === 'lan' ||
+                        daiTmp.toLowerCase() === 'longa' ||
+                        daiTmp.toLowerCase() === 'lonan'
+                    ) {
                         daiTmp = 'la';
                     } else if (daiTmp.toLowerCase() === 'binhphuoc' || daiTmp.toLowerCase() === 'bphuoc') {
                         daiTmp = 'bp';
-                    } else if (daiTmp.toLowerCase() === 'haugiang' || daiTmp.toLowerCase() === 'hgiang') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'haugiang' ||
+                        daiTmp.toLowerCase() === 'hgiang' ||
+                        daiTmp.toLowerCase() === 'haugian' ||
+                        daiTmp.toLowerCase() === 'hgian'
+                    ) {
                         daiTmp = 'hg';
                     } else if (
                         daiTmp.toLowerCase() === 'tiengiang' ||
                         daiTmp.toLowerCase() === 'tgiang' ||
+                        daiTmp.toLowerCase() === 'tiengian' ||
+                        daiTmp.toLowerCase() === 'tgian' ||
                         daiTmp.toLowerCase() === 'tgi'
                     ) {
                         daiTmp = 'tg';
                     } else if (
                         daiTmp.toLowerCase() === 'kiengiang' ||
                         daiTmp.toLowerCase() === 'kgiang' ||
+                        daiTmp.toLowerCase() === 'kiengian' ||
+                        daiTmp.toLowerCase() === 'kgian' ||
                         daiTmp.toLowerCase() === 'kgi'
                     ) {
                         daiTmp = 'kg';
@@ -331,7 +390,7 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'lt';
                     } else if (daiTmp.toLowerCase() === 'phuyen' || daiTmp.toLowerCase() === 'pyen') {
                         daiTmp = 'py';
-                    } else if (daiTmp.toLowerCase() === 'hue') {
+                    } else if (daiTmp.toLowerCase() === 'hue' || daiTmp.toLowerCase() === 'tth') {
                         daiTmp = 'hu';
                     } else if (
                         daiTmp.toLowerCase() === 'dlac' ||
@@ -344,9 +403,18 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'dl';
                     } else if (daiTmp.toLowerCase() === 'quangnam' || daiTmp.toLowerCase() === 'qnam') {
                         daiTmp = 'qn';
-                    } else if (daiTmp.toLowerCase() === 'danang' || daiTmp.toLowerCase() === 'dnang') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'danang' ||
+                        daiTmp.toLowerCase() === 'dnang' ||
+                        daiTmp.toLowerCase() === 'dnan' ||
+                        daiTmp.toLowerCase() === 'danan'
+                    ) {
                         daiTmp = 'dg';
-                    } else if (daiTmp.toLowerCase() === 'khanhhoa' || daiTmp.toLowerCase() === 'khoa') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'khanhhoa' ||
+                        daiTmp.toLowerCase() === 'khoa' ||
+                        daiTmp.toLowerCase() === 'khhoa'
+                    ) {
                         daiTmp = 'kh';
                     } else if (daiTmp.toLowerCase() === 'quangbinh' || daiTmp.toLowerCase() === 'qbinh') {
                         daiTmp = 'qb';
@@ -358,12 +426,19 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'gl';
                     } else if (daiTmp.toLowerCase() === 'ninhthuan' || daiTmp.toLowerCase() === 'nthuan') {
                         daiTmp = 'nt';
-                    } else if (daiTmp.toLowerCase() === 'quangngai' || daiTmp.toLowerCase() === 'qngai') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'quangngai' ||
+                        daiTmp.toLowerCase() === 'qngai' ||
+                        daiTmp.toLowerCase() === 'quanngai'
+                    ) {
                         daiTmp = 'qg';
                     } else if (
                         daiTmp.toLowerCase() === 'dacnong' ||
                         daiTmp.toLowerCase() === 'daknong' ||
                         daiTmp.toLowerCase() === 'dnong' ||
+                        daiTmp.toLowerCase() === 'dacnon' ||
+                        daiTmp.toLowerCase() === 'daknon' ||
+                        daiTmp.toLowerCase() === 'dnon' ||
                         daiTmp.toLowerCase() === 'dno'
                     ) {
                         daiTmp = 'do';
@@ -448,6 +523,21 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         positionEnd = i;
                         positionFirstTmp = -1;
                         break;
+                    } else if (content.indexOf('2da ')) {
+                        positionFirst = content.indexOf('2da ');
+                        positionEnd = positionFirst + 4;
+                        positionFirstTmp = -1;
+                        break;
+                    } else if (content.indexOf('3da ')) {
+                        positionFirst = content.indexOf('3da ');
+                        positionEnd = positionFirst + 4;
+                        positionFirstTmp = -1;
+                        break;
+                    } else if (content.indexOf('4da ')) {
+                        positionFirst = content.indexOf('4da ');
+                        positionEnd = positionFirst + 4;
+                        positionFirstTmp = -1;
+                        break;
                     } else {
                         positionFirst = content
                             .slice(positionFirst + errorSyntaxDetail.num[0].lenght)
@@ -456,8 +546,28 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daTmp = '';
                         break;
                     }
+                } else if (content.indexOf('2da ')) {
+                    positionFirst = content.indexOf('2da ');
+                    positionEnd = positionFirst + 4;
+                    positionFirstTmp = -1;
+                    break;
+                } else if (content.indexOf('3da ')) {
+                    positionFirst = content.indexOf('3da ');
+                    positionEnd = positionFirst + 4;
+                    positionFirstTmp = -1;
+                    break;
+                } else if (content.indexOf('4da ')) {
+                    positionFirst = content.indexOf('4da ');
+                    positionEnd = positionFirst + 4;
+                    positionFirstTmp = -1;
+                    break;
+                } else {
+                    positionFirstTmp = -1;
+                    break;
                 }
             }
+
+            console.log(111111);
         }
 
         return { code: 'da1', location: [positionFirst, positionEnd] };
@@ -498,8 +608,27 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daTmp += content[i];
                     } else if (/^[0-9]$/.test(content[i])) {
                         soSauTmp += content[i];
+                    } else if (content.indexOf('2da ')) {
+                        positionFirst = content.indexOf('2da ');
+                        positionEnd = positionFirst + 4;
+                        positionFirstTmp = -1;
+                        break;
+                    } else if (content.indexOf('3da ')) {
+                        positionFirst = content.indexOf('3da ');
+                        positionEnd = positionFirst + 4;
+                        positionFirstTmp = -1;
+                        break;
+                    } else if (content.indexOf('4da ')) {
+                        positionFirst = content.indexOf('4da ');
+                        positionEnd = positionFirst + 4;
+                        positionFirstTmp = -1;
+                        break;
+                    } else {
+                        positionFirstTmp = -1;
+                        break;
                     }
                 } else if (daTmp.length > 1 && soSauTmp.length > 1) {
+                    console.log(11111111);
                     if (
                         (daTmp === 'da' ||
                             daTmp === 'đa' ||
@@ -529,6 +658,26 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         soSauTmp = '';
                         break;
                     }
+                } else if (/^[0-9]$/.test(content[i])) {
+                    soSauTmp += content[i];
+                } else if (content.indexOf('2da ')) {
+                    positionFirst = content.indexOf('2da ');
+                    positionEnd = positionFirst + 4;
+                    positionFirstTmp = -1;
+                    break;
+                } else if (content.indexOf('3da ')) {
+                    positionFirst = content.indexOf('3da ');
+                    positionEnd = positionFirst + 4;
+                    positionFirstTmp = -1;
+                    break;
+                } else if (content.indexOf('4da ')) {
+                    positionFirst = content.indexOf('4da ');
+                    positionEnd = positionFirst + 4;
+                    positionFirstTmp = -1;
+                    break;
+                } else {
+                    positionFirstTmp = -1;
+                    break;
                 }
             }
         }
@@ -992,7 +1141,49 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                             xcTmp === 'schuduoidao' ||
                             xcTmp === 'scduoid' ||
                             xcTmp === 'siuchuduoid' ||
-                            xcTmp === 'schuduoid'
+                            xcTmp === 'schuduoid' ||
+                            xcTmp === 'xdaudao' ||
+                            xcTmp === 'xdaud' ||
+                            xcTmp === 'xdaodau' ||
+                            xcTmp === 'xddau' ||
+                            xcTmp === 'xduidao' ||
+                            xcTmp === 'xduoidao' ||
+                            xcTmp === 'xduid' ||
+                            xcTmp === 'xduoid' ||
+                            xcTmp === 'xdaodui' ||
+                            xcTmp === 'xdaoduoi' ||
+                            xcTmp === 'xddui' ||
+                            xcTmp === 'xdduoi' ||
+                            xcTmp === 'baylo' ||
+                            xcTmp === 'baobay' ||
+                            xcTmp === 'baobaylo' ||
+                            xcTmp === 'baylod' ||
+                            xcTmp === 'baobayd' ||
+                            xcTmp === 'baobaylod' ||
+                            xcTmp === 'baylodao' ||
+                            xcTmp === 'baobaydao' ||
+                            xcTmp === 'baobaylodao' ||
+                            xcTmp === 'dbaylo' ||
+                            xcTmp === 'dbaobay' ||
+                            xcTmp === 'dbaobaylo' ||
+                            xcTmp === 'daobaylo' ||
+                            xcTmp === 'daobaobay' ||
+                            xcTmp === 'daobaobaylo' ||
+                            xcTmp === 'tamlo' ||
+                            xcTmp === 'baotam' ||
+                            xcTmp === 'baotamlo' ||
+                            xcTmp === 'tamlod' ||
+                            xcTmp === 'baotamd' ||
+                            xcTmp === 'baotamlod' ||
+                            xcTmp === 'tamlodao' ||
+                            xcTmp === 'baotamdao' ||
+                            xcTmp === 'baotamlodao' ||
+                            xcTmp === 'dtamlo' ||
+                            xcTmp === 'dbaotam' ||
+                            xcTmp === 'dbaotamlo' ||
+                            xcTmp === 'daotamlo' ||
+                            xcTmp === 'daobaotam' ||
+                            xcTmp === 'daobaotamlo'
                         ) {
                             positionEnd = i;
                             positionFirstTmp = -1;

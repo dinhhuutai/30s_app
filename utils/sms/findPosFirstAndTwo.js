@@ -1,4 +1,4 @@
-function findPosFirstAndTwo(content) {
+function findPosFirstAndTwo(content, dayOfWeek, mien) {
     const searchChars = [
         '2d',
         'hd',
@@ -71,6 +71,18 @@ function findPosFirstAndTwo(content) {
                     (content[index + 2] === '.' || isFinite(Number(content[index + 2]))))
             ) {
                 positions.push(index);
+                if (
+                    ((dayOfWeek !== 3 || mien !== 'mn') && content[index] === 'b' && content[index + 1] === 'l') ||
+                    ((dayOfWeek !== 6 || mien !== 'mn') &&
+                        (dayOfWeek !== 5 || mien !== 'mt') &&
+                        content[index] === 'b' &&
+                        (content[index + 1] === 'u' || content[index + 1] === 'd'))
+                ) {
+                    let lastElement = positions.pop();
+                    if (content[index] === 'b' && (content[index + 1] === 'u' || content[index + 1] === 'd')) {
+                        changeBaoDao.push(lastElement);
+                    }
+                }
             }
             index = content.indexOf(char, index + 1);
         }
@@ -81,6 +93,7 @@ function findPosFirstAndTwo(content) {
     const allPositions = searchChars.flatMap((char) => findPositions(char));
 
     let firstTwoPositions = allPositions.sort((a, b) => a - b);
+    console.log(firstTwoPositions);
 
     let stringChildTestTmp = content.slice(firstTwoPositions[0], firstTwoPositions[1]);
     stringChildTestTmp = stringChildTestTmp.replace(/[.]/g, '');
@@ -577,1016 +590,26 @@ function findPosFirstAndTwo(content) {
         stringChildTestTmp.includes('dbaotamlo') ||
         stringChildTestTmp.includes('daotamlo') ||
         stringChildTestTmp.includes('daobaotam') ||
-        stringChildTestTmp.includes('daobaotamlo')
+        stringChildTestTmp.includes('daobaotamlo') ||
+        stringChildTestTmp.includes('xdaudao') ||
+        stringChildTestTmp.includes('xdaud') ||
+        stringChildTestTmp.includes('xdaodau') ||
+        stringChildTestTmp.includes('xddau') ||
+        stringChildTestTmp.includes('xduidao') ||
+        stringChildTestTmp.includes('xduoidao') ||
+        stringChildTestTmp.includes('xduid') ||
+        stringChildTestTmp.includes('xduoid') ||
+        stringChildTestTmp.includes('xdaodui') ||
+        stringChildTestTmp.includes('xdaoduoi') ||
+        stringChildTestTmp.includes('xddui') ||
+        stringChildTestTmp.includes('xdduoi')
     ) {
     } else {
         firstTwoPositions.splice(1, 1);
     }
 
-    while (true) {
-        let stringChildTestTmp2 = content.slice(firstTwoPositions[0], firstTwoPositions[1]);
-
-        if (firstTwoPositions[1] === null || firstTwoPositions[1] === undefined || firstTwoPositions[1] === '') {
-            break;
-        }
-
-        if (
-            (content[firstTwoPositions[1]] === 'b' &&
-                content[firstTwoPositions[1] + 1] === 'l' &&
-                (content[firstTwoPositions[1] + 2] === '.' ||
-                    isFinite(Number(content[firstTwoPositions[1] + 2])))) ||
-            (content[firstTwoPositions[1]] === 'b' &&
-                (content[firstTwoPositions[1] + 1] === 'u' ||
-                    content[firstTwoPositions[1] + 1] === 'd') &&
-                (content[firstTwoPositions[1] + 2] === '.' ||
-                    isFinite(Number(content[firstTwoPositions[1] + 2]))))
-        ) {
-            let kdanh = '';
-            let so = '';
-            let mangSo = [];
-            let outW = false;
-            for (let i = firstTwoPositions[1] - 1; i >= 0; i--) {
-                if (isFinite(Number(stringChildTestTmp2[i]))) {
-                    so += stringChildTestTmp2[i];
-                }
-
-                if (stringChildTestTmp2[i] === '.' && so !== '') {
-                    mangSo.push(so);
-                    so = '';
-                }
-
-                if (stringChildTestTmp2[i] !== '.' && !isFinite(Number(stringChildTestTmp2[i]))) {
-                    kdanh += stringChildTestTmp2[i];
-                }
-
-                console.log(kdanh);
-                if (stringChildTestTmp2[i] === '.' && kdanh !== '' && mangSo.length >= 1) {
-                    let kDanhNew = kdanh.split('').reverse().join('');
-
-                    if (
-                        (kDanhNew.includes('dx') ||
-                            kDanhNew.includes('davong') ||
-                            kDanhNew.includes('dav') ||
-                            kDanhNew.includes('đx') ||
-                            kDanhNew.includes('đax') ||
-                            kDanhNew.includes('da') ||
-                            kDanhNew.includes('đa') ||
-                            kDanhNew.includes('dat') ||
-                            kDanhNew.includes('dathang') ||
-                            kDanhNew.includes('dath') ||
-                            kDanhNew.includes('dth') ||
-                            kDanhNew.includes('dthang') ||
-                            kDanhNew.includes('daxien') ||
-                            kDanhNew.includes('dxien') ||
-                            kDanhNew.includes('đat') ||
-                            kDanhNew.includes('dax') ||
-                            kDanhNew.includes('l') ||
-                            kDanhNew.includes('lo') ||
-                            kDanhNew.includes('b') ||
-                            kDanhNew.includes('bl') ||
-                            kDanhNew.includes('blo') ||
-                            kDanhNew.includes('blô') ||
-                            kDanhNew.includes('baolo') ||
-                            kDanhNew.includes('bao') ||
-                            kDanhNew.includes('baol') ||
-                            kDanhNew.includes('baolô') ||
-                            kDanhNew.includes('dl') ||
-                            kDanhNew.includes('dlo') ||
-                            kDanhNew.includes('ld') ||
-                            kDanhNew.includes('lod') ||
-                            kDanhNew.includes('db') ||
-                            kDanhNew.includes('đb') ||
-                            kDanhNew.includes('dbl') ||
-                            kDanhNew.includes('đbl') ||
-                            kDanhNew.includes('dblo') ||
-                            kDanhNew.includes('đblô') ||
-                            kDanhNew.includes('daobaolo') ||
-                            kDanhNew.includes('daobaolô') ||
-                            kDanhNew.includes('blodao') ||
-                            kDanhNew.includes('daoblo') ||
-                            kDanhNew.includes('baolodao') ||
-                            kDanhNew.includes('daobaolo') ||
-                            kDanhNew.includes('bldao') ||
-                            kDanhNew.includes('daobl') ||
-                            kDanhNew.includes('bdao') ||
-                            kDanhNew.includes('daob') ||
-                            kDanhNew.includes('baoldao') ||
-                            kDanhNew.includes('daobaol') ||
-                            kDanhNew.includes('baodao') ||
-                            kDanhNew.includes('daobao') ||
-                            kDanhNew.includes('daolo') ||
-                            kDanhNew.includes('lodao') ||
-                            kDanhNew.includes('bđao') ||
-                            kDanhNew.includes('bld') ||
-                            kDanhNew.includes('dd') ||
-                            kDanhNew.includes('đđ') ||
-                            kDanhNew.includes('dauduoi') ||
-                            kDanhNew.includes('daudui') ||
-                            kDanhNew.includes('daud') ||
-                            kDanhNew.includes('ddui') ||
-                            kDanhNew.includes('dduoi') ||
-                            kDanhNew.includes('đd') ||
-                            kDanhNew.includes('dđ') ||
-                            kDanhNew.includes('đâuđuôi') ||
-                            kDanhNew.includes('đầuđuôi') ||
-                            kDanhNew.includes('đauđuôi') ||
-                            kDanhNew.includes('x') ||
-                            kDanhNew.includes('xc') ||
-                            kDanhNew.includes('xiuchu') ||
-                            kDanhNew.includes('xiuch') ||
-                            kDanhNew.includes('xiuc') ||
-                            kDanhNew.includes('xiu') ||
-                            kDanhNew.includes('xiudau') ||
-                            kDanhNew.includes('xiudui') ||
-                            kDanhNew.includes('xiuduoi') ||
-                            kDanhNew.includes('xiud') ||
-                            kDanhNew.includes('xiudao') ||
-                            kDanhNew.includes('xiuddau') ||
-                            kDanhNew.includes('xiudaud') ||
-                            kDanhNew.includes('xiudaodau') ||
-                            kDanhNew.includes('xiudaudao') ||
-                            kDanhNew.includes('xiudduoi') ||
-                            kDanhNew.includes('xiuduoid') ||
-                            kDanhNew.includes('xiudaoduoi') ||
-                            kDanhNew.includes('xiuduoidao') ||
-                            kDanhNew.includes('xch') ||
-                            kDanhNew.includes('xchu') ||
-                            kDanhNew.includes('s') ||
-                            kDanhNew.includes('sc') ||
-                            kDanhNew.includes('siuchu') ||
-                            kDanhNew.includes('siuch') ||
-                            kDanhNew.includes('siuc') ||
-                            kDanhNew.includes('sch') ||
-                            kDanhNew.includes('schu') ||
-                            kDanhNew.includes('xdau') ||
-                            kDanhNew.includes('xcdau') ||
-                            kDanhNew.includes('xchdau') ||
-                            kDanhNew.includes('xchudau') ||
-                            kDanhNew.includes('xiuchudau') ||
-                            kDanhNew.includes('xiuchdau') ||
-                            kDanhNew.includes('xiucdau') ||
-                            kDanhNew.includes('xđau') ||
-                            kDanhNew.includes('xcđau') ||
-                            kDanhNew.includes('xiuchuđau') ||
-                            kDanhNew.includes('sdau') ||
-                            kDanhNew.includes('scdau') ||
-                            kDanhNew.includes('schdau') ||
-                            kDanhNew.includes('schudau') ||
-                            kDanhNew.includes('siuchudau') ||
-                            kDanhNew.includes('siuchdau') ||
-                            kDanhNew.includes('siucdau') ||
-                            kDanhNew.includes('sđau') ||
-                            kDanhNew.includes('scđau') ||
-                            kDanhNew.includes('siuchuđau') ||
-                            kDanhNew.includes('xduoi') ||
-                            kDanhNew.includes('xcduoi') ||
-                            kDanhNew.includes('xchduoi') ||
-                            kDanhNew.includes('xchuduoi') ||
-                            kDanhNew.includes('xiuchuduoi') ||
-                            kDanhNew.includes('xiuchduoi') ||
-                            kDanhNew.includes('xiucduoi') ||
-                            kDanhNew.includes('xduoi') ||
-                            kDanhNew.includes('xcduoi') ||
-                            kDanhNew.includes('xiuchuduoi') ||
-                            kDanhNew.includes('xdui') ||
-                            kDanhNew.includes('xcdui') ||
-                            kDanhNew.includes('xchdui') ||
-                            kDanhNew.includes('xchudui') ||
-                            kDanhNew.includes('xiuchudui') ||
-                            kDanhNew.includes('xiuchdui') ||
-                            kDanhNew.includes('xiucdui') ||
-                            kDanhNew.includes('xdui') ||
-                            kDanhNew.includes('xcdui') ||
-                            kDanhNew.includes('xiuchudui') ||
-                            kDanhNew.includes('sduoi') ||
-                            kDanhNew.includes('scduoi') ||
-                            kDanhNew.includes('schduoi') ||
-                            kDanhNew.includes('schuduoi') ||
-                            kDanhNew.includes('siuchuduoi') ||
-                            kDanhNew.includes('siuchduoi') ||
-                            kDanhNew.includes('siucduoi') ||
-                            kDanhNew.includes('sduoi') ||
-                            kDanhNew.includes('scduoi') ||
-                            kDanhNew.includes('siuchuduoi') ||
-                            kDanhNew.includes('sdui') ||
-                            kDanhNew.includes('scdui') ||
-                            kDanhNew.includes('schdui') ||
-                            kDanhNew.includes('schudui') ||
-                            kDanhNew.includes('siuchudui') ||
-                            kDanhNew.includes('siuchdui') ||
-                            kDanhNew.includes('siucdui') ||
-                            kDanhNew.includes('sdui') ||
-                            kDanhNew.includes('scdui') ||
-                            kDanhNew.includes('siuchudui') ||
-                            kDanhNew.includes('daoxc') ||
-                            kDanhNew.includes('daox') ||
-                            kDanhNew.includes('dxchu') ||
-                            kDanhNew.includes('dx') ||
-                            kDanhNew.includes('dxc') ||
-                            kDanhNew.includes('xd') ||
-                            kDanhNew.includes('xdao') ||
-                            kDanhNew.includes('xcdao') ||
-                            kDanhNew.includes('xiuchudao') ||
-                            kDanhNew.includes('xchudao') ||
-                            kDanhNew.includes('xchdao') ||
-                            kDanhNew.includes('xiucdao') ||
-                            kDanhNew.includes('xiuchdao') ||
-                            kDanhNew.includes('xcd') ||
-                            kDanhNew.includes('xiuchud') ||
-                            kDanhNew.includes('xchud') ||
-                            kDanhNew.includes('xchd') ||
-                            kDanhNew.includes('xiucd') ||
-                            kDanhNew.includes('xiuchd') ||
-                            kDanhNew.includes('đaoxc') ||
-                            kDanhNew.includes('đaox') ||
-                            kDanhNew.includes('đxchu') ||
-                            kDanhNew.includes('đx') ||
-                            kDanhNew.includes('đxc') ||
-                            kDanhNew.includes('xđ') ||
-                            kDanhNew.includes('xđao') ||
-                            kDanhNew.includes('xcđ') ||
-                            kDanhNew.includes('xcđao') ||
-                            kDanhNew.includes('xiuchuđao') ||
-                            kDanhNew.includes('daox') ||
-                            kDanhNew.includes('daoxc') ||
-                            kDanhNew.includes('daoxiuchu') ||
-                            kDanhNew.includes('daoxchu') ||
-                            kDanhNew.includes('daoxch') ||
-                            kDanhNew.includes('daoxiuc') ||
-                            kDanhNew.includes('daoxiuch') ||
-                            kDanhNew.includes('dxc') ||
-                            kDanhNew.includes('dxiuchu') ||
-                            kDanhNew.includes('dxchu') ||
-                            kDanhNew.includes('dxch') ||
-                            kDanhNew.includes('dxiuc') ||
-                            kDanhNew.includes('dxiuch') ||
-                            kDanhNew.includes('daosc') ||
-                            kDanhNew.includes('daos') ||
-                            kDanhNew.includes('dschu') ||
-                            kDanhNew.includes('ds') ||
-                            kDanhNew.includes('dsc') ||
-                            kDanhNew.includes('sd') ||
-                            kDanhNew.includes('sdao') ||
-                            kDanhNew.includes('scdao') ||
-                            kDanhNew.includes('siuchudao') ||
-                            kDanhNew.includes('schudao') ||
-                            kDanhNew.includes('schdao') ||
-                            kDanhNew.includes('siucdao') ||
-                            kDanhNew.includes('siuchdao') ||
-                            kDanhNew.includes('scd') ||
-                            kDanhNew.includes('siuchud') ||
-                            kDanhNew.includes('schud') ||
-                            kDanhNew.includes('schd') ||
-                            kDanhNew.includes('siucd') ||
-                            kDanhNew.includes('siuchd') ||
-                            kDanhNew.includes('đaosc') ||
-                            kDanhNew.includes('đaos') ||
-                            kDanhNew.includes('đschu') ||
-                            kDanhNew.includes('đs') ||
-                            kDanhNew.includes('đsc') ||
-                            kDanhNew.includes('sđ') ||
-                            kDanhNew.includes('sđao') ||
-                            kDanhNew.includes('scđ') ||
-                            kDanhNew.includes('scđao') ||
-                            kDanhNew.includes('siuchuđao') ||
-                            kDanhNew.includes('daos') ||
-                            kDanhNew.includes('daosc') ||
-                            kDanhNew.includes('daosiuchu') ||
-                            kDanhNew.includes('daoschu') ||
-                            kDanhNew.includes('daosch') ||
-                            kDanhNew.includes('daosiuc') ||
-                            kDanhNew.includes('daosiuch') ||
-                            kDanhNew.includes('dsc') ||
-                            kDanhNew.includes('dsiuchu') ||
-                            kDanhNew.includes('dschu') ||
-                            kDanhNew.includes('dsch') ||
-                            kDanhNew.includes('dsiuc') ||
-                            kDanhNew.includes('dsiuch') ||
-                            kDanhNew.includes('dau') ||
-                            kDanhNew.includes('duoi') ||
-                            kDanhNew.includes('đuôi') ||
-                            kDanhNew.includes('duôi') ||
-                            kDanhNew.includes('đuoi') ||
-                            kDanhNew.includes('dui') ||
-                            kDanhNew.includes('đui') ||
-                            kDanhNew.includes('d') ||
-                            kDanhNew.includes('daoxcdau') ||
-                            kDanhNew.includes('daoxdau') ||
-                            kDanhNew.includes('dxchudau') ||
-                            kDanhNew.includes('dxdau') ||
-                            kDanhNew.includes('dxcdau') ||
-                            kDanhNew.includes('xddau') ||
-                            kDanhNew.includes('xdaodau') ||
-                            kDanhNew.includes('xcdaodau') ||
-                            kDanhNew.includes('xiuchudaodau') ||
-                            kDanhNew.includes('xchudaodau') ||
-                            kDanhNew.includes('xchdaodau') ||
-                            kDanhNew.includes('xiucdaodau') ||
-                            kDanhNew.includes('xiuchdaodau') ||
-                            kDanhNew.includes('xcddau') ||
-                            kDanhNew.includes('xiuchuddau') ||
-                            kDanhNew.includes('xchuddau') ||
-                            kDanhNew.includes('xchddau') ||
-                            kDanhNew.includes('xiucddau') ||
-                            kDanhNew.includes('xiuchddau') ||
-                            kDanhNew.includes('đaoxcdau') ||
-                            kDanhNew.includes('đaoxdau') ||
-                            kDanhNew.includes('đxchudau') ||
-                            kDanhNew.includes('đxdau') ||
-                            kDanhNew.includes('đxcdau') ||
-                            kDanhNew.includes('xđdau') ||
-                            kDanhNew.includes('xđaodau') ||
-                            kDanhNew.includes('xcđdau') ||
-                            kDanhNew.includes('xcđaodau') ||
-                            kDanhNew.includes('xiuchuđaodau') ||
-                            kDanhNew.includes('daoxdau') ||
-                            kDanhNew.includes('daoxcdau') ||
-                            kDanhNew.includes('daoxiuchudau') ||
-                            kDanhNew.includes('daoxchudau') ||
-                            kDanhNew.includes('daoxchdau') ||
-                            kDanhNew.includes('daoxiucdau') ||
-                            kDanhNew.includes('daoxiuchdau') ||
-                            kDanhNew.includes('dxcdau') ||
-                            kDanhNew.includes('dxiuchudau') ||
-                            kDanhNew.includes('dxchudau') ||
-                            kDanhNew.includes('dxchdau') ||
-                            kDanhNew.includes('dxiucdau') ||
-                            kDanhNew.includes('dxiuchdau') ||
-                            kDanhNew.includes('daoscdau') ||
-                            kDanhNew.includes('daosdau') ||
-                            kDanhNew.includes('dschudau') ||
-                            kDanhNew.includes('dsdau') ||
-                            kDanhNew.includes('dscdau') ||
-                            kDanhNew.includes('sddau') ||
-                            kDanhNew.includes('sdaodau') ||
-                            kDanhNew.includes('scdaodau') ||
-                            kDanhNew.includes('siuchudaodau') ||
-                            kDanhNew.includes('schudaodau') ||
-                            kDanhNew.includes('schdaodau') ||
-                            kDanhNew.includes('siucdaodau') ||
-                            kDanhNew.includes('siuchdaodau') ||
-                            kDanhNew.includes('scddau') ||
-                            kDanhNew.includes('siuchuddau') ||
-                            kDanhNew.includes('schuddau') ||
-                            kDanhNew.includes('schddau') ||
-                            kDanhNew.includes('siucddau') ||
-                            kDanhNew.includes('siuchddau') ||
-                            kDanhNew.includes('đaoscdau') ||
-                            kDanhNew.includes('đaosdau') ||
-                            kDanhNew.includes('đschudau') ||
-                            kDanhNew.includes('đsdau') ||
-                            kDanhNew.includes('đscdau') ||
-                            kDanhNew.includes('sđdau') ||
-                            kDanhNew.includes('sđaodau') ||
-                            kDanhNew.includes('scđdau') ||
-                            kDanhNew.includes('scđaodau') ||
-                            kDanhNew.includes('siuchuđaodau') ||
-                            kDanhNew.includes('daosdau') ||
-                            kDanhNew.includes('daoscdau') ||
-                            kDanhNew.includes('daosiuchudau') ||
-                            kDanhNew.includes('daoschudau') ||
-                            kDanhNew.includes('daoschdau') ||
-                            kDanhNew.includes('daosiucdau') ||
-                            kDanhNew.includes('daosiuchdau') ||
-                            kDanhNew.includes('dscdau') ||
-                            kDanhNew.includes('dsiuchudau') ||
-                            kDanhNew.includes('dschudau') ||
-                            kDanhNew.includes('dschdau') ||
-                            kDanhNew.includes('dsiucdau') ||
-                            kDanhNew.includes('dsiuchdau') ||
-                            kDanhNew.includes('xcdaudao') ||
-                            kDanhNew.includes('xiuchudaudao') ||
-                            kDanhNew.includes('xchudaudao') ||
-                            kDanhNew.includes('xcdaud') ||
-                            kDanhNew.includes('xiuchudaud') ||
-                            kDanhNew.includes('xchudaud') ||
-                            kDanhNew.includes('scdaudao') ||
-                            kDanhNew.includes('siuchudaudao') ||
-                            kDanhNew.includes('schudaudao') ||
-                            kDanhNew.includes('scdaud') ||
-                            kDanhNew.includes('siuchudaud') ||
-                            kDanhNew.includes('schudaud') ||
-                            kDanhNew.includes('daoxcduoi') ||
-                            kDanhNew.includes('daoxduoi') ||
-                            kDanhNew.includes('dxchuduoi') ||
-                            kDanhNew.includes('dxduoi') ||
-                            kDanhNew.includes('dxcduoi') ||
-                            kDanhNew.includes('xdduoi') ||
-                            kDanhNew.includes('xdaoduoi') ||
-                            kDanhNew.includes('xcdaoduoi') ||
-                            kDanhNew.includes('xiuchudaoduoi') ||
-                            kDanhNew.includes('xchudaoduoi') ||
-                            kDanhNew.includes('xchdaoduoi') ||
-                            kDanhNew.includes('xiucdaoduoi') ||
-                            kDanhNew.includes('xiuchdaoduoi') ||
-                            kDanhNew.includes('xcdduoi') ||
-                            kDanhNew.includes('xiuchudduoi') ||
-                            kDanhNew.includes('xchudduoi') ||
-                            kDanhNew.includes('xchdduoi') ||
-                            kDanhNew.includes('xiucdduoi') ||
-                            kDanhNew.includes('xiuchdduoi') ||
-                            kDanhNew.includes('đaoxcduoi') ||
-                            kDanhNew.includes('đaoxduoi') ||
-                            kDanhNew.includes('đxchuduoi') ||
-                            kDanhNew.includes('đxduoi') ||
-                            kDanhNew.includes('đxcduoi') ||
-                            kDanhNew.includes('xđduoi') ||
-                            kDanhNew.includes('xđaoduoi') ||
-                            kDanhNew.includes('xcđduoi') ||
-                            kDanhNew.includes('xcđaoduoi') ||
-                            kDanhNew.includes('xiuchuđaoduoi') ||
-                            kDanhNew.includes('daoxduoi') ||
-                            kDanhNew.includes('daoxcduoi') ||
-                            kDanhNew.includes('daoxiuchuduoi') ||
-                            kDanhNew.includes('daoxchuduoi') ||
-                            kDanhNew.includes('daoxchduoi') ||
-                            kDanhNew.includes('daoxiucduoi') ||
-                            kDanhNew.includes('daoxiuchduoi') ||
-                            kDanhNew.includes('dxcduoi') ||
-                            kDanhNew.includes('dxiuchuduoi') ||
-                            kDanhNew.includes('dxchuduoi') ||
-                            kDanhNew.includes('dxchduoi') ||
-                            kDanhNew.includes('dxiucduoi') ||
-                            kDanhNew.includes('dxiuchduoi') ||
-                            kDanhNew.includes('daoscduoi') ||
-                            kDanhNew.includes('daosduoi') ||
-                            kDanhNew.includes('dschuduoi') ||
-                            kDanhNew.includes('dsduoi') ||
-                            kDanhNew.includes('dscduoi') ||
-                            kDanhNew.includes('sdduoi') ||
-                            kDanhNew.includes('sdaoduoi') ||
-                            kDanhNew.includes('scdaoduoi') ||
-                            kDanhNew.includes('siuchudaoduoi') ||
-                            kDanhNew.includes('schudaoduoi') ||
-                            kDanhNew.includes('schdaoduoi') ||
-                            kDanhNew.includes('siucdaoduoi') ||
-                            kDanhNew.includes('siuchdaoduoi') ||
-                            kDanhNew.includes('scdduoi') ||
-                            kDanhNew.includes('siuchudduoi') ||
-                            kDanhNew.includes('schudduoi') ||
-                            kDanhNew.includes('schdduoi') ||
-                            kDanhNew.includes('siucdduoi') ||
-                            kDanhNew.includes('siuchdduoi') ||
-                            kDanhNew.includes('đaoscduoi') ||
-                            kDanhNew.includes('đaosduoi') ||
-                            kDanhNew.includes('đschuduoi') ||
-                            kDanhNew.includes('đsduoi') ||
-                            kDanhNew.includes('đscduoi') ||
-                            kDanhNew.includes('sđduoi') ||
-                            kDanhNew.includes('sđaoduoi') ||
-                            kDanhNew.includes('scđduoi') ||
-                            kDanhNew.includes('scđaoduoi') ||
-                            kDanhNew.includes('siuchuđaoduoi') ||
-                            kDanhNew.includes('daosduoi') ||
-                            kDanhNew.includes('daoscduoi') ||
-                            kDanhNew.includes('daosiuchuduoi') ||
-                            kDanhNew.includes('daoschuduoi') ||
-                            kDanhNew.includes('daoschduoi') ||
-                            kDanhNew.includes('daosiucduoi') ||
-                            kDanhNew.includes('daosiuchduoi') ||
-                            kDanhNew.includes('dscduoi') ||
-                            kDanhNew.includes('dsiuchuduoi') ||
-                            kDanhNew.includes('dschuduoi') ||
-                            kDanhNew.includes('dschduoi') ||
-                            kDanhNew.includes('dsiucduoi') ||
-                            kDanhNew.includes('dsiuchduoi') ||
-                            kDanhNew.includes('xcduoidao') ||
-                            kDanhNew.includes('xiuchuduoidao') ||
-                            kDanhNew.includes('xchuduoidao') ||
-                            kDanhNew.includes('xcduoid') ||
-                            kDanhNew.includes('xiuchuduoid') ||
-                            kDanhNew.includes('xchuduoid') ||
-                            kDanhNew.includes('scduoidao') ||
-                            kDanhNew.includes('siuchuduoidao') ||
-                            kDanhNew.includes('schuduoidao') ||
-                            kDanhNew.includes('scduoid') ||
-                            kDanhNew.includes('siuchuduoid') ||
-                            kDanhNew.includes('schuduoid') ||
-                            kDanhNew.includes('baylo') ||
-                            kDanhNew.includes('baobay') ||
-                            kDanhNew.includes('baobaylo') ||
-                            kDanhNew.includes('baylod') ||
-                            kDanhNew.includes('baobayd') ||
-                            kDanhNew.includes('baobaylod') ||
-                            kDanhNew.includes('baylodao') ||
-                            kDanhNew.includes('baobaydao') ||
-                            kDanhNew.includes('baobaylodao') ||
-                            kDanhNew.includes('dbaylo') ||
-                            kDanhNew.includes('dbaobay') ||
-                            kDanhNew.includes('dbaobaylo') ||
-                            kDanhNew.includes('daobaylo') ||
-                            kDanhNew.includes('daobaobay') ||
-                            kDanhNew.includes('daobaobaylo') ||
-                            kDanhNew.includes('tamlo') ||
-                            kDanhNew.includes('baotam') ||
-                            kDanhNew.includes('baotamlo') ||
-                            kDanhNew.includes('tamlod') ||
-                            kDanhNew.includes('baotamd') ||
-                            kDanhNew.includes('baotamlod') ||
-                            kDanhNew.includes('tamlodao') ||
-                            kDanhNew.includes('baotamdao') ||
-                            kDanhNew.includes('baotamlodao') ||
-                            kDanhNew.includes('dtamlo') ||
-                            kDanhNew.includes('dbaotam') ||
-                            kDanhNew.includes('dbaotamlo') ||
-                            kDanhNew.includes('daotamlo') ||
-                            kDanhNew.includes('daobaotam') ||
-                            kDanhNew.includes('daobaotamlo')) &&
-                        mangSo.length <= 1
-                    ) {
-                        changeDaiBacLieu = true;
-                        outW = true;
-                        break;
-                    } else if (
-                        (kDanhNew.includes('dx') ||
-                            kDanhNew.includes('davong') ||
-                            kDanhNew.includes('dav') ||
-                            kDanhNew.includes('đx') ||
-                            kDanhNew.includes('đax') ||
-                            kDanhNew.includes('da') ||
-                            kDanhNew.includes('đa') ||
-                            kDanhNew.includes('dat') ||
-                            kDanhNew.includes('dathang') ||
-                            kDanhNew.includes('dath') ||
-                            kDanhNew.includes('dth') ||
-                            kDanhNew.includes('dthang') ||
-                            kDanhNew.includes('daxien') ||
-                            kDanhNew.includes('dxien') ||
-                            kDanhNew.includes('đat') ||
-                            kDanhNew.includes('dax') ||
-                            kDanhNew.includes('l') ||
-                            kDanhNew.includes('lo') ||
-                            kDanhNew.includes('b') ||
-                            kDanhNew.includes('bl') ||
-                            kDanhNew.includes('blo') ||
-                            kDanhNew.includes('blô') ||
-                            kDanhNew.includes('baolo') ||
-                            kDanhNew.includes('bao') ||
-                            kDanhNew.includes('baol') ||
-                            kDanhNew.includes('baolô') ||
-                            kDanhNew.includes('dl') ||
-                            kDanhNew.includes('dlo') ||
-                            kDanhNew.includes('ld') ||
-                            kDanhNew.includes('lod') ||
-                            kDanhNew.includes('db') ||
-                            kDanhNew.includes('đb') ||
-                            kDanhNew.includes('dbl') ||
-                            kDanhNew.includes('đbl') ||
-                            kDanhNew.includes('dblo') ||
-                            kDanhNew.includes('đblô') ||
-                            kDanhNew.includes('daobaolo') ||
-                            kDanhNew.includes('daobaolô') ||
-                            kDanhNew.includes('blodao') ||
-                            kDanhNew.includes('daoblo') ||
-                            kDanhNew.includes('baolodao') ||
-                            kDanhNew.includes('daobaolo') ||
-                            kDanhNew.includes('bldao') ||
-                            kDanhNew.includes('daobl') ||
-                            kDanhNew.includes('bdao') ||
-                            kDanhNew.includes('daob') ||
-                            kDanhNew.includes('baoldao') ||
-                            kDanhNew.includes('daobaol') ||
-                            kDanhNew.includes('baodao') ||
-                            kDanhNew.includes('daobao') ||
-                            kDanhNew.includes('daolo') ||
-                            kDanhNew.includes('lodao') ||
-                            kDanhNew.includes('bđao') ||
-                            kDanhNew.includes('bld') ||
-                            kDanhNew.includes('dd') ||
-                            kDanhNew.includes('đđ') ||
-                            kDanhNew.includes('dauduoi') ||
-                            kDanhNew.includes('daudui') ||
-                            kDanhNew.includes('daud') ||
-                            kDanhNew.includes('ddui') ||
-                            kDanhNew.includes('dduoi') ||
-                            kDanhNew.includes('đd') ||
-                            kDanhNew.includes('dđ') ||
-                            kDanhNew.includes('đâuđuôi') ||
-                            kDanhNew.includes('đầuđuôi') ||
-                            kDanhNew.includes('đauđuôi') ||
-                            kDanhNew.includes('x') ||
-                            kDanhNew.includes('xc') ||
-                            kDanhNew.includes('xiuchu') ||
-                            kDanhNew.includes('xiuch') ||
-                            kDanhNew.includes('xiuc') ||
-                            kDanhNew.includes('xiu') ||
-                            kDanhNew.includes('xiudau') ||
-                            kDanhNew.includes('xiudui') ||
-                            kDanhNew.includes('xiuduoi') ||
-                            kDanhNew.includes('xiud') ||
-                            kDanhNew.includes('xiudao') ||
-                            kDanhNew.includes('xiuddau') ||
-                            kDanhNew.includes('xiudaud') ||
-                            kDanhNew.includes('xiudaodau') ||
-                            kDanhNew.includes('xiudaudao') ||
-                            kDanhNew.includes('xiudduoi') ||
-                            kDanhNew.includes('xiuduoid') ||
-                            kDanhNew.includes('xiudaoduoi') ||
-                            kDanhNew.includes('xiuduoidao') ||
-                            kDanhNew.includes('xch') ||
-                            kDanhNew.includes('xchu') ||
-                            kDanhNew.includes('s') ||
-                            kDanhNew.includes('sc') ||
-                            kDanhNew.includes('siuchu') ||
-                            kDanhNew.includes('siuch') ||
-                            kDanhNew.includes('siuc') ||
-                            kDanhNew.includes('sch') ||
-                            kDanhNew.includes('schu') ||
-                            kDanhNew.includes('xdau') ||
-                            kDanhNew.includes('xcdau') ||
-                            kDanhNew.includes('xchdau') ||
-                            kDanhNew.includes('xchudau') ||
-                            kDanhNew.includes('xiuchudau') ||
-                            kDanhNew.includes('xiuchdau') ||
-                            kDanhNew.includes('xiucdau') ||
-                            kDanhNew.includes('xđau') ||
-                            kDanhNew.includes('xcđau') ||
-                            kDanhNew.includes('xiuchuđau') ||
-                            kDanhNew.includes('sdau') ||
-                            kDanhNew.includes('scdau') ||
-                            kDanhNew.includes('schdau') ||
-                            kDanhNew.includes('schudau') ||
-                            kDanhNew.includes('siuchudau') ||
-                            kDanhNew.includes('siuchdau') ||
-                            kDanhNew.includes('siucdau') ||
-                            kDanhNew.includes('sđau') ||
-                            kDanhNew.includes('scđau') ||
-                            kDanhNew.includes('siuchuđau') ||
-                            kDanhNew.includes('xduoi') ||
-                            kDanhNew.includes('xcduoi') ||
-                            kDanhNew.includes('xchduoi') ||
-                            kDanhNew.includes('xchuduoi') ||
-                            kDanhNew.includes('xiuchuduoi') ||
-                            kDanhNew.includes('xiuchduoi') ||
-                            kDanhNew.includes('xiucduoi') ||
-                            kDanhNew.includes('xduoi') ||
-                            kDanhNew.includes('xcduoi') ||
-                            kDanhNew.includes('xiuchuduoi') ||
-                            kDanhNew.includes('xdui') ||
-                            kDanhNew.includes('xcdui') ||
-                            kDanhNew.includes('xchdui') ||
-                            kDanhNew.includes('xchudui') ||
-                            kDanhNew.includes('xiuchudui') ||
-                            kDanhNew.includes('xiuchdui') ||
-                            kDanhNew.includes('xiucdui') ||
-                            kDanhNew.includes('xdui') ||
-                            kDanhNew.includes('xcdui') ||
-                            kDanhNew.includes('xiuchudui') ||
-                            kDanhNew.includes('sduoi') ||
-                            kDanhNew.includes('scduoi') ||
-                            kDanhNew.includes('schduoi') ||
-                            kDanhNew.includes('schuduoi') ||
-                            kDanhNew.includes('siuchuduoi') ||
-                            kDanhNew.includes('siuchduoi') ||
-                            kDanhNew.includes('siucduoi') ||
-                            kDanhNew.includes('sduoi') ||
-                            kDanhNew.includes('scduoi') ||
-                            kDanhNew.includes('siuchuduoi') ||
-                            kDanhNew.includes('sdui') ||
-                            kDanhNew.includes('scdui') ||
-                            kDanhNew.includes('schdui') ||
-                            kDanhNew.includes('schudui') ||
-                            kDanhNew.includes('siuchudui') ||
-                            kDanhNew.includes('siuchdui') ||
-                            kDanhNew.includes('siucdui') ||
-                            kDanhNew.includes('sdui') ||
-                            kDanhNew.includes('scdui') ||
-                            kDanhNew.includes('siuchudui') ||
-                            kDanhNew.includes('daoxc') ||
-                            kDanhNew.includes('daox') ||
-                            kDanhNew.includes('dxchu') ||
-                            kDanhNew.includes('dx') ||
-                            kDanhNew.includes('dxc') ||
-                            kDanhNew.includes('xd') ||
-                            kDanhNew.includes('xdao') ||
-                            kDanhNew.includes('xcdao') ||
-                            kDanhNew.includes('xiuchudao') ||
-                            kDanhNew.includes('xchudao') ||
-                            kDanhNew.includes('xchdao') ||
-                            kDanhNew.includes('xiucdao') ||
-                            kDanhNew.includes('xiuchdao') ||
-                            kDanhNew.includes('xcd') ||
-                            kDanhNew.includes('xiuchud') ||
-                            kDanhNew.includes('xchud') ||
-                            kDanhNew.includes('xchd') ||
-                            kDanhNew.includes('xiucd') ||
-                            kDanhNew.includes('xiuchd') ||
-                            kDanhNew.includes('đaoxc') ||
-                            kDanhNew.includes('đaox') ||
-                            kDanhNew.includes('đxchu') ||
-                            kDanhNew.includes('đx') ||
-                            kDanhNew.includes('đxc') ||
-                            kDanhNew.includes('xđ') ||
-                            kDanhNew.includes('xđao') ||
-                            kDanhNew.includes('xcđ') ||
-                            kDanhNew.includes('xcđao') ||
-                            kDanhNew.includes('xiuchuđao') ||
-                            kDanhNew.includes('daox') ||
-                            kDanhNew.includes('daoxc') ||
-                            kDanhNew.includes('daoxiuchu') ||
-                            kDanhNew.includes('daoxchu') ||
-                            kDanhNew.includes('daoxch') ||
-                            kDanhNew.includes('daoxiuc') ||
-                            kDanhNew.includes('daoxiuch') ||
-                            kDanhNew.includes('dxc') ||
-                            kDanhNew.includes('dxiuchu') ||
-                            kDanhNew.includes('dxchu') ||
-                            kDanhNew.includes('dxch') ||
-                            kDanhNew.includes('dxiuc') ||
-                            kDanhNew.includes('dxiuch') ||
-                            kDanhNew.includes('daosc') ||
-                            kDanhNew.includes('daos') ||
-                            kDanhNew.includes('dschu') ||
-                            kDanhNew.includes('ds') ||
-                            kDanhNew.includes('dsc') ||
-                            kDanhNew.includes('sd') ||
-                            kDanhNew.includes('sdao') ||
-                            kDanhNew.includes('scdao') ||
-                            kDanhNew.includes('siuchudao') ||
-                            kDanhNew.includes('schudao') ||
-                            kDanhNew.includes('schdao') ||
-                            kDanhNew.includes('siucdao') ||
-                            kDanhNew.includes('siuchdao') ||
-                            kDanhNew.includes('scd') ||
-                            kDanhNew.includes('siuchud') ||
-                            kDanhNew.includes('schud') ||
-                            kDanhNew.includes('schd') ||
-                            kDanhNew.includes('siucd') ||
-                            kDanhNew.includes('siuchd') ||
-                            kDanhNew.includes('đaosc') ||
-                            kDanhNew.includes('đaos') ||
-                            kDanhNew.includes('đschu') ||
-                            kDanhNew.includes('đs') ||
-                            kDanhNew.includes('đsc') ||
-                            kDanhNew.includes('sđ') ||
-                            kDanhNew.includes('sđao') ||
-                            kDanhNew.includes('scđ') ||
-                            kDanhNew.includes('scđao') ||
-                            kDanhNew.includes('siuchuđao') ||
-                            kDanhNew.includes('daos') ||
-                            kDanhNew.includes('daosc') ||
-                            kDanhNew.includes('daosiuchu') ||
-                            kDanhNew.includes('daoschu') ||
-                            kDanhNew.includes('daosch') ||
-                            kDanhNew.includes('daosiuc') ||
-                            kDanhNew.includes('daosiuch') ||
-                            kDanhNew.includes('dsc') ||
-                            kDanhNew.includes('dsiuchu') ||
-                            kDanhNew.includes('dschu') ||
-                            kDanhNew.includes('dsch') ||
-                            kDanhNew.includes('dsiuc') ||
-                            kDanhNew.includes('dsiuch') ||
-                            kDanhNew.includes('dau') ||
-                            kDanhNew.includes('duoi') ||
-                            kDanhNew.includes('đuôi') ||
-                            kDanhNew.includes('duôi') ||
-                            kDanhNew.includes('đuoi') ||
-                            kDanhNew.includes('dui') ||
-                            kDanhNew.includes('đui') ||
-                            kDanhNew.includes('d') ||
-                            kDanhNew.includes('daoxcdau') ||
-                            kDanhNew.includes('daoxdau') ||
-                            kDanhNew.includes('dxchudau') ||
-                            kDanhNew.includes('dxdau') ||
-                            kDanhNew.includes('dxcdau') ||
-                            kDanhNew.includes('xddau') ||
-                            kDanhNew.includes('xdaodau') ||
-                            kDanhNew.includes('xcdaodau') ||
-                            kDanhNew.includes('xiuchudaodau') ||
-                            kDanhNew.includes('xchudaodau') ||
-                            kDanhNew.includes('xchdaodau') ||
-                            kDanhNew.includes('xiucdaodau') ||
-                            kDanhNew.includes('xiuchdaodau') ||
-                            kDanhNew.includes('xcddau') ||
-                            kDanhNew.includes('xiuchuddau') ||
-                            kDanhNew.includes('xchuddau') ||
-                            kDanhNew.includes('xchddau') ||
-                            kDanhNew.includes('xiucddau') ||
-                            kDanhNew.includes('xiuchddau') ||
-                            kDanhNew.includes('đaoxcdau') ||
-                            kDanhNew.includes('đaoxdau') ||
-                            kDanhNew.includes('đxchudau') ||
-                            kDanhNew.includes('đxdau') ||
-                            kDanhNew.includes('đxcdau') ||
-                            kDanhNew.includes('xđdau') ||
-                            kDanhNew.includes('xđaodau') ||
-                            kDanhNew.includes('xcđdau') ||
-                            kDanhNew.includes('xcđaodau') ||
-                            kDanhNew.includes('xiuchuđaodau') ||
-                            kDanhNew.includes('daoxdau') ||
-                            kDanhNew.includes('daoxcdau') ||
-                            kDanhNew.includes('daoxiuchudau') ||
-                            kDanhNew.includes('daoxchudau') ||
-                            kDanhNew.includes('daoxchdau') ||
-                            kDanhNew.includes('daoxiucdau') ||
-                            kDanhNew.includes('daoxiuchdau') ||
-                            kDanhNew.includes('dxcdau') ||
-                            kDanhNew.includes('dxiuchudau') ||
-                            kDanhNew.includes('dxchudau') ||
-                            kDanhNew.includes('dxchdau') ||
-                            kDanhNew.includes('dxiucdau') ||
-                            kDanhNew.includes('dxiuchdau') ||
-                            kDanhNew.includes('daoscdau') ||
-                            kDanhNew.includes('daosdau') ||
-                            kDanhNew.includes('dschudau') ||
-                            kDanhNew.includes('dsdau') ||
-                            kDanhNew.includes('dscdau') ||
-                            kDanhNew.includes('sddau') ||
-                            kDanhNew.includes('sdaodau') ||
-                            kDanhNew.includes('scdaodau') ||
-                            kDanhNew.includes('siuchudaodau') ||
-                            kDanhNew.includes('schudaodau') ||
-                            kDanhNew.includes('schdaodau') ||
-                            kDanhNew.includes('siucdaodau') ||
-                            kDanhNew.includes('siuchdaodau') ||
-                            kDanhNew.includes('scddau') ||
-                            kDanhNew.includes('siuchuddau') ||
-                            kDanhNew.includes('schuddau') ||
-                            kDanhNew.includes('schddau') ||
-                            kDanhNew.includes('siucddau') ||
-                            kDanhNew.includes('siuchddau') ||
-                            kDanhNew.includes('đaoscdau') ||
-                            kDanhNew.includes('đaosdau') ||
-                            kDanhNew.includes('đschudau') ||
-                            kDanhNew.includes('đsdau') ||
-                            kDanhNew.includes('đscdau') ||
-                            kDanhNew.includes('sđdau') ||
-                            kDanhNew.includes('sđaodau') ||
-                            kDanhNew.includes('scđdau') ||
-                            kDanhNew.includes('scđaodau') ||
-                            kDanhNew.includes('siuchuđaodau') ||
-                            kDanhNew.includes('daosdau') ||
-                            kDanhNew.includes('daoscdau') ||
-                            kDanhNew.includes('daosiuchudau') ||
-                            kDanhNew.includes('daoschudau') ||
-                            kDanhNew.includes('daoschdau') ||
-                            kDanhNew.includes('daosiucdau') ||
-                            kDanhNew.includes('daosiuchdau') ||
-                            kDanhNew.includes('dscdau') ||
-                            kDanhNew.includes('dsiuchudau') ||
-                            kDanhNew.includes('dschudau') ||
-                            kDanhNew.includes('dschdau') ||
-                            kDanhNew.includes('dsiucdau') ||
-                            kDanhNew.includes('dsiuchdau') ||
-                            kDanhNew.includes('xcdaudao') ||
-                            kDanhNew.includes('xiuchudaudao') ||
-                            kDanhNew.includes('xchudaudao') ||
-                            kDanhNew.includes('xcdaud') ||
-                            kDanhNew.includes('xiuchudaud') ||
-                            kDanhNew.includes('xchudaud') ||
-                            kDanhNew.includes('scdaudao') ||
-                            kDanhNew.includes('siuchudaudao') ||
-                            kDanhNew.includes('schudaudao') ||
-                            kDanhNew.includes('scdaud') ||
-                            kDanhNew.includes('siuchudaud') ||
-                            kDanhNew.includes('schudaud') ||
-                            kDanhNew.includes('daoxcduoi') ||
-                            kDanhNew.includes('daoxduoi') ||
-                            kDanhNew.includes('dxchuduoi') ||
-                            kDanhNew.includes('dxduoi') ||
-                            kDanhNew.includes('dxcduoi') ||
-                            kDanhNew.includes('xdduoi') ||
-                            kDanhNew.includes('xdaoduoi') ||
-                            kDanhNew.includes('xcdaoduoi') ||
-                            kDanhNew.includes('xiuchudaoduoi') ||
-                            kDanhNew.includes('xchudaoduoi') ||
-                            kDanhNew.includes('xchdaoduoi') ||
-                            kDanhNew.includes('xiucdaoduoi') ||
-                            kDanhNew.includes('xiuchdaoduoi') ||
-                            kDanhNew.includes('xcdduoi') ||
-                            kDanhNew.includes('xiuchudduoi') ||
-                            kDanhNew.includes('xchudduoi') ||
-                            kDanhNew.includes('xchdduoi') ||
-                            kDanhNew.includes('xiucdduoi') ||
-                            kDanhNew.includes('xiuchdduoi') ||
-                            kDanhNew.includes('đaoxcduoi') ||
-                            kDanhNew.includes('đaoxduoi') ||
-                            kDanhNew.includes('đxchuduoi') ||
-                            kDanhNew.includes('đxduoi') ||
-                            kDanhNew.includes('đxcduoi') ||
-                            kDanhNew.includes('xđduoi') ||
-                            kDanhNew.includes('xđaoduoi') ||
-                            kDanhNew.includes('xcđduoi') ||
-                            kDanhNew.includes('xcđaoduoi') ||
-                            kDanhNew.includes('xiuchuđaoduoi') ||
-                            kDanhNew.includes('daoxduoi') ||
-                            kDanhNew.includes('daoxcduoi') ||
-                            kDanhNew.includes('daoxiuchuduoi') ||
-                            kDanhNew.includes('daoxchuduoi') ||
-                            kDanhNew.includes('daoxchduoi') ||
-                            kDanhNew.includes('daoxiucduoi') ||
-                            kDanhNew.includes('daoxiuchduoi') ||
-                            kDanhNew.includes('dxcduoi') ||
-                            kDanhNew.includes('dxiuchuduoi') ||
-                            kDanhNew.includes('dxchuduoi') ||
-                            kDanhNew.includes('dxchduoi') ||
-                            kDanhNew.includes('dxiucduoi') ||
-                            kDanhNew.includes('dxiuchduoi') ||
-                            kDanhNew.includes('daoscduoi') ||
-                            kDanhNew.includes('daosduoi') ||
-                            kDanhNew.includes('dschuduoi') ||
-                            kDanhNew.includes('dsduoi') ||
-                            kDanhNew.includes('dscduoi') ||
-                            kDanhNew.includes('sdduoi') ||
-                            kDanhNew.includes('sdaoduoi') ||
-                            kDanhNew.includes('scdaoduoi') ||
-                            kDanhNew.includes('siuchudaoduoi') ||
-                            kDanhNew.includes('schudaoduoi') ||
-                            kDanhNew.includes('schdaoduoi') ||
-                            kDanhNew.includes('siucdaoduoi') ||
-                            kDanhNew.includes('siuchdaoduoi') ||
-                            kDanhNew.includes('scdduoi') ||
-                            kDanhNew.includes('siuchudduoi') ||
-                            kDanhNew.includes('schudduoi') ||
-                            kDanhNew.includes('schdduoi') ||
-                            kDanhNew.includes('siucdduoi') ||
-                            kDanhNew.includes('siuchdduoi') ||
-                            kDanhNew.includes('đaoscduoi') ||
-                            kDanhNew.includes('đaosduoi') ||
-                            kDanhNew.includes('đschuduoi') ||
-                            kDanhNew.includes('đsduoi') ||
-                            kDanhNew.includes('đscduoi') ||
-                            kDanhNew.includes('sđduoi') ||
-                            kDanhNew.includes('sđaoduoi') ||
-                            kDanhNew.includes('scđduoi') ||
-                            kDanhNew.includes('scđaoduoi') ||
-                            kDanhNew.includes('siuchuđaoduoi') ||
-                            kDanhNew.includes('daosduoi') ||
-                            kDanhNew.includes('daoscduoi') ||
-                            kDanhNew.includes('daosiuchuduoi') ||
-                            kDanhNew.includes('daoschuduoi') ||
-                            kDanhNew.includes('daoschduoi') ||
-                            kDanhNew.includes('daosiucduoi') ||
-                            kDanhNew.includes('daosiuchduoi') ||
-                            kDanhNew.includes('dscduoi') ||
-                            kDanhNew.includes('dsiuchuduoi') ||
-                            kDanhNew.includes('dschuduoi') ||
-                            kDanhNew.includes('dschduoi') ||
-                            kDanhNew.includes('dsiucduoi') ||
-                            kDanhNew.includes('dsiuchduoi') ||
-                            kDanhNew.includes('xcduoidao') ||
-                            kDanhNew.includes('xiuchuduoidao') ||
-                            kDanhNew.includes('xchuduoidao') ||
-                            kDanhNew.includes('xcduoid') ||
-                            kDanhNew.includes('xiuchuduoid') ||
-                            kDanhNew.includes('xchuduoid') ||
-                            kDanhNew.includes('scduoidao') ||
-                            kDanhNew.includes('siuchuduoidao') ||
-                            kDanhNew.includes('schuduoidao') ||
-                            kDanhNew.includes('scduoid') ||
-                            kDanhNew.includes('siuchuduoid') ||
-                            kDanhNew.includes('schuduoid') ||
-                            kDanhNew.includes('baylo') ||
-                            kDanhNew.includes('baobay') ||
-                            kDanhNew.includes('baobaylo') ||
-                            kDanhNew.includes('baylod') ||
-                            kDanhNew.includes('baobayd') ||
-                            kDanhNew.includes('baobaylod') ||
-                            kDanhNew.includes('baylodao') ||
-                            kDanhNew.includes('baobaydao') ||
-                            kDanhNew.includes('baobaylodao') ||
-                            kDanhNew.includes('dbaylo') ||
-                            kDanhNew.includes('dbaobay') ||
-                            kDanhNew.includes('dbaobaylo') ||
-                            kDanhNew.includes('daobaylo') ||
-                            kDanhNew.includes('daobaobay') ||
-                            kDanhNew.includes('daobaobaylo') ||
-                            kDanhNew.includes('tamlo') ||
-                            kDanhNew.includes('baotam') ||
-                            kDanhNew.includes('baotamlo') ||
-                            kDanhNew.includes('tamlod') ||
-                            kDanhNew.includes('baotamd') ||
-                            kDanhNew.includes('baotamlod') ||
-                            kDanhNew.includes('tamlodao') ||
-                            kDanhNew.includes('baotamdao') ||
-                            kDanhNew.includes('baotamlodao') ||
-                            kDanhNew.includes('dtamlo') ||
-                            kDanhNew.includes('dbaotam') ||
-                            kDanhNew.includes('dbaotamlo') ||
-                            kDanhNew.includes('daotamlo') ||
-                            kDanhNew.includes('daobaotam') ||
-                            kDanhNew.includes('daobaotamlo')) &&
-                        mangSo.length > 1
-                    ) {
-                        firstTwoPositions.splice(1, 1);
-                        break;
-                    }
-                }
-
-                if (i === 0) {
-                    outW = true;
-                }
-            }
-
-            if (outW) {
-                break;
-            }
-        } else {
-            break;
-        }
-    }
-
     if (
+        !changeDaiBacLieu &&
         content[firstTwoPositions[1]] === 'b' &&
         content[firstTwoPositions[1] + 1] === 'l' &&
         (content[firstTwoPositions[1] + 2] === '.' || isFinite(Number(content[firstTwoPositions[1] + 2])))
@@ -2083,7 +1106,19 @@ function findPosFirstAndTwo(content) {
             stringChildTest.includes('dbaotamlo') ||
             stringChildTest.includes('daotamlo') ||
             stringChildTest.includes('daobaotam') ||
-            stringChildTest.includes('daobaotamlo')
+            stringChildTest.includes('daobaotamlo') ||
+            stringChildTest.includes('xdaudao') ||
+            stringChildTest.includes('xdaud') ||
+            stringChildTest.includes('xdaodau') ||
+            stringChildTest.includes('xddau') ||
+            stringChildTest.includes('xduidao') ||
+            stringChildTest.includes('xduoidao') ||
+            stringChildTest.includes('xduid') ||
+            stringChildTest.includes('xduoid') ||
+            stringChildTest.includes('xdaodui') ||
+            stringChildTest.includes('xdaoduoi') ||
+            stringChildTest.includes('xddui') ||
+            stringChildTest.includes('xdduoi')
         ) {
             if (content[firstTwoPositions[1] + 2] === '.') {
                 // la dai Bac Lieu
@@ -2632,7 +1667,19 @@ function findPosFirstAndTwo(content) {
             stringChildTest.includes('dbaotamlo') ||
             stringChildTest.includes('daotamlo') ||
             stringChildTest.includes('daobaotam') ||
-            stringChildTest.includes('daobaotamlo')
+            stringChildTest.includes('daobaotamlo') ||
+            stringChildTest.includes('xdaudao') ||
+            stringChildTest.includes('xdaud') ||
+            stringChildTest.includes('xdaodau') ||
+            stringChildTest.includes('xddau') ||
+            stringChildTest.includes('xduidao') ||
+            stringChildTest.includes('xduoidao') ||
+            stringChildTest.includes('xduid') ||
+            stringChildTest.includes('xduoid') ||
+            stringChildTest.includes('xdaodui') ||
+            stringChildTest.includes('xdaoduoi') ||
+            stringChildTest.includes('xddui') ||
+            stringChildTest.includes('xdduoi')
         ) {
             if (content[firstTwoPositions[1] + 2] === '.') {
             } else {
@@ -2688,12 +1735,1100 @@ function findPosFirstAndTwo(content) {
         }
     }
 
+    while (true && changeDaiBacLieu) {
+        let stringChildTestTmp2 = content.slice(firstTwoPositions[0], firstTwoPositions[1]);
+        console.log(content[firstTwoPositions[1]] + content[firstTwoPositions[1] + 1]);
+        console.log(changeDaiBacLieu);
+
+        if (firstTwoPositions[1] === null || firstTwoPositions[1] === undefined || firstTwoPositions[1] === '') {
+            changeDaiBacLieu = false;
+            break;
+        }
+
+        if (
+            (content[firstTwoPositions[1]] === 'b' &&
+                content[firstTwoPositions[1] + 1] === 'l' &&
+                (content[firstTwoPositions[1] + 2] === '.' || isFinite(Number(content[firstTwoPositions[1] + 2])))) ||
+            (content[firstTwoPositions[1]] === 'b' &&
+                (content[firstTwoPositions[1] + 1] === 'u' || content[firstTwoPositions[1] + 1] === 'd') &&
+                (content[firstTwoPositions[1] + 2] === '.' || isFinite(Number(content[firstTwoPositions[1] + 2]))))
+        ) {
+            let kdanh = '';
+            let so = '';
+            let mangSo = [];
+            let outW = false;
+
+            for (let i = firstTwoPositions[1] - 1; i >= 0; i--) {
+                if (isFinite(Number(stringChildTestTmp2[i]))) {
+                    so += stringChildTestTmp2[i];
+                }
+
+                if (stringChildTestTmp2[i] === '.' && so !== '') {
+                    mangSo.push(so);
+                    so = '';
+                }
+
+                if (stringChildTestTmp2[i] !== '.' && !isFinite(Number(stringChildTestTmp2[i]))) {
+                    kdanh += stringChildTestTmp2[i];
+                }
+
+                if (stringChildTestTmp2[i] === '.' && kdanh !== '' && mangSo.length >= 1) {
+                    let kDanhNew = kdanh.split('').reverse().join('');
+                    console.log(kDanhNew);
+                    console.log(mangSo);
+
+                    if (
+                        (kDanhNew.includes('dx') ||
+                            kDanhNew.includes('davong') ||
+                            kDanhNew.includes('dav') ||
+                            kDanhNew.includes('đx') ||
+                            kDanhNew.includes('đax') ||
+                            kDanhNew.includes('da') ||
+                            kDanhNew.includes('đa') ||
+                            kDanhNew.includes('dat') ||
+                            kDanhNew.includes('dathang') ||
+                            kDanhNew.includes('dath') ||
+                            kDanhNew.includes('dth') ||
+                            kDanhNew.includes('dthang') ||
+                            kDanhNew.includes('daxien') ||
+                            kDanhNew.includes('dxien') ||
+                            kDanhNew.includes('đat') ||
+                            kDanhNew.includes('dax') ||
+                            kDanhNew.includes('l') ||
+                            kDanhNew.includes('lo') ||
+                            kDanhNew.includes('b') ||
+                            kDanhNew.includes('bl') ||
+                            kDanhNew.includes('blo') ||
+                            kDanhNew.includes('blô') ||
+                            kDanhNew.includes('baolo') ||
+                            kDanhNew.includes('bao') ||
+                            kDanhNew.includes('baol') ||
+                            kDanhNew.includes('baolô') ||
+                            kDanhNew.includes('dl') ||
+                            kDanhNew.includes('dlo') ||
+                            kDanhNew.includes('ld') ||
+                            kDanhNew.includes('lod') ||
+                            kDanhNew.includes('db') ||
+                            kDanhNew.includes('đb') ||
+                            kDanhNew.includes('dbl') ||
+                            kDanhNew.includes('đbl') ||
+                            kDanhNew.includes('dblo') ||
+                            kDanhNew.includes('đblô') ||
+                            kDanhNew.includes('daobaolo') ||
+                            kDanhNew.includes('daobaolô') ||
+                            kDanhNew.includes('blodao') ||
+                            kDanhNew.includes('daoblo') ||
+                            kDanhNew.includes('baolodao') ||
+                            kDanhNew.includes('daobaolo') ||
+                            kDanhNew.includes('bldao') ||
+                            kDanhNew.includes('daobl') ||
+                            kDanhNew.includes('bdao') ||
+                            kDanhNew.includes('daob') ||
+                            kDanhNew.includes('baoldao') ||
+                            kDanhNew.includes('daobaol') ||
+                            kDanhNew.includes('baodao') ||
+                            kDanhNew.includes('daobao') ||
+                            kDanhNew.includes('daolo') ||
+                            kDanhNew.includes('lodao') ||
+                            kDanhNew.includes('bđao') ||
+                            kDanhNew.includes('bld') ||
+                            kDanhNew.includes('dd') ||
+                            kDanhNew.includes('đđ') ||
+                            kDanhNew.includes('dauduoi') ||
+                            kDanhNew.includes('daudui') ||
+                            kDanhNew.includes('daud') ||
+                            kDanhNew.includes('ddui') ||
+                            kDanhNew.includes('dduoi') ||
+                            kDanhNew.includes('đd') ||
+                            kDanhNew.includes('dđ') ||
+                            kDanhNew.includes('đâuđuôi') ||
+                            kDanhNew.includes('đầuđuôi') ||
+                            kDanhNew.includes('đauđuôi') ||
+                            kDanhNew.includes('x') ||
+                            kDanhNew.includes('xc') ||
+                            kDanhNew.includes('xiuchu') ||
+                            kDanhNew.includes('xiuch') ||
+                            kDanhNew.includes('xiuc') ||
+                            kDanhNew.includes('xiu') ||
+                            kDanhNew.includes('xiudau') ||
+                            kDanhNew.includes('xiudui') ||
+                            kDanhNew.includes('xiuduoi') ||
+                            kDanhNew.includes('xiud') ||
+                            kDanhNew.includes('xiudao') ||
+                            kDanhNew.includes('xiuddau') ||
+                            kDanhNew.includes('xiudaud') ||
+                            kDanhNew.includes('xiudaodau') ||
+                            kDanhNew.includes('xiudaudao') ||
+                            kDanhNew.includes('xiudduoi') ||
+                            kDanhNew.includes('xiuduoid') ||
+                            kDanhNew.includes('xiudaoduoi') ||
+                            kDanhNew.includes('xiuduoidao') ||
+                            kDanhNew.includes('xch') ||
+                            kDanhNew.includes('xchu') ||
+                            kDanhNew.includes('s') ||
+                            kDanhNew.includes('sc') ||
+                            kDanhNew.includes('siuchu') ||
+                            kDanhNew.includes('siuch') ||
+                            kDanhNew.includes('siuc') ||
+                            kDanhNew.includes('sch') ||
+                            kDanhNew.includes('schu') ||
+                            kDanhNew.includes('xdau') ||
+                            kDanhNew.includes('xcdau') ||
+                            kDanhNew.includes('xchdau') ||
+                            kDanhNew.includes('xchudau') ||
+                            kDanhNew.includes('xiuchudau') ||
+                            kDanhNew.includes('xiuchdau') ||
+                            kDanhNew.includes('xiucdau') ||
+                            kDanhNew.includes('xđau') ||
+                            kDanhNew.includes('xcđau') ||
+                            kDanhNew.includes('xiuchuđau') ||
+                            kDanhNew.includes('sdau') ||
+                            kDanhNew.includes('scdau') ||
+                            kDanhNew.includes('schdau') ||
+                            kDanhNew.includes('schudau') ||
+                            kDanhNew.includes('siuchudau') ||
+                            kDanhNew.includes('siuchdau') ||
+                            kDanhNew.includes('siucdau') ||
+                            kDanhNew.includes('sđau') ||
+                            kDanhNew.includes('scđau') ||
+                            kDanhNew.includes('siuchuđau') ||
+                            kDanhNew.includes('xduoi') ||
+                            kDanhNew.includes('xcduoi') ||
+                            kDanhNew.includes('xchduoi') ||
+                            kDanhNew.includes('xchuduoi') ||
+                            kDanhNew.includes('xiuchuduoi') ||
+                            kDanhNew.includes('xiuchduoi') ||
+                            kDanhNew.includes('xiucduoi') ||
+                            kDanhNew.includes('xduoi') ||
+                            kDanhNew.includes('xcduoi') ||
+                            kDanhNew.includes('xiuchuduoi') ||
+                            kDanhNew.includes('xdui') ||
+                            kDanhNew.includes('xcdui') ||
+                            kDanhNew.includes('xchdui') ||
+                            kDanhNew.includes('xchudui') ||
+                            kDanhNew.includes('xiuchudui') ||
+                            kDanhNew.includes('xiuchdui') ||
+                            kDanhNew.includes('xiucdui') ||
+                            kDanhNew.includes('xdui') ||
+                            kDanhNew.includes('xcdui') ||
+                            kDanhNew.includes('xiuchudui') ||
+                            kDanhNew.includes('sduoi') ||
+                            kDanhNew.includes('scduoi') ||
+                            kDanhNew.includes('schduoi') ||
+                            kDanhNew.includes('schuduoi') ||
+                            kDanhNew.includes('siuchuduoi') ||
+                            kDanhNew.includes('siuchduoi') ||
+                            kDanhNew.includes('siucduoi') ||
+                            kDanhNew.includes('sduoi') ||
+                            kDanhNew.includes('scduoi') ||
+                            kDanhNew.includes('siuchuduoi') ||
+                            kDanhNew.includes('sdui') ||
+                            kDanhNew.includes('scdui') ||
+                            kDanhNew.includes('schdui') ||
+                            kDanhNew.includes('schudui') ||
+                            kDanhNew.includes('siuchudui') ||
+                            kDanhNew.includes('siuchdui') ||
+                            kDanhNew.includes('siucdui') ||
+                            kDanhNew.includes('sdui') ||
+                            kDanhNew.includes('scdui') ||
+                            kDanhNew.includes('siuchudui') ||
+                            kDanhNew.includes('daoxc') ||
+                            kDanhNew.includes('daox') ||
+                            kDanhNew.includes('dxchu') ||
+                            kDanhNew.includes('dx') ||
+                            kDanhNew.includes('dxc') ||
+                            kDanhNew.includes('xd') ||
+                            kDanhNew.includes('xdao') ||
+                            kDanhNew.includes('xcdao') ||
+                            kDanhNew.includes('xiuchudao') ||
+                            kDanhNew.includes('xchudao') ||
+                            kDanhNew.includes('xchdao') ||
+                            kDanhNew.includes('xiucdao') ||
+                            kDanhNew.includes('xiuchdao') ||
+                            kDanhNew.includes('xcd') ||
+                            kDanhNew.includes('xiuchud') ||
+                            kDanhNew.includes('xchud') ||
+                            kDanhNew.includes('xchd') ||
+                            kDanhNew.includes('xiucd') ||
+                            kDanhNew.includes('xiuchd') ||
+                            kDanhNew.includes('đaoxc') ||
+                            kDanhNew.includes('đaox') ||
+                            kDanhNew.includes('đxchu') ||
+                            kDanhNew.includes('đx') ||
+                            kDanhNew.includes('đxc') ||
+                            kDanhNew.includes('xđ') ||
+                            kDanhNew.includes('xđao') ||
+                            kDanhNew.includes('xcđ') ||
+                            kDanhNew.includes('xcđao') ||
+                            kDanhNew.includes('xiuchuđao') ||
+                            kDanhNew.includes('daox') ||
+                            kDanhNew.includes('daoxc') ||
+                            kDanhNew.includes('daoxiuchu') ||
+                            kDanhNew.includes('daoxchu') ||
+                            kDanhNew.includes('daoxch') ||
+                            kDanhNew.includes('daoxiuc') ||
+                            kDanhNew.includes('daoxiuch') ||
+                            kDanhNew.includes('dxc') ||
+                            kDanhNew.includes('dxiuchu') ||
+                            kDanhNew.includes('dxchu') ||
+                            kDanhNew.includes('dxch') ||
+                            kDanhNew.includes('dxiuc') ||
+                            kDanhNew.includes('dxiuch') ||
+                            kDanhNew.includes('daosc') ||
+                            kDanhNew.includes('daos') ||
+                            kDanhNew.includes('dschu') ||
+                            kDanhNew.includes('ds') ||
+                            kDanhNew.includes('dsc') ||
+                            kDanhNew.includes('sd') ||
+                            kDanhNew.includes('sdao') ||
+                            kDanhNew.includes('scdao') ||
+                            kDanhNew.includes('siuchudao') ||
+                            kDanhNew.includes('schudao') ||
+                            kDanhNew.includes('schdao') ||
+                            kDanhNew.includes('siucdao') ||
+                            kDanhNew.includes('siuchdao') ||
+                            kDanhNew.includes('scd') ||
+                            kDanhNew.includes('siuchud') ||
+                            kDanhNew.includes('schud') ||
+                            kDanhNew.includes('schd') ||
+                            kDanhNew.includes('siucd') ||
+                            kDanhNew.includes('siuchd') ||
+                            kDanhNew.includes('đaosc') ||
+                            kDanhNew.includes('đaos') ||
+                            kDanhNew.includes('đschu') ||
+                            kDanhNew.includes('đs') ||
+                            kDanhNew.includes('đsc') ||
+                            kDanhNew.includes('sđ') ||
+                            kDanhNew.includes('sđao') ||
+                            kDanhNew.includes('scđ') ||
+                            kDanhNew.includes('scđao') ||
+                            kDanhNew.includes('siuchuđao') ||
+                            kDanhNew.includes('daos') ||
+                            kDanhNew.includes('daosc') ||
+                            kDanhNew.includes('daosiuchu') ||
+                            kDanhNew.includes('daoschu') ||
+                            kDanhNew.includes('daosch') ||
+                            kDanhNew.includes('daosiuc') ||
+                            kDanhNew.includes('daosiuch') ||
+                            kDanhNew.includes('dsc') ||
+                            kDanhNew.includes('dsiuchu') ||
+                            kDanhNew.includes('dschu') ||
+                            kDanhNew.includes('dsch') ||
+                            kDanhNew.includes('dsiuc') ||
+                            kDanhNew.includes('dsiuch') ||
+                            kDanhNew.includes('dau') ||
+                            kDanhNew.includes('duoi') ||
+                            kDanhNew.includes('đuôi') ||
+                            kDanhNew.includes('duôi') ||
+                            kDanhNew.includes('đuoi') ||
+                            kDanhNew.includes('dui') ||
+                            kDanhNew.includes('đui') ||
+                            kDanhNew.includes('d') ||
+                            kDanhNew.includes('daoxcdau') ||
+                            kDanhNew.includes('daoxdau') ||
+                            kDanhNew.includes('dxchudau') ||
+                            kDanhNew.includes('dxdau') ||
+                            kDanhNew.includes('dxcdau') ||
+                            kDanhNew.includes('xddau') ||
+                            kDanhNew.includes('xdaodau') ||
+                            kDanhNew.includes('xcdaodau') ||
+                            kDanhNew.includes('xiuchudaodau') ||
+                            kDanhNew.includes('xchudaodau') ||
+                            kDanhNew.includes('xchdaodau') ||
+                            kDanhNew.includes('xiucdaodau') ||
+                            kDanhNew.includes('xiuchdaodau') ||
+                            kDanhNew.includes('xcddau') ||
+                            kDanhNew.includes('xiuchuddau') ||
+                            kDanhNew.includes('xchuddau') ||
+                            kDanhNew.includes('xchddau') ||
+                            kDanhNew.includes('xiucddau') ||
+                            kDanhNew.includes('xiuchddau') ||
+                            kDanhNew.includes('đaoxcdau') ||
+                            kDanhNew.includes('đaoxdau') ||
+                            kDanhNew.includes('đxchudau') ||
+                            kDanhNew.includes('đxdau') ||
+                            kDanhNew.includes('đxcdau') ||
+                            kDanhNew.includes('xđdau') ||
+                            kDanhNew.includes('xđaodau') ||
+                            kDanhNew.includes('xcđdau') ||
+                            kDanhNew.includes('xcđaodau') ||
+                            kDanhNew.includes('xiuchuđaodau') ||
+                            kDanhNew.includes('daoxdau') ||
+                            kDanhNew.includes('daoxcdau') ||
+                            kDanhNew.includes('daoxiuchudau') ||
+                            kDanhNew.includes('daoxchudau') ||
+                            kDanhNew.includes('daoxchdau') ||
+                            kDanhNew.includes('daoxiucdau') ||
+                            kDanhNew.includes('daoxiuchdau') ||
+                            kDanhNew.includes('dxcdau') ||
+                            kDanhNew.includes('dxiuchudau') ||
+                            kDanhNew.includes('dxchudau') ||
+                            kDanhNew.includes('dxchdau') ||
+                            kDanhNew.includes('dxiucdau') ||
+                            kDanhNew.includes('dxiuchdau') ||
+                            kDanhNew.includes('daoscdau') ||
+                            kDanhNew.includes('daosdau') ||
+                            kDanhNew.includes('dschudau') ||
+                            kDanhNew.includes('dsdau') ||
+                            kDanhNew.includes('dscdau') ||
+                            kDanhNew.includes('sddau') ||
+                            kDanhNew.includes('sdaodau') ||
+                            kDanhNew.includes('scdaodau') ||
+                            kDanhNew.includes('siuchudaodau') ||
+                            kDanhNew.includes('schudaodau') ||
+                            kDanhNew.includes('schdaodau') ||
+                            kDanhNew.includes('siucdaodau') ||
+                            kDanhNew.includes('siuchdaodau') ||
+                            kDanhNew.includes('scddau') ||
+                            kDanhNew.includes('siuchuddau') ||
+                            kDanhNew.includes('schuddau') ||
+                            kDanhNew.includes('schddau') ||
+                            kDanhNew.includes('siucddau') ||
+                            kDanhNew.includes('siuchddau') ||
+                            kDanhNew.includes('đaoscdau') ||
+                            kDanhNew.includes('đaosdau') ||
+                            kDanhNew.includes('đschudau') ||
+                            kDanhNew.includes('đsdau') ||
+                            kDanhNew.includes('đscdau') ||
+                            kDanhNew.includes('sđdau') ||
+                            kDanhNew.includes('sđaodau') ||
+                            kDanhNew.includes('scđdau') ||
+                            kDanhNew.includes('scđaodau') ||
+                            kDanhNew.includes('siuchuđaodau') ||
+                            kDanhNew.includes('daosdau') ||
+                            kDanhNew.includes('daoscdau') ||
+                            kDanhNew.includes('daosiuchudau') ||
+                            kDanhNew.includes('daoschudau') ||
+                            kDanhNew.includes('daoschdau') ||
+                            kDanhNew.includes('daosiucdau') ||
+                            kDanhNew.includes('daosiuchdau') ||
+                            kDanhNew.includes('dscdau') ||
+                            kDanhNew.includes('dsiuchudau') ||
+                            kDanhNew.includes('dschudau') ||
+                            kDanhNew.includes('dschdau') ||
+                            kDanhNew.includes('dsiucdau') ||
+                            kDanhNew.includes('dsiuchdau') ||
+                            kDanhNew.includes('xcdaudao') ||
+                            kDanhNew.includes('xiuchudaudao') ||
+                            kDanhNew.includes('xchudaudao') ||
+                            kDanhNew.includes('xcdaud') ||
+                            kDanhNew.includes('xiuchudaud') ||
+                            kDanhNew.includes('xchudaud') ||
+                            kDanhNew.includes('scdaudao') ||
+                            kDanhNew.includes('siuchudaudao') ||
+                            kDanhNew.includes('schudaudao') ||
+                            kDanhNew.includes('scdaud') ||
+                            kDanhNew.includes('siuchudaud') ||
+                            kDanhNew.includes('schudaud') ||
+                            kDanhNew.includes('daoxcduoi') ||
+                            kDanhNew.includes('daoxduoi') ||
+                            kDanhNew.includes('dxchuduoi') ||
+                            kDanhNew.includes('dxduoi') ||
+                            kDanhNew.includes('dxcduoi') ||
+                            kDanhNew.includes('xdduoi') ||
+                            kDanhNew.includes('xdaoduoi') ||
+                            kDanhNew.includes('xcdaoduoi') ||
+                            kDanhNew.includes('xiuchudaoduoi') ||
+                            kDanhNew.includes('xchudaoduoi') ||
+                            kDanhNew.includes('xchdaoduoi') ||
+                            kDanhNew.includes('xiucdaoduoi') ||
+                            kDanhNew.includes('xiuchdaoduoi') ||
+                            kDanhNew.includes('xcdduoi') ||
+                            kDanhNew.includes('xiuchudduoi') ||
+                            kDanhNew.includes('xchudduoi') ||
+                            kDanhNew.includes('xchdduoi') ||
+                            kDanhNew.includes('xiucdduoi') ||
+                            kDanhNew.includes('xiuchdduoi') ||
+                            kDanhNew.includes('đaoxcduoi') ||
+                            kDanhNew.includes('đaoxduoi') ||
+                            kDanhNew.includes('đxchuduoi') ||
+                            kDanhNew.includes('đxduoi') ||
+                            kDanhNew.includes('đxcduoi') ||
+                            kDanhNew.includes('xđduoi') ||
+                            kDanhNew.includes('xđaoduoi') ||
+                            kDanhNew.includes('xcđduoi') ||
+                            kDanhNew.includes('xcđaoduoi') ||
+                            kDanhNew.includes('xiuchuđaoduoi') ||
+                            kDanhNew.includes('daoxduoi') ||
+                            kDanhNew.includes('daoxcduoi') ||
+                            kDanhNew.includes('daoxiuchuduoi') ||
+                            kDanhNew.includes('daoxchuduoi') ||
+                            kDanhNew.includes('daoxchduoi') ||
+                            kDanhNew.includes('daoxiucduoi') ||
+                            kDanhNew.includes('daoxiuchduoi') ||
+                            kDanhNew.includes('dxcduoi') ||
+                            kDanhNew.includes('dxiuchuduoi') ||
+                            kDanhNew.includes('dxchuduoi') ||
+                            kDanhNew.includes('dxchduoi') ||
+                            kDanhNew.includes('dxiucduoi') ||
+                            kDanhNew.includes('dxiuchduoi') ||
+                            kDanhNew.includes('daoscduoi') ||
+                            kDanhNew.includes('daosduoi') ||
+                            kDanhNew.includes('dschuduoi') ||
+                            kDanhNew.includes('dsduoi') ||
+                            kDanhNew.includes('dscduoi') ||
+                            kDanhNew.includes('sdduoi') ||
+                            kDanhNew.includes('sdaoduoi') ||
+                            kDanhNew.includes('scdaoduoi') ||
+                            kDanhNew.includes('siuchudaoduoi') ||
+                            kDanhNew.includes('schudaoduoi') ||
+                            kDanhNew.includes('schdaoduoi') ||
+                            kDanhNew.includes('siucdaoduoi') ||
+                            kDanhNew.includes('siuchdaoduoi') ||
+                            kDanhNew.includes('scdduoi') ||
+                            kDanhNew.includes('siuchudduoi') ||
+                            kDanhNew.includes('schudduoi') ||
+                            kDanhNew.includes('schdduoi') ||
+                            kDanhNew.includes('siucdduoi') ||
+                            kDanhNew.includes('siuchdduoi') ||
+                            kDanhNew.includes('đaoscduoi') ||
+                            kDanhNew.includes('đaosduoi') ||
+                            kDanhNew.includes('đschuduoi') ||
+                            kDanhNew.includes('đsduoi') ||
+                            kDanhNew.includes('đscduoi') ||
+                            kDanhNew.includes('sđduoi') ||
+                            kDanhNew.includes('sđaoduoi') ||
+                            kDanhNew.includes('scđduoi') ||
+                            kDanhNew.includes('scđaoduoi') ||
+                            kDanhNew.includes('siuchuđaoduoi') ||
+                            kDanhNew.includes('daosduoi') ||
+                            kDanhNew.includes('daoscduoi') ||
+                            kDanhNew.includes('daosiuchuduoi') ||
+                            kDanhNew.includes('daoschuduoi') ||
+                            kDanhNew.includes('daoschduoi') ||
+                            kDanhNew.includes('daosiucduoi') ||
+                            kDanhNew.includes('daosiuchduoi') ||
+                            kDanhNew.includes('dscduoi') ||
+                            kDanhNew.includes('dsiuchuduoi') ||
+                            kDanhNew.includes('dschuduoi') ||
+                            kDanhNew.includes('dschduoi') ||
+                            kDanhNew.includes('dsiucduoi') ||
+                            kDanhNew.includes('dsiuchduoi') ||
+                            kDanhNew.includes('xcduoidao') ||
+                            kDanhNew.includes('xiuchuduoidao') ||
+                            kDanhNew.includes('xchuduoidao') ||
+                            kDanhNew.includes('xcduoid') ||
+                            kDanhNew.includes('xiuchuduoid') ||
+                            kDanhNew.includes('xchuduoid') ||
+                            kDanhNew.includes('scduoidao') ||
+                            kDanhNew.includes('siuchuduoidao') ||
+                            kDanhNew.includes('schuduoidao') ||
+                            kDanhNew.includes('scduoid') ||
+                            kDanhNew.includes('siuchuduoid') ||
+                            kDanhNew.includes('schuduoid') ||
+                            kDanhNew.includes('baylo') ||
+                            kDanhNew.includes('baobay') ||
+                            kDanhNew.includes('baobaylo') ||
+                            kDanhNew.includes('baylod') ||
+                            kDanhNew.includes('baobayd') ||
+                            kDanhNew.includes('baobaylod') ||
+                            kDanhNew.includes('baylodao') ||
+                            kDanhNew.includes('baobaydao') ||
+                            kDanhNew.includes('baobaylodao') ||
+                            kDanhNew.includes('dbaylo') ||
+                            kDanhNew.includes('dbaobay') ||
+                            kDanhNew.includes('dbaobaylo') ||
+                            kDanhNew.includes('daobaylo') ||
+                            kDanhNew.includes('daobaobay') ||
+                            kDanhNew.includes('daobaobaylo') ||
+                            kDanhNew.includes('tamlo') ||
+                            kDanhNew.includes('baotam') ||
+                            kDanhNew.includes('baotamlo') ||
+                            kDanhNew.includes('tamlod') ||
+                            kDanhNew.includes('baotamd') ||
+                            kDanhNew.includes('baotamlod') ||
+                            kDanhNew.includes('tamlodao') ||
+                            kDanhNew.includes('baotamdao') ||
+                            kDanhNew.includes('baotamlodao') ||
+                            kDanhNew.includes('dtamlo') ||
+                            kDanhNew.includes('dbaotam') ||
+                            kDanhNew.includes('dbaotamlo') ||
+                            kDanhNew.includes('daotamlo') ||
+                            kDanhNew.includes('daobaotam') ||
+                            kDanhNew.includes('daobaotamlo') ||
+                            kDanhNew.includes('xdaudao') ||
+                            kDanhNew.includes('xdaud') ||
+                            kDanhNew.includes('xdaodau') ||
+                            kDanhNew.includes('xddau') ||
+                            kDanhNew.includes('xduidao') ||
+                            kDanhNew.includes('xduoidao') ||
+                            kDanhNew.includes('xduid') ||
+                            kDanhNew.includes('xduoid') ||
+                            kDanhNew.includes('xdaodui') ||
+                            kDanhNew.includes('xdaoduoi') ||
+                            kDanhNew.includes('xddui') ||
+                            kDanhNew.includes('xdduoi')) &&
+                        mangSo.length <= 1
+                    ) {
+                        changeDaiBacLieu = true;
+                        console.log(kDanhNew);
+                        console.log('12344');
+
+                        if (changeDaiBacLieu) {
+                            let boolCham = false;
+
+                            for (let i = firstTwoPositions[1] + 3; i < content.length - 1; i++) {
+                                if (content[i] === '.') {
+                                    boolCham = true;
+                                    let kdanhTmp = content[i + 1] + content[i + 2];
+
+                                    console.log(kDanhNew, kdanhTmp);
+                                    if (searchChars.includes(kdanhTmp)) {
+                                        changeDaiBacLieu = false;
+                                        firstTwoPositions.splice(1, 1);
+                                        mangSo = [];
+                                        kdanh = '';
+                                        console.log('1111111111');
+                                        break;
+                                    }
+                                } else if (!isFinite(Number(content[i]))) {
+                                    boolCham = true;
+                                    let kdanhTmp = content[i] + content[i + 1];
+
+                                    console.log(kDanhNew, kdanhTmp);
+                                    if (!searchChars.includes(kdanhTmp)) {
+                                        changeDaiBacLieu = true;
+                                        break;
+                                    }
+                                } else if (content[i] === '.' && content[i + 1] === undefined) {
+                                    changeDaiBacLieu = false;
+                                    firstTwoPositions.splice(1, 1);
+                                    mangSo = [];
+                                    kdanh = '';
+                                    break;
+                                }
+                            }
+
+                            if (!boolCham) {
+                                console.log('cham');
+                                changeDaiBacLieu = false;
+                                firstTwoPositions.splice(1, 1);
+                                mangSo = [];
+                                kdanh = '';
+                            }
+                        }
+
+                        if (changeDaiBacLieu) {
+                            outW = true;
+                            break;
+                        }
+                    } else if (
+                        (kDanhNew.includes('dx') ||
+                            kDanhNew.includes('davong') ||
+                            kDanhNew.includes('dav') ||
+                            kDanhNew.includes('đx') ||
+                            kDanhNew.includes('đax') ||
+                            kDanhNew.includes('da') ||
+                            kDanhNew.includes('đa') ||
+                            kDanhNew.includes('dat') ||
+                            kDanhNew.includes('dathang') ||
+                            kDanhNew.includes('dath') ||
+                            kDanhNew.includes('dth') ||
+                            kDanhNew.includes('dthang') ||
+                            kDanhNew.includes('daxien') ||
+                            kDanhNew.includes('dxien') ||
+                            kDanhNew.includes('đat') ||
+                            kDanhNew.includes('dax') ||
+                            kDanhNew.includes('l') ||
+                            kDanhNew.includes('lo') ||
+                            kDanhNew.includes('b') ||
+                            kDanhNew.includes('bl') ||
+                            kDanhNew.includes('blo') ||
+                            kDanhNew.includes('blô') ||
+                            kDanhNew.includes('baolo') ||
+                            kDanhNew.includes('bao') ||
+                            kDanhNew.includes('baol') ||
+                            kDanhNew.includes('baolô') ||
+                            kDanhNew.includes('dl') ||
+                            kDanhNew.includes('dlo') ||
+                            kDanhNew.includes('ld') ||
+                            kDanhNew.includes('lod') ||
+                            kDanhNew.includes('db') ||
+                            kDanhNew.includes('đb') ||
+                            kDanhNew.includes('dbl') ||
+                            kDanhNew.includes('đbl') ||
+                            kDanhNew.includes('dblo') ||
+                            kDanhNew.includes('đblô') ||
+                            kDanhNew.includes('daobaolo') ||
+                            kDanhNew.includes('daobaolô') ||
+                            kDanhNew.includes('blodao') ||
+                            kDanhNew.includes('daoblo') ||
+                            kDanhNew.includes('baolodao') ||
+                            kDanhNew.includes('daobaolo') ||
+                            kDanhNew.includes('bldao') ||
+                            kDanhNew.includes('daobl') ||
+                            kDanhNew.includes('bdao') ||
+                            kDanhNew.includes('daob') ||
+                            kDanhNew.includes('baoldao') ||
+                            kDanhNew.includes('daobaol') ||
+                            kDanhNew.includes('baodao') ||
+                            kDanhNew.includes('daobao') ||
+                            kDanhNew.includes('daolo') ||
+                            kDanhNew.includes('lodao') ||
+                            kDanhNew.includes('bđao') ||
+                            kDanhNew.includes('bld') ||
+                            kDanhNew.includes('dd') ||
+                            kDanhNew.includes('đđ') ||
+                            kDanhNew.includes('dauduoi') ||
+                            kDanhNew.includes('daudui') ||
+                            kDanhNew.includes('daud') ||
+                            kDanhNew.includes('ddui') ||
+                            kDanhNew.includes('dduoi') ||
+                            kDanhNew.includes('đd') ||
+                            kDanhNew.includes('dđ') ||
+                            kDanhNew.includes('đâuđuôi') ||
+                            kDanhNew.includes('đầuđuôi') ||
+                            kDanhNew.includes('đauđuôi') ||
+                            kDanhNew.includes('x') ||
+                            kDanhNew.includes('xc') ||
+                            kDanhNew.includes('xiuchu') ||
+                            kDanhNew.includes('xiuch') ||
+                            kDanhNew.includes('xiuc') ||
+                            kDanhNew.includes('xiu') ||
+                            kDanhNew.includes('xiudau') ||
+                            kDanhNew.includes('xiudui') ||
+                            kDanhNew.includes('xiuduoi') ||
+                            kDanhNew.includes('xiud') ||
+                            kDanhNew.includes('xiudao') ||
+                            kDanhNew.includes('xiuddau') ||
+                            kDanhNew.includes('xiudaud') ||
+                            kDanhNew.includes('xiudaodau') ||
+                            kDanhNew.includes('xiudaudao') ||
+                            kDanhNew.includes('xiudduoi') ||
+                            kDanhNew.includes('xiuduoid') ||
+                            kDanhNew.includes('xiudaoduoi') ||
+                            kDanhNew.includes('xiuduoidao') ||
+                            kDanhNew.includes('xch') ||
+                            kDanhNew.includes('xchu') ||
+                            kDanhNew.includes('s') ||
+                            kDanhNew.includes('sc') ||
+                            kDanhNew.includes('siuchu') ||
+                            kDanhNew.includes('siuch') ||
+                            kDanhNew.includes('siuc') ||
+                            kDanhNew.includes('sch') ||
+                            kDanhNew.includes('schu') ||
+                            kDanhNew.includes('xdau') ||
+                            kDanhNew.includes('xcdau') ||
+                            kDanhNew.includes('xchdau') ||
+                            kDanhNew.includes('xchudau') ||
+                            kDanhNew.includes('xiuchudau') ||
+                            kDanhNew.includes('xiuchdau') ||
+                            kDanhNew.includes('xiucdau') ||
+                            kDanhNew.includes('xđau') ||
+                            kDanhNew.includes('xcđau') ||
+                            kDanhNew.includes('xiuchuđau') ||
+                            kDanhNew.includes('sdau') ||
+                            kDanhNew.includes('scdau') ||
+                            kDanhNew.includes('schdau') ||
+                            kDanhNew.includes('schudau') ||
+                            kDanhNew.includes('siuchudau') ||
+                            kDanhNew.includes('siuchdau') ||
+                            kDanhNew.includes('siucdau') ||
+                            kDanhNew.includes('sđau') ||
+                            kDanhNew.includes('scđau') ||
+                            kDanhNew.includes('siuchuđau') ||
+                            kDanhNew.includes('xduoi') ||
+                            kDanhNew.includes('xcduoi') ||
+                            kDanhNew.includes('xchduoi') ||
+                            kDanhNew.includes('xchuduoi') ||
+                            kDanhNew.includes('xiuchuduoi') ||
+                            kDanhNew.includes('xiuchduoi') ||
+                            kDanhNew.includes('xiucduoi') ||
+                            kDanhNew.includes('xduoi') ||
+                            kDanhNew.includes('xcduoi') ||
+                            kDanhNew.includes('xiuchuduoi') ||
+                            kDanhNew.includes('xdui') ||
+                            kDanhNew.includes('xcdui') ||
+                            kDanhNew.includes('xchdui') ||
+                            kDanhNew.includes('xchudui') ||
+                            kDanhNew.includes('xiuchudui') ||
+                            kDanhNew.includes('xiuchdui') ||
+                            kDanhNew.includes('xiucdui') ||
+                            kDanhNew.includes('xdui') ||
+                            kDanhNew.includes('xcdui') ||
+                            kDanhNew.includes('xiuchudui') ||
+                            kDanhNew.includes('sduoi') ||
+                            kDanhNew.includes('scduoi') ||
+                            kDanhNew.includes('schduoi') ||
+                            kDanhNew.includes('schuduoi') ||
+                            kDanhNew.includes('siuchuduoi') ||
+                            kDanhNew.includes('siuchduoi') ||
+                            kDanhNew.includes('siucduoi') ||
+                            kDanhNew.includes('sduoi') ||
+                            kDanhNew.includes('scduoi') ||
+                            kDanhNew.includes('siuchuduoi') ||
+                            kDanhNew.includes('sdui') ||
+                            kDanhNew.includes('scdui') ||
+                            kDanhNew.includes('schdui') ||
+                            kDanhNew.includes('schudui') ||
+                            kDanhNew.includes('siuchudui') ||
+                            kDanhNew.includes('siuchdui') ||
+                            kDanhNew.includes('siucdui') ||
+                            kDanhNew.includes('sdui') ||
+                            kDanhNew.includes('scdui') ||
+                            kDanhNew.includes('siuchudui') ||
+                            kDanhNew.includes('daoxc') ||
+                            kDanhNew.includes('daox') ||
+                            kDanhNew.includes('dxchu') ||
+                            kDanhNew.includes('dx') ||
+                            kDanhNew.includes('dxc') ||
+                            kDanhNew.includes('xd') ||
+                            kDanhNew.includes('xdao') ||
+                            kDanhNew.includes('xcdao') ||
+                            kDanhNew.includes('xiuchudao') ||
+                            kDanhNew.includes('xchudao') ||
+                            kDanhNew.includes('xchdao') ||
+                            kDanhNew.includes('xiucdao') ||
+                            kDanhNew.includes('xiuchdao') ||
+                            kDanhNew.includes('xcd') ||
+                            kDanhNew.includes('xiuchud') ||
+                            kDanhNew.includes('xchud') ||
+                            kDanhNew.includes('xchd') ||
+                            kDanhNew.includes('xiucd') ||
+                            kDanhNew.includes('xiuchd') ||
+                            kDanhNew.includes('đaoxc') ||
+                            kDanhNew.includes('đaox') ||
+                            kDanhNew.includes('đxchu') ||
+                            kDanhNew.includes('đx') ||
+                            kDanhNew.includes('đxc') ||
+                            kDanhNew.includes('xđ') ||
+                            kDanhNew.includes('xđao') ||
+                            kDanhNew.includes('xcđ') ||
+                            kDanhNew.includes('xcđao') ||
+                            kDanhNew.includes('xiuchuđao') ||
+                            kDanhNew.includes('daox') ||
+                            kDanhNew.includes('daoxc') ||
+                            kDanhNew.includes('daoxiuchu') ||
+                            kDanhNew.includes('daoxchu') ||
+                            kDanhNew.includes('daoxch') ||
+                            kDanhNew.includes('daoxiuc') ||
+                            kDanhNew.includes('daoxiuch') ||
+                            kDanhNew.includes('dxc') ||
+                            kDanhNew.includes('dxiuchu') ||
+                            kDanhNew.includes('dxchu') ||
+                            kDanhNew.includes('dxch') ||
+                            kDanhNew.includes('dxiuc') ||
+                            kDanhNew.includes('dxiuch') ||
+                            kDanhNew.includes('daosc') ||
+                            kDanhNew.includes('daos') ||
+                            kDanhNew.includes('dschu') ||
+                            kDanhNew.includes('ds') ||
+                            kDanhNew.includes('dsc') ||
+                            kDanhNew.includes('sd') ||
+                            kDanhNew.includes('sdao') ||
+                            kDanhNew.includes('scdao') ||
+                            kDanhNew.includes('siuchudao') ||
+                            kDanhNew.includes('schudao') ||
+                            kDanhNew.includes('schdao') ||
+                            kDanhNew.includes('siucdao') ||
+                            kDanhNew.includes('siuchdao') ||
+                            kDanhNew.includes('scd') ||
+                            kDanhNew.includes('siuchud') ||
+                            kDanhNew.includes('schud') ||
+                            kDanhNew.includes('schd') ||
+                            kDanhNew.includes('siucd') ||
+                            kDanhNew.includes('siuchd') ||
+                            kDanhNew.includes('đaosc') ||
+                            kDanhNew.includes('đaos') ||
+                            kDanhNew.includes('đschu') ||
+                            kDanhNew.includes('đs') ||
+                            kDanhNew.includes('đsc') ||
+                            kDanhNew.includes('sđ') ||
+                            kDanhNew.includes('sđao') ||
+                            kDanhNew.includes('scđ') ||
+                            kDanhNew.includes('scđao') ||
+                            kDanhNew.includes('siuchuđao') ||
+                            kDanhNew.includes('daos') ||
+                            kDanhNew.includes('daosc') ||
+                            kDanhNew.includes('daosiuchu') ||
+                            kDanhNew.includes('daoschu') ||
+                            kDanhNew.includes('daosch') ||
+                            kDanhNew.includes('daosiuc') ||
+                            kDanhNew.includes('daosiuch') ||
+                            kDanhNew.includes('dsc') ||
+                            kDanhNew.includes('dsiuchu') ||
+                            kDanhNew.includes('dschu') ||
+                            kDanhNew.includes('dsch') ||
+                            kDanhNew.includes('dsiuc') ||
+                            kDanhNew.includes('dsiuch') ||
+                            kDanhNew.includes('dau') ||
+                            kDanhNew.includes('duoi') ||
+                            kDanhNew.includes('đuôi') ||
+                            kDanhNew.includes('duôi') ||
+                            kDanhNew.includes('đuoi') ||
+                            kDanhNew.includes('dui') ||
+                            kDanhNew.includes('đui') ||
+                            kDanhNew.includes('d') ||
+                            kDanhNew.includes('daoxcdau') ||
+                            kDanhNew.includes('daoxdau') ||
+                            kDanhNew.includes('dxchudau') ||
+                            kDanhNew.includes('dxdau') ||
+                            kDanhNew.includes('dxcdau') ||
+                            kDanhNew.includes('xddau') ||
+                            kDanhNew.includes('xdaodau') ||
+                            kDanhNew.includes('xcdaodau') ||
+                            kDanhNew.includes('xiuchudaodau') ||
+                            kDanhNew.includes('xchudaodau') ||
+                            kDanhNew.includes('xchdaodau') ||
+                            kDanhNew.includes('xiucdaodau') ||
+                            kDanhNew.includes('xiuchdaodau') ||
+                            kDanhNew.includes('xcddau') ||
+                            kDanhNew.includes('xiuchuddau') ||
+                            kDanhNew.includes('xchuddau') ||
+                            kDanhNew.includes('xchddau') ||
+                            kDanhNew.includes('xiucddau') ||
+                            kDanhNew.includes('xiuchddau') ||
+                            kDanhNew.includes('đaoxcdau') ||
+                            kDanhNew.includes('đaoxdau') ||
+                            kDanhNew.includes('đxchudau') ||
+                            kDanhNew.includes('đxdau') ||
+                            kDanhNew.includes('đxcdau') ||
+                            kDanhNew.includes('xđdau') ||
+                            kDanhNew.includes('xđaodau') ||
+                            kDanhNew.includes('xcđdau') ||
+                            kDanhNew.includes('xcđaodau') ||
+                            kDanhNew.includes('xiuchuđaodau') ||
+                            kDanhNew.includes('daoxdau') ||
+                            kDanhNew.includes('daoxcdau') ||
+                            kDanhNew.includes('daoxiuchudau') ||
+                            kDanhNew.includes('daoxchudau') ||
+                            kDanhNew.includes('daoxchdau') ||
+                            kDanhNew.includes('daoxiucdau') ||
+                            kDanhNew.includes('daoxiuchdau') ||
+                            kDanhNew.includes('dxcdau') ||
+                            kDanhNew.includes('dxiuchudau') ||
+                            kDanhNew.includes('dxchudau') ||
+                            kDanhNew.includes('dxchdau') ||
+                            kDanhNew.includes('dxiucdau') ||
+                            kDanhNew.includes('dxiuchdau') ||
+                            kDanhNew.includes('daoscdau') ||
+                            kDanhNew.includes('daosdau') ||
+                            kDanhNew.includes('dschudau') ||
+                            kDanhNew.includes('dsdau') ||
+                            kDanhNew.includes('dscdau') ||
+                            kDanhNew.includes('sddau') ||
+                            kDanhNew.includes('sdaodau') ||
+                            kDanhNew.includes('scdaodau') ||
+                            kDanhNew.includes('siuchudaodau') ||
+                            kDanhNew.includes('schudaodau') ||
+                            kDanhNew.includes('schdaodau') ||
+                            kDanhNew.includes('siucdaodau') ||
+                            kDanhNew.includes('siuchdaodau') ||
+                            kDanhNew.includes('scddau') ||
+                            kDanhNew.includes('siuchuddau') ||
+                            kDanhNew.includes('schuddau') ||
+                            kDanhNew.includes('schddau') ||
+                            kDanhNew.includes('siucddau') ||
+                            kDanhNew.includes('siuchddau') ||
+                            kDanhNew.includes('đaoscdau') ||
+                            kDanhNew.includes('đaosdau') ||
+                            kDanhNew.includes('đschudau') ||
+                            kDanhNew.includes('đsdau') ||
+                            kDanhNew.includes('đscdau') ||
+                            kDanhNew.includes('sđdau') ||
+                            kDanhNew.includes('sđaodau') ||
+                            kDanhNew.includes('scđdau') ||
+                            kDanhNew.includes('scđaodau') ||
+                            kDanhNew.includes('siuchuđaodau') ||
+                            kDanhNew.includes('daosdau') ||
+                            kDanhNew.includes('daoscdau') ||
+                            kDanhNew.includes('daosiuchudau') ||
+                            kDanhNew.includes('daoschudau') ||
+                            kDanhNew.includes('daoschdau') ||
+                            kDanhNew.includes('daosiucdau') ||
+                            kDanhNew.includes('daosiuchdau') ||
+                            kDanhNew.includes('dscdau') ||
+                            kDanhNew.includes('dsiuchudau') ||
+                            kDanhNew.includes('dschudau') ||
+                            kDanhNew.includes('dschdau') ||
+                            kDanhNew.includes('dsiucdau') ||
+                            kDanhNew.includes('dsiuchdau') ||
+                            kDanhNew.includes('xcdaudao') ||
+                            kDanhNew.includes('xiuchudaudao') ||
+                            kDanhNew.includes('xchudaudao') ||
+                            kDanhNew.includes('xcdaud') ||
+                            kDanhNew.includes('xiuchudaud') ||
+                            kDanhNew.includes('xchudaud') ||
+                            kDanhNew.includes('scdaudao') ||
+                            kDanhNew.includes('siuchudaudao') ||
+                            kDanhNew.includes('schudaudao') ||
+                            kDanhNew.includes('scdaud') ||
+                            kDanhNew.includes('siuchudaud') ||
+                            kDanhNew.includes('schudaud') ||
+                            kDanhNew.includes('daoxcduoi') ||
+                            kDanhNew.includes('daoxduoi') ||
+                            kDanhNew.includes('dxchuduoi') ||
+                            kDanhNew.includes('dxduoi') ||
+                            kDanhNew.includes('dxcduoi') ||
+                            kDanhNew.includes('xdduoi') ||
+                            kDanhNew.includes('xdaoduoi') ||
+                            kDanhNew.includes('xcdaoduoi') ||
+                            kDanhNew.includes('xiuchudaoduoi') ||
+                            kDanhNew.includes('xchudaoduoi') ||
+                            kDanhNew.includes('xchdaoduoi') ||
+                            kDanhNew.includes('xiucdaoduoi') ||
+                            kDanhNew.includes('xiuchdaoduoi') ||
+                            kDanhNew.includes('xcdduoi') ||
+                            kDanhNew.includes('xiuchudduoi') ||
+                            kDanhNew.includes('xchudduoi') ||
+                            kDanhNew.includes('xchdduoi') ||
+                            kDanhNew.includes('xiucdduoi') ||
+                            kDanhNew.includes('xiuchdduoi') ||
+                            kDanhNew.includes('đaoxcduoi') ||
+                            kDanhNew.includes('đaoxduoi') ||
+                            kDanhNew.includes('đxchuduoi') ||
+                            kDanhNew.includes('đxduoi') ||
+                            kDanhNew.includes('đxcduoi') ||
+                            kDanhNew.includes('xđduoi') ||
+                            kDanhNew.includes('xđaoduoi') ||
+                            kDanhNew.includes('xcđduoi') ||
+                            kDanhNew.includes('xcđaoduoi') ||
+                            kDanhNew.includes('xiuchuđaoduoi') ||
+                            kDanhNew.includes('daoxduoi') ||
+                            kDanhNew.includes('daoxcduoi') ||
+                            kDanhNew.includes('daoxiuchuduoi') ||
+                            kDanhNew.includes('daoxchuduoi') ||
+                            kDanhNew.includes('daoxchduoi') ||
+                            kDanhNew.includes('daoxiucduoi') ||
+                            kDanhNew.includes('daoxiuchduoi') ||
+                            kDanhNew.includes('dxcduoi') ||
+                            kDanhNew.includes('dxiuchuduoi') ||
+                            kDanhNew.includes('dxchuduoi') ||
+                            kDanhNew.includes('dxchduoi') ||
+                            kDanhNew.includes('dxiucduoi') ||
+                            kDanhNew.includes('dxiuchduoi') ||
+                            kDanhNew.includes('daoscduoi') ||
+                            kDanhNew.includes('daosduoi') ||
+                            kDanhNew.includes('dschuduoi') ||
+                            kDanhNew.includes('dsduoi') ||
+                            kDanhNew.includes('dscduoi') ||
+                            kDanhNew.includes('sdduoi') ||
+                            kDanhNew.includes('sdaoduoi') ||
+                            kDanhNew.includes('scdaoduoi') ||
+                            kDanhNew.includes('siuchudaoduoi') ||
+                            kDanhNew.includes('schudaoduoi') ||
+                            kDanhNew.includes('schdaoduoi') ||
+                            kDanhNew.includes('siucdaoduoi') ||
+                            kDanhNew.includes('siuchdaoduoi') ||
+                            kDanhNew.includes('scdduoi') ||
+                            kDanhNew.includes('siuchudduoi') ||
+                            kDanhNew.includes('schudduoi') ||
+                            kDanhNew.includes('schdduoi') ||
+                            kDanhNew.includes('siucdduoi') ||
+                            kDanhNew.includes('siuchdduoi') ||
+                            kDanhNew.includes('đaoscduoi') ||
+                            kDanhNew.includes('đaosduoi') ||
+                            kDanhNew.includes('đschuduoi') ||
+                            kDanhNew.includes('đsduoi') ||
+                            kDanhNew.includes('đscduoi') ||
+                            kDanhNew.includes('sđduoi') ||
+                            kDanhNew.includes('sđaoduoi') ||
+                            kDanhNew.includes('scđduoi') ||
+                            kDanhNew.includes('scđaoduoi') ||
+                            kDanhNew.includes('siuchuđaoduoi') ||
+                            kDanhNew.includes('daosduoi') ||
+                            kDanhNew.includes('daoscduoi') ||
+                            kDanhNew.includes('daosiuchuduoi') ||
+                            kDanhNew.includes('daoschuduoi') ||
+                            kDanhNew.includes('daoschduoi') ||
+                            kDanhNew.includes('daosiucduoi') ||
+                            kDanhNew.includes('daosiuchduoi') ||
+                            kDanhNew.includes('dscduoi') ||
+                            kDanhNew.includes('dsiuchuduoi') ||
+                            kDanhNew.includes('dschuduoi') ||
+                            kDanhNew.includes('dschduoi') ||
+                            kDanhNew.includes('dsiucduoi') ||
+                            kDanhNew.includes('dsiuchduoi') ||
+                            kDanhNew.includes('xcduoidao') ||
+                            kDanhNew.includes('xiuchuduoidao') ||
+                            kDanhNew.includes('xchuduoidao') ||
+                            kDanhNew.includes('xcduoid') ||
+                            kDanhNew.includes('xiuchuduoid') ||
+                            kDanhNew.includes('xchuduoid') ||
+                            kDanhNew.includes('scduoidao') ||
+                            kDanhNew.includes('siuchuduoidao') ||
+                            kDanhNew.includes('schuduoidao') ||
+                            kDanhNew.includes('scduoid') ||
+                            kDanhNew.includes('siuchuduoid') ||
+                            kDanhNew.includes('schuduoid') ||
+                            kDanhNew.includes('baylo') ||
+                            kDanhNew.includes('baobay') ||
+                            kDanhNew.includes('baobaylo') ||
+                            kDanhNew.includes('baylod') ||
+                            kDanhNew.includes('baobayd') ||
+                            kDanhNew.includes('baobaylod') ||
+                            kDanhNew.includes('baylodao') ||
+                            kDanhNew.includes('baobaydao') ||
+                            kDanhNew.includes('baobaylodao') ||
+                            kDanhNew.includes('dbaylo') ||
+                            kDanhNew.includes('dbaobay') ||
+                            kDanhNew.includes('dbaobaylo') ||
+                            kDanhNew.includes('daobaylo') ||
+                            kDanhNew.includes('daobaobay') ||
+                            kDanhNew.includes('daobaobaylo') ||
+                            kDanhNew.includes('tamlo') ||
+                            kDanhNew.includes('baotam') ||
+                            kDanhNew.includes('baotamlo') ||
+                            kDanhNew.includes('tamlod') ||
+                            kDanhNew.includes('baotamd') ||
+                            kDanhNew.includes('baotamlod') ||
+                            kDanhNew.includes('tamlodao') ||
+                            kDanhNew.includes('baotamdao') ||
+                            kDanhNew.includes('baotamlodao') ||
+                            kDanhNew.includes('dtamlo') ||
+                            kDanhNew.includes('dbaotam') ||
+                            kDanhNew.includes('dbaotamlo') ||
+                            kDanhNew.includes('daotamlo') ||
+                            kDanhNew.includes('daobaotam') ||
+                            kDanhNew.includes('daobaotamlo') ||
+                            kDanhNew.includes('xdaudao') ||
+                            kDanhNew.includes('xdaud') ||
+                            kDanhNew.includes('xdaodau') ||
+                            kDanhNew.includes('xddau') ||
+                            kDanhNew.includes('xduidao') ||
+                            kDanhNew.includes('xduoidao') ||
+                            kDanhNew.includes('xduid') ||
+                            kDanhNew.includes('xduoid') ||
+                            kDanhNew.includes('xdaodui') ||
+                            kDanhNew.includes('xdaoduoi') ||
+                            kDanhNew.includes('xddui') ||
+                            kDanhNew.includes('xdduoi')) &&
+                        mangSo.length > 1
+                    ) {
+                        firstTwoPositions.splice(1, 1);
+                        changeDaiBacLieu = false;
+                        break;
+                    }
+                }
+
+                if (i === 0) {
+                    outW = true;
+                }
+            }
+
+            if (outW) {
+                break;
+            }
+        } else {
+            changeDaiBacLieu = false;
+            break;
+        }
+    }
+
+    // console.log(changeDaiBacLieu);
+    // if (changeDaiBacLieu && dayOfWeek !== 3) {
+    //     changeDaiBacLieu = false;
+    //     firstTwoPositions.splice(1, 1);
+    // }
+
     firstTwoPositions = allPositions.slice(0, 2);
 
     // Nếu không có đủ hai vị trí, thêm -1 vào kết quả
     while (firstTwoPositions.length < 2) {
         firstTwoPositions.push(-1);
     }
+
+    console.log(changeBaoDao);
 
     return { firstTwoPositions, changeDaiBacLieu, changeBaoDao };
 }

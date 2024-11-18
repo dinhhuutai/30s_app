@@ -546,7 +546,13 @@ export const SmsProvider = ({ children }) => {
 
             if (resSms.success) {
                 smsDetailList = smsDetailList.map((e) => {
-                    return { ...e, idSms: resSms.sms._id };
+                    return {
+                        ...e,
+                        idSms: resSms.sms._id,
+                        idUser: user?.info?._id,
+                        idMember,
+                        resultDate: dateTmp,
+                    };
                 });
 
                 console.log("SMS: ", resSms.sms);
@@ -1021,7 +1027,13 @@ export const SmsProvider = ({ children }) => {
 
             if (resSms.success) {
                 smsDetailList = smsDetailList.map((e) => {
-                    return { ...e, idSms: resSms.sms._id };
+                    return {
+                        ...e,
+                        idSms: resSms.sms._id,
+                        idUser: user?.info?._id,
+                        idMember,
+                        resultDate: dateTmp,
+                    };
                 });
 
                 setSelectorSms(resSms);

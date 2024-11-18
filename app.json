@@ -4,23 +4,16 @@
     "slug": "app10s",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/onBroading-icon.jpg",
+    "icon": "",
     "scheme": "app10s",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/onBroading-splash.jpg",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+    "splash": {},
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.dinhhuutai.app10s"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/onBroading-adaptive-icon.jpg",
-        "backgroundColor": "#ffffff"
-      },
+      "adaptiveIcon": {},
       "package": "com.dinhhuutai.app10s"
     },
     "web": {
