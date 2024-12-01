@@ -78,14 +78,23 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
         'camau',
         'cmau',
         'bentre',
+        'bentr',
         'btre',
         'vungtau',
+        'vugtau',
+        'vugt',
+        'vungt',
         'vtau',
         'baclieu',
+        'bacl',
         'blieu',
         'bliu',
         'bacliu',
         'dongnai',
+        'dognai',
+        'dongn',
+        'dogn',
+        'dgnai',
         'dnai',
         'cantho',
         'canth',
@@ -94,6 +103,8 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
         'soctrang',
         'strang',
         'stran',
+        'strag',
+        'soctrag',
         'soctran',
         'tayninh',
         'tninh',
@@ -103,34 +114,57 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
         'angian',
         'agian',
         'binhthuan',
+        'bihthuan',
+        'bihth',
+        'binhth',
         'bthuan',
         'bth',
         'binhduong',
         'bduong',
+        'bihduong',
+        'bihduon',
+        'bihduog',
+        'binhduog',
+        'bduog',
+        'binhduon',
+        'bduon',
         'vinhlong',
         'vlong',
         'vlon',
         'vihlon',
         'vihlong',
         'vinhlon',
+        'travih',
+        'trvih',
         'travinh',
         'trvinh',
         'tvinh',
+        'logan',
+        'loga',
         'longan',
         'lan',
         'lonan',
         'longa',
         'binhphuoc',
         'bphuoc',
+        'bph',
+        'bihph',
+        'bihphuoc',
+        'binhph',
         'haugiang',
+        'haugiag',
         'hgiang',
         'haugian',
         'hgian',
+        'tiengiag',
+        'tgiag',
         'tiengiang',
         'tgiang',
         'tiengian',
         'tgian',
         'tgi',
+        'kiengiag',
+        'kgiag',
         'kiengiang',
         'kgiang',
         'kiengian',
@@ -138,9 +172,14 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
         'kgi',
         'dalat',
         'dlat',
+        'phuy',
+        'phy',
         'phuyen',
         'pyen',
         'hue',
+        'thuathienhue',
+        'thhue',
+        'tthue',
         'tth',
         'daklak',
         'dlak',
@@ -149,7 +188,10 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
         'daclak',
         'daklac',
         'quangnam',
+        'quagnam',
         'qnam',
+        'danag',
+        'dnag',
         'danang',
         'dnang',
         'danan',
@@ -157,28 +199,61 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
         'khanhhoa',
         'khoa',
         'khhoa',
+        'quagbih',
+        'quagbinh',
+        'quanbih',
+        'quanbinh',
+        'quangbih',
+        'qbih',
         'quangbinh',
         'qbinh',
         'binhdinh',
+        'bihdih',
+        'bihdinh',
+        'binhdih',
         'bdinh',
+        'bdi',
+        'bdih',
         'quangtri',
+        'quagtr',
+        'quagtri',
+        'quantr',
+        'quantri',
+        'quangtr',
+        'qtr',
         'qtri',
         'gialai',
         'glai',
+        'ninhth',
+        'nihthuan',
+        'nihth',
+        'nith',
+        'nithuan',
+        'nth',
+        'ninhth',
         'ninhthuan',
         'nthuan',
         'quangngai',
+        'quagngai',
+        'quagng',
+        'quangng',
+        'quang',
+        'quangai',
         'quanngai',
         'qngai',
+        'dacnog',
+        'dnog',
+        'daknog',
         'dacnong',
         'dnong',
-        'dno',
         'daknong',
+        'dno',
         'dacnon',
         'dnon',
         'daknon',
         'kontum',
         'ktum',
+        'ktom',
         'kontom',
     ];
 
@@ -357,6 +432,8 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                 dai === 'dch' ||
                 dai === 'chanh' ||
                 dai === 'chinh' ||
+                dai === 'chah' ||
+                dai === 'chih' ||
                 dai === 'daich' ||
                 dai === 'daichinh' ||
                 dai === 'daichih' ||
@@ -400,17 +477,43 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     daiMain = 'dt';
                 } else if (dai === 'camau' || dai === 'cmau') {
                     daiMain = 'cm';
-                } else if (dai === 'bentre' || dai === 'btre') {
+                } else if (dai === 'bentr' || dai === 'bentre' || dai === 'btre') {
                     daiMain = 'br';
-                } else if (dai === 'vungtau' || dai === 'vtau') {
+                } else if (
+                    dai === 'vugtau' ||
+                    dai === 'vugt' ||
+                    dai === 'vungt' ||
+                    dai === 'vungtau' ||
+                    dai === 'vtau'
+                ) {
                     daiMain = 'vt';
-                } else if (dai === 'baclieu' || dai === 'blieu' || dai === 'bliu' || dai === 'bacliu') {
+                } else if (
+                    dai === 'bacl' ||
+                    dai === 'baclieu' ||
+                    dai === 'blieu' ||
+                    dai === 'bliu' ||
+                    dai === 'bacliu'
+                ) {
                     daiMain = 'bi';
-                } else if (dai === 'dongnai' || dai === 'dnai') {
+                } else if (
+                    dai === 'dgnai' ||
+                    dai === 'dogn' ||
+                    dai === 'dognai' ||
+                    dai === 'dongn' ||
+                    dai === 'dongnai' ||
+                    dai === 'dnai'
+                ) {
                     daiMain = 'dn';
                 } else if (dai === 'cantho' || dai === 'ctho' || dai === 'canth' || dai === 'cth') {
                     daiMain = 'ct';
-                } else if (dai === 'soctrang' || dai === 'strang' || dai === 'stran' || dai === 'soctran') {
+                } else if (
+                    dai === 'soctrang' ||
+                    dai === 'strang' ||
+                    dai === 'stran' ||
+                    dai === 'soctran' ||
+                    dai === 'strag' ||
+                    dai === 'soctrag'
+                ) {
                     daiMain = 'st';
                 } else if (dai === 'tayninh' || dai === 'tninh') {
                     daiMain = 'tn';
@@ -422,9 +525,26 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     dai === 'agian'
                 ) {
                     daiMain = 'ag';
-                } else if (dai === 'binhthuan' || dai === 'bthuan' || dai === 'bth') {
+                } else if (
+                    dai === 'bihthuan' ||
+                    dai === 'bihth' ||
+                    dai === 'binhth' ||
+                    dai === 'binhthuan' ||
+                    dai === 'bthuan' ||
+                    dai === 'bth'
+                ) {
                     daiMain = 'bt';
-                } else if (dai === 'binhduong' || dai === 'bduong') {
+                } else if (
+                    dai === 'bihduong' ||
+                    dai === 'bihduon' ||
+                    dai === 'bihduog' ||
+                    dai === 'binhduog' ||
+                    dai === 'bduog' ||
+                    dai === 'binhduon' ||
+                    dai === 'bduon' ||
+                    dai === 'binhduong' ||
+                    dai === 'bduong'
+                ) {
                     daiMain = 'bu';
                 } else if (
                     dai === 'vinhlong' ||
@@ -435,23 +555,53 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     dai === 'vihlong'
                 ) {
                     daiMain = 'vl';
-                } else if (dai === 'travinh' || dai === 'tvinh' || dai === 'trvinh') {
+                } else if (
+                    dai === 'trvih' ||
+                    dai === 'travih' ||
+                    dai === 'travinh' ||
+                    dai === 'tvinh' ||
+                    dai === 'trvinh'
+                ) {
                     daiMain = 'tv';
-                } else if (dai === 'longan' || dai === 'lan' || dai === 'lonan' || dai === 'longa') {
+                } else if (
+                    dai === 'logan' ||
+                    dai === 'loga' ||
+                    dai === 'longan' ||
+                    dai === 'lan' ||
+                    dai === 'lonan' ||
+                    dai === 'longa'
+                ) {
                     daiMain = 'la';
-                } else if (dai === 'binhphuoc' || dai === 'bphuoc') {
+                } else if (
+                    dai === 'bph' ||
+                    dai === 'bihph' ||
+                    dai === 'bihphuoc' ||
+                    dai === 'binhph' ||
+                    dai === 'binhphuoc' ||
+                    dai === 'bphuoc'
+                ) {
                     daiMain = 'bp';
-                } else if (dai === 'haugiang' || dai === 'hgiang' || dai === 'haugian' || dai === 'hgian') {
+                } else if (
+                    dai === 'haugiag' ||
+                    dai === 'haugiang' ||
+                    dai === 'hgiang' ||
+                    dai === 'haugian' ||
+                    dai === 'hgian'
+                ) {
                     daiMain = 'hg';
                 } else if (
                     dai === 'tiengiang' ||
                     dai === 'tgiang' ||
+                    dai === 'tiengiag' ||
+                    dai === 'tgiag' ||
                     dai === 'tgi' ||
                     dai === 'tiengian' ||
                     dai === 'tgian'
                 ) {
                     daiMain = 'tg';
                 } else if (
+                    dai === 'kiengiag' ||
+                    dai === 'kgiag' ||
                     dai === 'kiengiang' ||
                     dai === 'kgiang' ||
                     dai === 'kgi' ||
@@ -461,9 +611,15 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     daiMain = 'kg';
                 } else if (dai === 'dalat' || dai === 'dlat') {
                     daiMain = 'lt';
-                } else if (dai === 'phuyen' || dai === 'pyen') {
+                } else if (dai === 'phuy' || dai === 'phy' || dai === 'phuyen' || dai === 'pyen') {
                     daiMain = 'py';
-                } else if (dai === 'hue' || dai === 'tth') {
+                } else if (
+                    dai === 'thuathienhue' ||
+                    dai === 'thhue' ||
+                    dai === 'tthue' ||
+                    dai === 'hue' ||
+                    dai === 'tth'
+                ) {
                     daiMain = 'hu';
                 } else if (
                     dai === 'dlac' ||
@@ -474,25 +630,80 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     dai === 'daklac'
                 ) {
                     daiMain = 'dl';
-                } else if (dai === 'quangnam' || dai === 'qnam') {
+                } else if (dai === 'quagnam' || dai === 'quangnam' || dai === 'qnam') {
                     daiMain = 'qn';
-                } else if (dai === 'danang' || dai === 'dnang' || dai === 'danan' || dai === 'dnan') {
+                } else if (
+                    dai === 'danag' ||
+                    dai === 'dnag' ||
+                    dai === 'danang' ||
+                    dai === 'dnang' ||
+                    dai === 'danan' ||
+                    dai === 'dnan'
+                ) {
                     daiMain = 'dg';
                 } else if (dai === 'khanhhoa' || dai === 'khoa' || dai === 'khhoa') {
                     daiMain = 'kh';
-                } else if (dai === 'quangbinh' || dai === 'qbinh') {
+                } else if (
+                    dai === 'quagbih' ||
+                    dai === 'quagbinh' ||
+                    dai === 'quanbih' ||
+                    dai === 'quanbinh' ||
+                    dai === 'quangbih' ||
+                    dai === 'qbih' ||
+                    dai === 'quangbinh' ||
+                    dai === 'qbinh'
+                ) {
                     daiMain = 'qb';
-                } else if (dai === 'binhdinh' || dai === 'bdinh') {
+                } else if (
+                    dai === 'bihdih' ||
+                    dai === 'bihdinh' ||
+                    dai === 'binhdih' ||
+                    dai === 'binhdinh' ||
+                    dai === 'bdinh' ||
+                    dai === 'bdi' ||
+                    dai === 'bdih'
+                ) {
                     daiMain = 'bd';
-                } else if (dai === 'quangtri' || dai === 'qtri') {
+                } else if (
+                    dai === 'quagtr' ||
+                    dai === 'quagtri' ||
+                    dai === 'quantr' ||
+                    dai === 'quantri' ||
+                    dai === 'quangtr' ||
+                    dai === 'qtr' ||
+                    dai === 'quangtri' ||
+                    dai === 'qtri'
+                ) {
                     daiMain = 'qt';
                 } else if (dai === 'gialai' || dai === 'glai') {
                     daiMain = 'gl';
-                } else if (dai === 'ninhthuan' || dai === 'nthuan') {
+                } else if (
+                    dai === 'ninhth' ||
+                    dai === 'nihthuan' ||
+                    dai === 'nihth' ||
+                    dai === 'nith' ||
+                    dai === 'nithuan' ||
+                    dai === 'nth' ||
+                    dai === 'ninhth' ||
+                    dai === 'ninhthuan' ||
+                    dai === 'nthuan'
+                ) {
                     daiMain = 'nt';
-                } else if (dai === 'quangngai' || dai === 'qngai' || dai === 'quanngai') {
+                } else if (
+                    dai === 'quagngai' ||
+                    dai === 'quagng' ||
+                    dai === 'quangng' ||
+                    dai === 'quang' ||
+                    dai === 'quangai' ||
+                    dai === 'quangngai' ||
+                    dai === 'qngai' ||
+                    dai === 'quanngai'
+                ) {
                     daiMain = 'qg';
                 } else if (
+                    dai === 'dacnog' ||
+                    dai === 'daknog' ||
+                    dai === 'dnog' ||
                     dai === 'dacnong' ||
                     dai === 'daknong' ||
                     dai === 'dnong' ||
@@ -502,7 +713,7 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     dai === 'dnon'
                 ) {
                     daiMain = 'do';
-                } else if (dai === 'kontum' || dai === 'kontom' || dai === 'ktum') {
+                } else if (dai === 'kontum' || dai === 'kontom' || dai === 'ktum' || dai === 'ktom') {
                     daiMain = 'kt';
                 }
 
@@ -514,8 +725,8 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                 bDai = true;
             } else if (dai === 'hoa') {
                 vtkt = i;
-                console.log('vtbd: ', contentTmp.slice(0, vtbd))
-                console.log('vtkt: ', contentTmp.slice(vtkt + 1))
+                console.log('vtbd: ', contentTmp.slice(0, vtbd));
+                console.log('vtkt: ', contentTmp.slice(vtkt + 1));
                 contentTmp = contentTmp.slice(0, vtbd) + contentTmp.slice(vtkt + 1);
 
                 i = vtbd - 3 + 1;
@@ -529,6 +740,7 @@ function handleConvertSymbol(content, mien, dayOfWeek) {
                     dai.includes('dat') ||
                     dai.includes('dathang') ||
                     dai.includes('dav') ||
+                    dai.includes('dv') ||
                     dai.includes('davong') ||
                     dai.includes('dath') ||
                     dai.includes('dth') ||

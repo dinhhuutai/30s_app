@@ -11,14 +11,23 @@ let listDaiError = [
     'camau',
     'cmau',
     'bentre',
+    'bentr',
     'btre',
     'vungtau',
+    'vugtau',
+    'vugt',
+    'vungt',
     'vtau',
     'baclieu',
+    'bacl',
     'blieu',
     'bliu',
     'bacliu',
     'dongnai',
+    'dognai',
+    'dongn',
+    'dogn',
+    'dgnai',
     'dnai',
     'cantho',
     'canth',
@@ -28,6 +37,8 @@ let listDaiError = [
     'strang',
     'stran',
     'soctran',
+    'strag',
+    'soctrag',
     'tayninh',
     'tninh',
     'angiang',
@@ -36,34 +47,57 @@ let listDaiError = [
     'angian',
     'agian',
     'binhthuan',
+    'bihthuan',
+    'bihth',
+    'binhth',
     'bthuan',
     'bth',
     'binhduong',
     'bduong',
+    'bihduong',
+    'bihduon',
+    'bihduog',
+    'binhduog',
+    'bduog',
+    'binhduon',
+    'bduon',
     'vinhlong',
     'vlong',
     'vlon',
     'vihlon',
     'vihlong',
     'vinhlon',
+    'travih',
+    'trvih',
     'travinh',
     'trvinh',
     'tvinh',
+    'logan',
+    'loga',
     'longan',
     'lan',
     'lonan',
     'longa',
     'binhphuoc',
+    'bph',
+    'bihph',
+    'bihphuoc',
+    'binhph',
     'bphuoc',
     'haugiang',
+    'haugiag',
     'hgiang',
     'haugian',
     'hgian',
+    'tiengiag',
+    'tgiag',
     'tiengiang',
     'tgiang',
     'tiengian',
     'tgian',
     'tgi',
+    'kiengiag',
+    'kgiag',
     'kiengiang',
     'kgiang',
     'kiengian',
@@ -71,9 +105,14 @@ let listDaiError = [
     'kgi',
     'dalat',
     'dlat',
+    'phuy',
+    'phy',
     'phuyen',
     'pyen',
     'hue',
+    'thuathienhue',
+    'thhue',
+    'tthue',
     'tth',
     'daklak',
     'dlak',
@@ -82,7 +121,10 @@ let listDaiError = [
     'daclak',
     'daklac',
     'quangnam',
+    'quagnam',
     'qnam',
+    'danag',
+    'dnag',
     'danang',
     'dnang',
     'danan',
@@ -91,19 +133,51 @@ let listDaiError = [
     'khoa',
     'khhoa',
     'quangbinh',
+    'quagbih',
+    'quagbinh',
+    'quanbih',
+    'quanbinh',
+    'quangbih',
+    'qbih',
     'qbinh',
     'binhdinh',
+    'bihdih',
+    'bihdinh',
+    'binhdih',
     'bdinh',
+    'bdi',
+    'bdih',
     'quangtri',
+    'quagtr',
+    'quagtri',
+    'quantr',
+    'quantri',
+    'quangtr',
+    'qtr',
     'qtri',
     'gialai',
     'glai',
     'ninhthuan',
+    'ninhth',
+    'nihthuan',
+    'nihth',
+    'nith',
+    'nithuan',
+    'nth',
+    'ninhth',
     'nthuan',
     'quangngai',
+    'quagngai',
+    'quagng',
+    'quangng',
+    'quang',
+    'quangai',
     'quanngai',
     'qngai',
     'dacnong',
+    'dacnog',
+    'dnog',
+    'daknog',
     'dnong',
     'dno',
     'daknong',
@@ -112,6 +186,7 @@ let listDaiError = [
     'daknon',
     'kontum',
     'ktum',
+    'ktom',
     'kontom',
 ];
 
@@ -294,18 +369,36 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'dt';
                     } else if (daiTmp.toLowerCase() === 'camau' || daiTmp.toLowerCase() === 'cmau') {
                         daiTmp = 'cm';
-                    } else if (daiTmp.toLowerCase() === 'bentre' || daiTmp.toLowerCase() === 'btre') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'bentr' ||
+                        daiTmp.toLowerCase() === 'bentre' ||
+                        daiTmp.toLowerCase() === 'btre'
+                    ) {
                         daiTmp = 'br';
-                    } else if (daiTmp.toLowerCase() === 'vungtau' || daiTmp.toLowerCase() === 'vtau') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'vungtau' ||
+                        daiTmp.toLowerCase() === 'vugtau' ||
+                        daiTmp.toLowerCase() === 'vugt' ||
+                        daiTmp.toLowerCase() === 'vungt' ||
+                        daiTmp.toLowerCase() === 'vtau'
+                    ) {
                         daiTmp = 'vt';
                     } else if (
                         daiTmp.toLowerCase() === 'baclieu' ||
+                        daiTmp.toLowerCase() === 'bacl' ||
                         daiTmp.toLowerCase() === 'blieu' ||
                         daiTmp.toLowerCase() === 'bliu' ||
                         daiTmp.toLowerCase() === 'bacliu'
                     ) {
                         daiTmp = 'bi';
-                    } else if (daiTmp.toLowerCase() === 'dongnai' || daiTmp.toLowerCase() === 'dnai') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'dognai' ||
+                        daiTmp.toLowerCase() === 'dongn' ||
+                        daiTmp.toLowerCase() === 'dogn' ||
+                        daiTmp.toLowerCase() === 'dgnai' ||
+                        daiTmp.toLowerCase() === 'dongnai' ||
+                        daiTmp.toLowerCase() === 'dnai'
+                    ) {
                         daiTmp = 'dn';
                     } else if (
                         daiTmp.toLowerCase() === 'cantho' ||
@@ -318,7 +411,9 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp.toLowerCase() === 'soctrang' ||
                         daiTmp.toLowerCase() === 'strang' ||
                         daiTmp.toLowerCase() === 'stran' ||
-                        daiTmp.toLowerCase() === 'soctran'
+                        daiTmp.toLowerCase() === 'soctran' ||
+                        daiTmp.toLowerCase() === 'strag' ||
+                        daiTmp.toLowerCase() === 'soctrag'
                     ) {
                         daiTmp = 'st';
                     } else if (daiTmp.toLowerCase() === 'tayninh' || daiTmp.toLowerCase() === 'tninh') {
@@ -332,12 +427,25 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                     ) {
                         daiTmp = 'ag';
                     } else if (
+                        daiTmp.toLowerCase() === 'bihthuan' ||
+                        daiTmp.toLowerCase() === 'bihth' ||
+                        daiTmp.toLowerCase() === 'binhth' ||
                         daiTmp.toLowerCase() === 'binhthuan' ||
                         daiTmp.toLowerCase() === 'bthuan' ||
                         daiTmp.toLowerCase() === 'bth'
                     ) {
                         daiTmp = 'bt';
-                    } else if (daiTmp.toLowerCase() === 'binhduong' || daiTmp.toLowerCase() === 'bduong') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'bihduong' ||
+                        daiTmp.toLowerCase() === 'bihduon' ||
+                        daiTmp.toLowerCase() === 'bihduog' ||
+                        daiTmp.toLowerCase() === 'binhduog' ||
+                        daiTmp.toLowerCase() === 'bduog' ||
+                        daiTmp.toLowerCase() === 'binhduon' ||
+                        daiTmp.toLowerCase() === 'bduon' ||
+                        daiTmp.toLowerCase() === 'binhduong' ||
+                        daiTmp.toLowerCase() === 'bduong'
+                    ) {
                         daiTmp = 'bu';
                     } else if (
                         daiTmp.toLowerCase() === 'vinhlong' ||
@@ -349,22 +457,34 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                     ) {
                         daiTmp = 'vl';
                     } else if (
+                        daiTmp.toLowerCase() === 'travih' ||
+                        daiTmp.toLowerCase() === 'trvih' ||
                         daiTmp.toLowerCase() === 'travinh' ||
                         daiTmp.toLowerCase() === 'tvinh' ||
                         daiTmp.toLowerCase() === 'trvinh'
                     ) {
                         daiTmp = 'tv';
                     } else if (
+                        daiTmp.toLowerCase() === 'logan' ||
+                        daiTmp.toLowerCase() === 'loga' ||
                         daiTmp.toLowerCase() === 'longan' ||
                         daiTmp.toLowerCase() === 'lan' ||
                         daiTmp.toLowerCase() === 'longa' ||
                         daiTmp.toLowerCase() === 'lonan'
                     ) {
                         daiTmp = 'la';
-                    } else if (daiTmp.toLowerCase() === 'binhphuoc' || daiTmp.toLowerCase() === 'bphuoc') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'bph' ||
+                        daiTmp.toLowerCase() === 'bihph' ||
+                        daiTmp.toLowerCase() === 'bihphuoc' ||
+                        daiTmp.toLowerCase() === 'binhph' ||
+                        daiTmp.toLowerCase() === 'binhphuoc' ||
+                        daiTmp.toLowerCase() === 'bphuoc'
+                    ) {
                         daiTmp = 'bp';
                     } else if (
                         daiTmp.toLowerCase() === 'haugiang' ||
+                        daiTmp.toLowerCase() === 'haugiag' ||
                         daiTmp.toLowerCase() === 'hgiang' ||
                         daiTmp.toLowerCase() === 'haugian' ||
                         daiTmp.toLowerCase() === 'hgian'
@@ -373,12 +493,16 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                     } else if (
                         daiTmp.toLowerCase() === 'tiengiang' ||
                         daiTmp.toLowerCase() === 'tgiang' ||
+                        daiTmp.toLowerCase() === 'tiengiag' ||
+                        daiTmp.toLowerCase() === 'tgiag' ||
                         daiTmp.toLowerCase() === 'tiengian' ||
                         daiTmp.toLowerCase() === 'tgian' ||
                         daiTmp.toLowerCase() === 'tgi'
                     ) {
                         daiTmp = 'tg';
                     } else if (
+                        daiTmp.toLowerCase() === 'kiengiag' ||
+                        daiTmp.toLowerCase() === 'kgiag' ||
                         daiTmp.toLowerCase() === 'kiengiang' ||
                         daiTmp.toLowerCase() === 'kgiang' ||
                         daiTmp.toLowerCase() === 'kiengian' ||
@@ -388,9 +512,20 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp = 'kg';
                     } else if (daiTmp.toLowerCase() === 'dalat' || daiTmp.toLowerCase() === 'dlat') {
                         daiTmp = 'lt';
-                    } else if (daiTmp.toLowerCase() === 'phuyen' || daiTmp.toLowerCase() === 'pyen') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'phuy' ||
+                        daiTmp.toLowerCase() === 'phy' ||
+                        daiTmp.toLowerCase() === 'phuyen' ||
+                        daiTmp.toLowerCase() === 'pyen'
+                    ) {
                         daiTmp = 'py';
-                    } else if (daiTmp.toLowerCase() === 'hue' || daiTmp.toLowerCase() === 'tth') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'thuathienhue' ||
+                        daiTmp.toLowerCase() === 'thhue' ||
+                        daiTmp.toLowerCase() === 'tthue' ||
+                        daiTmp.toLowerCase() === 'hue' ||
+                        daiTmp.toLowerCase() === 'tth'
+                    ) {
                         daiTmp = 'hu';
                     } else if (
                         daiTmp.toLowerCase() === 'dlac' ||
@@ -401,9 +536,15 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp.toLowerCase() === 'daklac'
                     ) {
                         daiTmp = 'dl';
-                    } else if (daiTmp.toLowerCase() === 'quangnam' || daiTmp.toLowerCase() === 'qnam') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'quagnam' ||
+                        daiTmp.toLowerCase() === 'quangnam' ||
+                        daiTmp.toLowerCase() === 'qnam'
+                    ) {
                         daiTmp = 'qn';
                     } else if (
+                        daiTmp.toLowerCase() === 'danag' ||
+                        daiTmp.toLowerCase() === 'dnag' ||
                         daiTmp.toLowerCase() === 'danang' ||
                         daiTmp.toLowerCase() === 'dnang' ||
                         daiTmp.toLowerCase() === 'dnan' ||
@@ -416,23 +557,67 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp.toLowerCase() === 'khhoa'
                     ) {
                         daiTmp = 'kh';
-                    } else if (daiTmp.toLowerCase() === 'quangbinh' || daiTmp.toLowerCase() === 'qbinh') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'quagbih' ||
+                        daiTmp.toLowerCase() === 'quagbinh' ||
+                        daiTmp.toLowerCase() === 'quanbih' ||
+                        daiTmp.toLowerCase() === 'quanbinh' ||
+                        daiTmp.toLowerCase() === 'quangbih' ||
+                        daiTmp.toLowerCase() === 'qbih' ||
+                        daiTmp.toLowerCase() === 'quangbinh' ||
+                        daiTmp.toLowerCase() === 'qbinh'
+                    ) {
                         daiTmp = 'qb';
-                    } else if (daiTmp.toLowerCase() === 'binhdinh' || daiTmp.toLowerCase() === 'bdinh') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'bihdih' ||
+                        daiTmp.toLowerCase() === 'bihdinh' ||
+                        daiTmp.toLowerCase() === 'binhdih' ||
+                        daiTmp.toLowerCase() === 'binhdinh' ||
+                        daiTmp.toLowerCase() === 'bdinh' ||
+                        daiTmp.toLowerCase() === 'bdi' ||
+                        daiTmp.toLowerCase() === 'bdih'
+                    ) {
                         daiTmp = 'bd';
-                    } else if (daiTmp.toLowerCase() === 'quangtri' || daiTmp.toLowerCase() === 'qtri') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'quagtr' ||
+                        daiTmp.toLowerCase() === 'quagtri' ||
+                        daiTmp.toLowerCase() === 'quantr' ||
+                        daiTmp.toLowerCase() === 'quantri' ||
+                        daiTmp.toLowerCase() === 'quangtr' ||
+                        daiTmp.toLowerCase() === 'qtr' ||
+                        daiTmp.toLowerCase() === 'quangtri' ||
+                        daiTmp.toLowerCase() === 'qtri'
+                    ) {
                         daiTmp = 'qt';
                     } else if (daiTmp.toLowerCase() === 'gialai' || daiTmp.toLowerCase() === 'glai') {
                         daiTmp = 'gl';
-                    } else if (daiTmp.toLowerCase() === 'ninhthuan' || daiTmp.toLowerCase() === 'nthuan') {
+                    } else if (
+                        daiTmp.toLowerCase() === 'ninhth' ||
+                        daiTmp.toLowerCase() === 'nihthuan' ||
+                        daiTmp.toLowerCase() === 'nihth' ||
+                        daiTmp.toLowerCase() === 'nith' ||
+                        daiTmp.toLowerCase() === 'nithuan' ||
+                        daiTmp.toLowerCase() === 'nth' ||
+                        daiTmp.toLowerCase() === 'ninhth' ||
+                        daiTmp.toLowerCase() === 'ninhthuan' ||
+                        daiTmp.toLowerCase() === 'nthuan'
+                    ) {
                         daiTmp = 'nt';
                     } else if (
+                        daiTmp.toLowerCase() === 'quagngai' ||
+                        daiTmp.toLowerCase() === 'quagng' ||
+                        daiTmp.toLowerCase() === 'quangng' ||
+                        daiTmp.toLowerCase() === 'quang' ||
+                        daiTmp.toLowerCase() === 'quangai' ||
                         daiTmp.toLowerCase() === 'quangngai' ||
                         daiTmp.toLowerCase() === 'qngai' ||
                         daiTmp.toLowerCase() === 'quanngai'
                     ) {
                         daiTmp = 'qg';
                     } else if (
+                        daiTmp.toLowerCase() === 'dacnog' ||
+                        daiTmp.toLowerCase() === 'daknog' ||
+                        daiTmp.toLowerCase() === 'dnog' ||
                         daiTmp.toLowerCase() === 'dacnong' ||
                         daiTmp.toLowerCase() === 'daknong' ||
                         daiTmp.toLowerCase() === 'dnong' ||
@@ -445,7 +630,8 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                     } else if (
                         daiTmp.toLowerCase() === 'kontum' ||
                         daiTmp.toLowerCase() === 'kontom' ||
-                        daiTmp.toLowerCase() === 'ktum'
+                        daiTmp.toLowerCase() === 'ktum' ||
+                        daiTmp.toLowerCase() === 'ktom'
                     ) {
                         daiTmp = 'kt';
                     }
