@@ -140,19 +140,18 @@ function handleTextKeo(content) {
     /// Kiểm tra chữ k
 
     index = contentTmp.indexOf('k');
+    
+    while (index !== -1) {
 
-    if (
-        index !== -1 &&
-        (contentTmp[index + 1] === '.' ||
-            (isFinite(Number(contentTmp[index + 1])) && contentTmp[index - 1] === '.') ||
-            isFinite(Number(contentTmp[index - 1]))) &&
-            (isFinite(Number(contentTmp[index + 2]))) &&
-            (isFinite(Number(contentTmp[index - 2])))
-    ) {
-        while (
+        if (
             index !== -1 &&
             (contentTmp[index - 1] === '.' || isFinite(Number(contentTmp[index - 1]))) &&
-            (contentTmp[index + 1] === '.' || isFinite(Number(contentTmp[index + 1])))
+            (contentTmp[index + 1] === '.' || isFinite(Number(contentTmp[index + 1]))) &&
+            (contentTmp[index + 1] === '.' ||
+                (isFinite(Number(contentTmp[index + 1])) && contentTmp[index - 1] === '.') ||
+                isFinite(Number(contentTmp[index - 1]))) &&
+            isFinite(Number(contentTmp[index + 2])) &&
+            isFinite(Number(contentTmp[index - 2]))
         ) {
             let length = contentTmp.length;
 
@@ -270,9 +269,9 @@ function handleTextKeo(content) {
                 after = after.slice(1);
             }
             contentTmp = before + '.' + chuoiSoKeo + '.' + after;
-
-            index = contentTmp.indexOf('k');
         }
+
+        index = contentTmp.indexOf('k', index + 1);
     }
 
     /// Kiểm tra chữ toi

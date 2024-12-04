@@ -105,6 +105,9 @@ let listDaiError = [
     'kgi',
     'dalat',
     'dlat',
+    'phuin',
+    'phuien',
+    'pien',
     'phuy',
     'phy',
     'phuyen',
@@ -170,7 +173,6 @@ let listDaiError = [
     'quagngai',
     'quagng',
     'quangng',
-    'quang',
     'quangai',
     'quanngai',
     'qngai',
@@ -520,6 +522,9 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                     ) {
                         daiTmp = 'py';
                     } else if (
+                        daiTmp.toLowerCase() === 'phuin' ||
+                        daiTmp.toLowerCase() === 'phuien' ||
+                        daiTmp.toLowerCase() === 'pien' ||
                         daiTmp.toLowerCase() === 'thuathienhue' ||
                         daiTmp.toLowerCase() === 'thhue' ||
                         daiTmp.toLowerCase() === 'tthue' ||
@@ -607,7 +612,6 @@ function markError(content, errorSyntaxDetail, mien, dayOfWeek) {
                         daiTmp.toLowerCase() === 'quagngai' ||
                         daiTmp.toLowerCase() === 'quagng' ||
                         daiTmp.toLowerCase() === 'quangng' ||
-                        daiTmp.toLowerCase() === 'quang' ||
                         daiTmp.toLowerCase() === 'quangai' ||
                         daiTmp.toLowerCase() === 'quangngai' ||
                         daiTmp.toLowerCase() === 'qngai' ||
