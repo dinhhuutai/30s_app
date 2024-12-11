@@ -1,10 +1,7 @@
-import { Link, Redirect, router, usePathname } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { ImageBackground, Text, View } from "react-native";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Redirect, router } from "expo-router";
+import { ImageBackground, View } from "react-native";
 import CustomButton from "@/components/CustomButton";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
 export default function App() {

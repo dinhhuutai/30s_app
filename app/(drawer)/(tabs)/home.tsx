@@ -13,6 +13,7 @@ import KQXSMB from '@/components/KQXSMB';
 import { Colors } from '@/constants/Colors';
 import { useNavigation } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+//import SmsListener from 'react-native-android-sms-listener';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -195,6 +196,43 @@ const Home = () => {
       value: '0',
   }]);
   const [idMember, setIdMember] = useState();
+
+  
+  // useEffect(() => {
+  //   console.log('TAITAITIAI')
+  //   // Kiểm tra và yêu cầu quyền truy cập SMS
+  //   const requestPermissions = async () => {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.READ_SMS,
+  //       {
+  //         title: 'SMS Permission',
+  //         message: 'App needs access to your SMS to read incoming messages',
+  //       }
+  //     );
+
+  //     console.log('granted: ', granted)
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       console.log('SMS permission granted');
+  //     } else {
+  //       console.log('SMS permission denied');
+  //     }
+  //   };
+
+  //   requestPermissions();
+
+  //   // Đăng ký nhận tin nhắn SMS đến
+  //   const subscription = SmsListener.addListener((message: any) => {
+  //     console.log('New SMS received:', message);
+  //     // message.sender - người gửi
+  //     // message.body - nội dung tin nhắn
+  //   });
+
+  //   // Dọn dẹp khi component bị hủy
+  //   return () => {
+  //     subscription.remove();
+  //   };
+  // }, []);
+
 
   return (
     <SafeAreaView className='h-full'>

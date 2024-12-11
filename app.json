@@ -1,39 +1,42 @@
 {
-  "expo": {
-    "name": "App10s",
-    "slug": "app10s",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "",
-    "scheme": "app10s",
-    "userInterfaceStyle": "automatic",
-    "splash": {},
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.dinhhuutai.app10s"
-    },
-    "android": {
-      "adaptiveIcon": {},
-      "package": "com.dinhhuutai.app10s"
-    },
-    "web": {
-      "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
-    },
-    "plugins": [
-      "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "110d26fc-0e29-40f8-819a-ea85c11c454a"
-      }
+    "expo": {
+        "name": "App10s",
+        "slug": "app10s",
+        "version": "1.0.0",
+        "scheme": "app10s",
+        "userInterfaceStyle": "automatic",
+        "splash": {
+            "image": "./assets/images/splash-icon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.dinhhuutai.app10s"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.dinhhuutai.app10s"
+        },
+        "web": {
+            "bundler": "metro",
+            "output": "static",
+            "favicon": "./assets/images/favicon.png"
+        },
+        "plugins": ["expo-router"],
+        "experiments": {
+            "typedRoutes": true
+        },
+        "extra": {
+            "router": {
+                "origin": false
+            },
+            "eas": {
+                "projectId": "110d26fc-0e29-40f8-819a-ea85c11c454a"
+            }
+        }
     }
-  }
 }

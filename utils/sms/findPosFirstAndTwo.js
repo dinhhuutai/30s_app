@@ -2816,7 +2816,7 @@ function findPosFirstAndTwo(content, dayOfWeek, mien) {
         }
     }
 
-    while (true) {
+    while (true && changeBaoDao.length === 0) {
         let stringChildTestTmp2 = content.slice(firstTwoPositions[0], firstTwoPositions[1]);
 
         if (firstTwoPositions[1] === null || firstTwoPositions[1] === undefined || firstTwoPositions[1] === '') {

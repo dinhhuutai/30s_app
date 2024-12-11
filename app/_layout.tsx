@@ -11,6 +11,8 @@ import { SmsProvider } from '../context/SmsContext';
 import { RevenueProvider } from '../context/RevenueContext';
 import { MemberProvider } from '../context/MemberContext';
 import AppNav from './AppNav';
+// import SmsListener from 'react-native-android-sms-listener';
+// import Sms from 'react-native-sms';
 
 SplashScreen.preventAutoHideAsync();
 
